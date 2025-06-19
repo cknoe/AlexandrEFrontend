@@ -1,10 +1,13 @@
-.container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+:root {
+  --header-size: 50px;
 }
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     background: #2563eb;
     color: white;
     padding: .2rem;
@@ -12,7 +15,11 @@
     display: flex;
     justify-content: flex-end; /* Aligne à droite horizontalement */
     align-items: flex-end;     /* Aligne en bas verticalement */
-    height: 50px;
+    height: var(--header-size);
+}
+
+.blankspace {
+    height: var(--header-size);
 }
 
 .main {
