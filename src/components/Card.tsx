@@ -1,4 +1,4 @@
-import LogoReact from "../img/logoreact.svg"
+import LogoReact from "../assets/logoreact.svg"
 
 export default function Card() {
 
