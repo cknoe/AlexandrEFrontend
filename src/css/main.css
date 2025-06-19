@@ -1,27 +1,3 @@
-:root {
-  --header-size: 50px;
-}
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: #2563eb;
-    color: white;
-    padding: .2rem;
-    font-size: 1rem;
-    display: flex;
-    justify-content: flex-end; /* Aligne à droite horizontalement */
-    align-items: flex-end;     /* Aligne en bas verticalement */
-    height: var(--header-size);
-}
-
-.blankspace {
-    height: var(--header-size);
-}
-
 .main {
     flex: 1;
     padding: 1em;
@@ -33,17 +9,22 @@
     background: #f3f4f6;
 }
 
-.card {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
 @media (max-width: 600px) {
   .main {
     flex-direction: column;
     align-items: center;
   }
+}
+
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #1d4ed8;
 }

@@ -1,14 +1,25 @@
+import "../css/card.css"
 import LogoReact from "../assets/logoreact.svg"
 
-export default function Card() {
+type CardProps = {
+    cardExist: boolean;
+    cardTitle? : string;
+    cardText? : string;
+}
 
-    var cardTitle:string = "Bienvenue !";
-    var cardText:string = "Ceci est une carte centrée.";
+export default function Card({cardExist, cardTitle = "Create New Card", cardText = "Click here to create a new Card"}: CardProps) {
     return (
-        <div className="card">
+        <div className="card" onClick={(event) => handleClick(event, cardTitle, cardExist)}>
             <h2>{ cardTitle }</h2>
             <p>{ cardText }</p>
-            <img src={LogoReact} alt="Logo React" width={200} height={200} />
+            {cardExist && (
+                <img src={LogoReact} alt="Logo React" width={200} height={200} />
+            )}
         </div>
     );
+}
+
+function handleClick(event: React.MouseEvent<HTMLDivElement>, cardText:string, cardExist:boolean) {
+    (cardExist) ? alert("carte sélectionnée : " + cardText) : alert("Hello");
+    console.log(event);
 }
