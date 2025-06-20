@@ -1,13 +1,18 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
 
-const cardTitles: string[] = ["a","b","c","d","e","a"];
-
 export default function CardsList() {
+    const [cards, updateCards] = useState<string[]>([]);
+    const addCard = () => updateCards([...cards, "new"]);
+
+    useEffect(() => {
+        document.title = cards.length + " Cartes";
+    })
+
     return(<>
-                { cardTitles.map( (cardTitle, index) => 
-                <Card key={cardTitle + index} cardExist={true} cardTitle={cardTitle} cardText="HelloWorld"/>)
-                }
-                <Card cardExist={false}/>
+                {cards.map( (card, index) => 
+                    <Card key={card + index} updateCards={addCard} cardExist={true} cardTitle={card} cardText="HelloWorld"/>) }
+                <Card updateCards={addCard} cardExist={false} cardText={cards.length.toString() + " Cartes existantes"}/>
             </>
     )
 }
