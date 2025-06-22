@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 .main {
-    flex: 1;
-    padding: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    background: #f3f4f6;
-    font-family: 'Inter', sans-serif;
+  flex: 1;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #f3f4f6;
+  font-family: 'Inter', sans-serif;
 }
 
 @media (max-width: 600px) {
