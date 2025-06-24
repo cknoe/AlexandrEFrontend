@@ -29,26 +29,28 @@ export default function ({ updateCards }: CardFormProp) {
       onSubmit={(event) => handleSubmit(event, updateCards, closeModal)}
       className="card-form"
     >
+      <label>Title</label>
       <input
         type="text"
         value={cardTitle}
         name="card-title"
         onChange={(e) => setCardTitle(e.target.value)}
       />
-      <br />
+      <label>Text</label>
       <input
         type="text"
         value={cardText}
         name="card-text"
         onChange={(e) => setCardText(e.target.value)}
       />
-      <br />
+      <label>Content</label>
       <input
         type="text"
         value={cardContent}
         name="card-content"
         onChange={(e) => setCardContent(e.target.value)}
       />
+      <br/>
       <button type="submit">Entrer</button>
     </form>
   )
