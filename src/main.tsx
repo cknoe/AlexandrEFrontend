@@ -10,9 +10,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <ModalProvider>
-        <Header/>
-        <Modal/>
-        <AppRoutes/>
+        <Header />
+        <Modal />
+        <AppRoutes />
       </ModalProvider>
     </Router>
   </StrictMode>,

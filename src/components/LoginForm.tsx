@@ -1,4 +1,4 @@
-import '../css/loginform.css'
+import '../css/form.css'
 
 export default function LoginForm() {
   return (

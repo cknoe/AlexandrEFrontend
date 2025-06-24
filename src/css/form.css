@@ -1,4 +1,4 @@
-.login-form {
+form {
   max-width: 300px;
   margin: 5rem auto;
   padding: 2rem;
@@ -11,7 +11,7 @@
   font-family: sans-serif;
 }
 
-.login-form input {
+form input {
   padding: 0.8rem;
   font-size: 1rem;
   border: 1px solid #d1d5db;
@@ -19,12 +19,12 @@
   transition: border-color 0.2s;
 }
 
-.login-form input:focus {
+form input:focus {
   outline: none;
   border-color: #2563eb; /* bleu */
 }
 
-.login-form button {
+form button {
   padding: 0.8rem;
   font-size: 1rem;
   border-radius: 0.5rem;
