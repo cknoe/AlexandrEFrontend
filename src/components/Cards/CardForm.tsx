@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useModal } from '../../Contexts/ModalContext'
+import { useModal } from '../Modal/ModalContext'
 import '../../css/form.css'
 
 type CardFormProp = {

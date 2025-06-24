@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useModal } from '../Contexts/ModalContext'
+import { useModal } from './Modal/ModalContext'
 import LoginForm from './LoginForm'
 import '../css/header.css'
 

@@ -1,4 +1,4 @@
-import { useModal } from '../../Contexts/ModalContext'
+import { useModal } from '../Modal/ModalContext'
 import CardForm from './CardForm'
 import '../../css/card.css'
 import LogoReact from '../../assets/logoreact.svg'
