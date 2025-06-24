@@ -1,9 +1,8 @@
-import LoginForm from './LoginForm'
 import { useModal } from '../Contexts/ModalContext'
 import '../css/modal.css'
 
 export default function Modal() {
-  const { isModalOpen, closeModal } = useModal();
+  const { isModalOpen, closeModal, modalContent } = useModal();
 
   if (!isModalOpen) return null;
   return (
@@ -12,7 +11,7 @@ export default function Modal() {
         <button className="modal-close" onClick={closeModal}>
           ×
         </button>
-          <LoginForm/>
+          {modalContent}
       </div>
     </div>
   )
