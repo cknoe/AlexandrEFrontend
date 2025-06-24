@@ -26,6 +26,11 @@
   right: 1rem;
   font-size: 1.5rem;
   background: none;
+  color: var(--main-color);
   border: none;
   cursor: pointer;
+}
+
+.modal-close:hover{
+  background: none;
 }

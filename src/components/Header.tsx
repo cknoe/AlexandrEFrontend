@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useModal } from '../Contexts/ModalContext'
 import '../css/header.css'
 
 export default function Header() {
+  const { openModal } = useModal();
   return (
     <>
       <header className="header">
-        <Link to="/">Accueil</Link>
-        <Link to="/login ">Login</Link>
+        <Link to="/"><button >Home</button></Link>
+        <Link to="/login "><button >LoginPage</button></Link>
+        <button onClick={openModal}>Modal</button>
       </header>
       <div className="blankspace"></div>
     </>

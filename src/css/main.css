@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+:root {
+  --main-color: #2563eb;
+}
+
 .main {
   flex: 1;
   padding: 1em;
