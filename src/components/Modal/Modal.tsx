@@ -1,5 +1,5 @@
-import { useModal } from '../Contexts/ModalContext'
-import '../css/modal.css'
+import { useModal } from './ModalContext'
+import '../../css/modal.css'
 
 export default function Modal() {
   const { isModalOpen, closeModal, modalContent } = useModal()
