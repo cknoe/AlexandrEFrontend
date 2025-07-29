@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   width: 264px;
   height: 374px;
   background: white;
@@ -26,4 +27,30 @@
   max-width: 100%;
   height: auto;
   margin-top: 1rem;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #f87171; /* rouge clair */
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .delete-button{
+  opacity: 1;
+}
+
+.delete-button:hover {
+  background-color: #ef4444;
 }

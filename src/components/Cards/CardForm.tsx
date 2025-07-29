@@ -50,7 +50,7 @@ export default function ({ updateCards }: CardFormProp) {
         name="card-content"
         onChange={(e) => setCardContent(e.target.value)}
       />
-      <br/>
+      <br />
       <button type="submit">Entrer</button>
     </form>
   )
