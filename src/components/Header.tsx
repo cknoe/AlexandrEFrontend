@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useModal } from './Modal/ModalContext'
-import LoginForm from './LoginForm'
+import LoginForm from './Authorization/LoginForm'
 import '../css/header.css'
 
 export default function Header() {
