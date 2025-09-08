@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
+
+const API_BASE_URL: String = import.meta.env.VITE_API_BASE_URL;
+
 interface AuthContextType {
   token: string | null;
   login: (username: string, password: string) => Promise<void>;
@@ -8,7 +11,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+type AuthProviderProps = {
+  children: React.ReactNode;
+};
+
+export function AuthProvider({ children }: AuthProviderProps) {  
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -19,7 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   async function login(username: string, password: string): Promise<void> {
-    const response: Response = await fetch("http://localhost:8080/login", {
+    const response: Response = await fetch( API_BASE_URL + "/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -50,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export function useAuth(): AuthContextType {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error("useAuth doit être utilisé dans un AuthProvider");
+    throw new Error("useAuth must be used within a AuthProvider");
   }
   return context;
 }

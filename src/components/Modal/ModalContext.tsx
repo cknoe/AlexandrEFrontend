@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 
+
 type ModalContextType = {
   isModalOpen: boolean
   openModal: (content: React.ReactNode) => void
@@ -9,7 +10,11 @@ type ModalContextType = {
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
-export function ModalProvider({ children }: { children: React.ReactNode }) {
+type ModalProviderProps = {
+  children: React.ReactNode
+}
+
+export function ModalProvider({ children }: ModalProviderProps) {
   const [isModalOpen, setModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState<React.ReactNode | null>(null)
   const openModal = (content: React.ReactNode) => {

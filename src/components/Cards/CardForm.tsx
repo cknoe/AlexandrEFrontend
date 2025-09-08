@@ -1,57 +1,60 @@
-import { useState } from 'react'
-import { useModal } from '../Modal/ModalContext'
-import '../../css/form.css'
+import { useState } from "react";
+import { useModal } from "../Modal/ModalContext";
+import type { CardData } from "./cardTypes";
+import "../../css/form.css";
 
-type CardFormProp = {
-  updateCards: (title: string, text: string, content: string) => void
-}
+type CardFormProps = {
+  updateCards: (newCard: CardData) => void;
+};
 
-export default function ({ updateCards }: CardFormProp) {
-  const [cardTitle, setCardTitle] = useState('')
-  const [cardText, setCardText] = useState('')
-  const [cardContent, setCardContent] = useState('')
-  const { closeModal } = useModal()
+export default function CardForm({ updateCards }: CardFormProps) {
+  const [cardTitle, setCardTitle] = useState("");
+  const [cardText, setCardText] = useState("");
+  const [cardContent, setCardContent] = useState("");
+  const { closeModal } = useModal();
 
-  function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>,
-    updateCards: (title: string, text: string, content: string) => void,
-    closeModal: () => void,
-  ) {
-    event.preventDefault()
-    if (cardTitle != '' && cardText != '') {
-      updateCards(cardTitle, cardText, cardContent)
-      closeModal()
-    }
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!cardTitle || !cardText) return; // validation simple
+
+    const newCard: CardData = {
+      cardTitle,
+      cardText,
+      cardContent,
+    };
+
+    updateCards(newCard);
+    closeModal();
   }
 
   return (
-    <form
-      onSubmit={(event) => handleSubmit(event, updateCards, closeModal)}
-      className="card-form"
-    >
+    <form onSubmit={handleSubmit} className="card-form">
       <label>Title</label>
       <input
         type="text"
         value={cardTitle}
-        name="card-title"
         onChange={(e) => setCardTitle(e.target.value)}
+        name="card-title"
       />
+
       <label>Text</label>
       <input
         type="text"
         value={cardText}
-        name="card-text"
         onChange={(e) => setCardText(e.target.value)}
+        name="card-text"
       />
+
       <label>Content</label>
       <input
         type="text"
         value={cardContent}
-        name="card-content"
         onChange={(e) => setCardContent(e.target.value)}
+        name="card-content"
       />
-      <br />
+
       <button type="submit">Entrer</button>
     </form>
-  )
+  );
 }
