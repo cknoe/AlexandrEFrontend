@@ -12,7 +12,6 @@ export default function LoginForm() {
     e.preventDefault();
     try {
       await login(username, password);
-      alert("Connexion réussie !" + token);
     } catch {
       alert("Erreur de connexion");
     }

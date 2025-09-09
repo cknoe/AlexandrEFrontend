@@ -17,7 +17,7 @@ export default function CardsContainer() {
   }, [cards]);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) { setCards([]); return; }
     
     async function fetchData() {
       const data = await getCards();
