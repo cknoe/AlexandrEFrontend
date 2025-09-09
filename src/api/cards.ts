@@ -36,10 +36,11 @@ export async function deleteCard(cardId: number): Promise<void> {
 }
 
 export async function updateCard(cardId: number, card: Omit<Card, "id">): Promise<Card> {
-    return apiFecth("/cards/" + cardId, {
+    const response = apiFecth("/cards/" + cardId, {
         method: "PUT",
         body: cardToApi(card),
     });
+    return apiToCard(await response);
 }
 
 function cardToApi(card: Omit<Card, "id">): string {

@@ -4,7 +4,7 @@ import { useAuth } from "../Authorization/AuthContext";
 import CardsList from "./CardsList";
 import CardForm from "./CardForm";
 import type { CardData } from "./cardTypes";
-import { getCards, createCard, deleteCard } from "../../api/cards";
+import { getCards, createCard, deleteCard, updateCard } from "../../api/cards";
 
 
 export default function CardsContainer() {
@@ -45,8 +45,25 @@ export default function CardsContainer() {
     if (token) {deleteCard(id);}
   }
 
-  function handleOpenModal () {
-    openModal(<CardForm updateCards={handleAddCard} />);
+  function handleUpdateCard(index: number, id: number, updatedCard: CardData) {
+    setCards((prev) =>
+      prev.map((card, i) => (i === index ? updatedCard : card))
+    );
+    if (token) {
+      try {
+        updateCard(id, updatedCard);
+      } catch (err) {
+        console.error("Error updating card :", err);
+      }
+    }
+  }
+
+  function handleOpenAddModal () {
+    openModal(<CardForm mode= "add" updateCards={handleAddCard} />);
+  }
+
+  function handleOpenUpdateModal (index: number, id: number, card: CardData) {
+    openModal(<CardForm mode= "update" updateCards={(updatedCard) => handleUpdateCard(index, id, updatedCard)} initialData={card} />);
   }
 
   return (
@@ -54,7 +71,9 @@ export default function CardsContainer() {
       cards={cards}
       addCard={handleAddCard}
       deleteCard={handleDeleteCard}
-      openForm={handleOpenModal}
+      updateCard={handleUpdateCard}
+      openAddForm={handleOpenAddModal}
+      openUpdateForm={handleOpenUpdateModal}
     />
   );
 }
