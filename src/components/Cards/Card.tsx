@@ -28,7 +28,7 @@ export default function Card({id, index, cardTitle, cardText, cardContent, delet
     <div className="card" onClick={() =>
         handleClick(deleteCardFunction, openModal)}>
       <button
-        className="delete-button"
+        className="card-button delete-button"
         onClick={(e) => {
           e.stopPropagation();
           deleteCardFunction();
@@ -38,7 +38,7 @@ export default function Card({id, index, cardTitle, cardText, cardContent, delet
       </button>
 
       <button
-        className="update-button"
+        className="card-button update-button"
         onClick={(e) => {
           e.stopPropagation();
           updateCardFunction(index, id, {
