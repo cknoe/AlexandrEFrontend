@@ -9,7 +9,7 @@ import { getCards, createCard, deleteCard, updateCard } from "../../api/cards";
 
 export default function CardsContainer() {
   const [cards, setCards] = useState<CardData[]>([]);
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { token } = useAuth();
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function CardsContainer() {
 
   function handleDeleteCard(index: number, id: number) {
     setCards((prev) => prev.filter((c, i) => c.id !== id && i !== index));
+    closeModal();
     if (token) {deleteCard(id);}
   }
 
