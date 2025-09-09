@@ -1,15 +1,15 @@
-import Card from "./Card";
-import type { CardData } from "./cardTypes";
-import LogoReact from "../../assets/logoreact.svg";
+import Card from './Card'
+import type { CardData } from './cardTypes'
+import LogoReact from '../../assets/logoreact.svg'
 
 type CardsListProps = {
-  cards: CardData[];
-  addCard: (card: CardData) => void;
-  deleteCard: (index: number, id: number) => void;
-  updateCard: (index: number, id: number, updatedCard: CardData) => void;
-  openAddForm: () => void;
-  openUpdateForm: (index: number, id: number, initialCard: CardData) => void;
-};
+  cards: CardData[]
+  addCard: (card: CardData) => void
+  deleteCard: (index: number, id: number) => void
+  updateCard: (index: number, id: number, updatedCard: CardData) => void
+  openAddForm: () => void
+  openUpdateForm: (index: number, id: number, initialCard: CardData) => void
+}
 
 export default function CardsList({
   cards = [],
@@ -38,5 +38,5 @@ export default function CardsList({
         <p>{cards.length} Cartes existantes</p>
       </div>
     </>
-  );
+  )
 }

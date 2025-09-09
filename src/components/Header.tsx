@@ -6,7 +6,7 @@ import '../css/header.css'
 
 export default function Header() {
   const { openModal } = useModal()
-  const { token, logout } = useAuth();
+  const { token, logout } = useAuth()
   return (
     <>
       <header className="header">
@@ -16,7 +16,11 @@ export default function Header() {
         <Link to="/login ">
           <button>LoginPage</button>
         </Link>
-        {!token ? <button onClick={() => openModal(<LoginForm />)}>Login</button> : <button onClick={() => logout()}>Logout</button>}
+        {!token ? (
+          <button onClick={() => openModal(<LoginForm />)}>Login</button>
+        ) : (
+          <button onClick={() => logout()}>Logout</button>
+        )}
       </header>
       <div className="blankspace"></div>
     </>

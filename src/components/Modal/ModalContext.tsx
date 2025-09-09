@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useState } from 'react'
 
-
 type ModalContextType = {
   modalStack: React.ReactNode[]
   isModalOpen: boolean
   openModal: (content: React.ReactNode) => void
   closeModal: () => void
-  backModal: () => void;
+  backModal: () => void
   modalContent: React.ReactNode | null
 }
 
@@ -17,28 +16,35 @@ type ModalProviderProps = {
 }
 
 export function ModalProvider({ children }: ModalProviderProps) {
-  const [modalStack, setModalStack] = useState<React.ReactNode[]>([]);
+  const [modalStack, setModalStack] = useState<React.ReactNode[]>([])
 
-  const openModal = ( content: React.ReactNode) => {
-    setModalStack((prev) => [...prev, content]);
-  };
+  const openModal = (content: React.ReactNode) => {
+    setModalStack((prev) => [...prev, content])
+  }
 
-  const closeModal = () => setModalStack([]);
+  const closeModal = () => setModalStack([])
 
   const backModal = () => {
-    setModalStack((prev) => prev.slice(0, prev.length - 1));
-  };
+    setModalStack((prev) => prev.slice(0, prev.length - 1))
+  }
 
-  const modalContent = modalStack[modalStack.length - 1] || null;
-  const isModalOpen = modalStack.length > 0;
+  const modalContent = modalStack[modalStack.length - 1] || null
+  const isModalOpen = modalStack.length > 0
 
   return (
     <ModalContext.Provider
-      value={{ modalStack, isModalOpen, openModal, closeModal, backModal, modalContent }}
+      value={{
+        modalStack,
+        isModalOpen,
+        openModal,
+        closeModal,
+        backModal,
+        modalContent,
+      }}
     >
       {children}
     </ModalContext.Provider>
-  );
+  )
 }
 
 export function useModal() {
