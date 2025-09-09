@@ -4,7 +4,7 @@ import { useAuth } from './AuthContext';
 import '../../css/form.css'
 
 export default function LoginForm() {
-  const { login, token } = useAuth();
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
