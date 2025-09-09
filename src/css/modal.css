@@ -21,10 +21,10 @@
   font-family: 'Inter', sans-serif;
 }
 
-.modal-close {
+.modal-button {
   position: absolute;
   top: 0.5rem;
-  right: 1rem;
+  border-radius: 10px;
   font-size: 1.5rem;
   background: none;
   color: var(--main-color);
@@ -32,6 +32,14 @@
   cursor: pointer;
 }
 
-.modal-close:hover {
-  background: none;
+.modal-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-close {
+  right: 1rem;
+}
+
+.modal-back {
+  left: 1rem;
 }
