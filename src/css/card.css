@@ -3,7 +3,10 @@
   width: 264px;
   height: 374px;
   background: white;
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
@@ -14,6 +17,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  min-width: 0;
   justify-content: space-between;
   align-items: center;
 }
@@ -23,6 +27,27 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+.main .card h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: -0.3em;
+  padding-bottom: 0.3em;
+  width:100%;
+}
+
+.main .card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2em;
+}
+
 .card img {
   max-width: 100%;
   height: auto;
@@ -30,6 +55,7 @@
 }
 
 .card-button {
+  top: 0.5rem;
   position: absolute;
   right: 0.5rem;
   color: white;
@@ -50,7 +76,7 @@
 }
 
 .delete-button {
-  top: 1rem;
+  right: 1rem;
   background-color: #f87171;
 }
 
@@ -59,7 +85,7 @@
 }
 
 .update-button {
-  top: 3.5rem;
+  right: 4rem;
 }
 
 .modal-content .card {
@@ -72,5 +98,5 @@
 
 .modal-content .card button {
   opacity: 1;
-  right: -1rem;
+  top: -1rem
 }
