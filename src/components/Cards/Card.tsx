@@ -1,8 +1,10 @@
-import { useModal } from '../Modal/ModalContext'
 import { Trash2, Pencil } from 'lucide-react'
+
+import { useModal } from '../Modal/ModalContext'
 import type { CardProps } from './cardTypes'
+import CardContentRenderer from './CardContentRenderer'
+
 import '../../css/card.css'
-import LogoReact from '../../assets/logoreact.svg'
 
 export default function Card({
   mode = 'compact_card',
@@ -67,13 +69,17 @@ export default function Card({
       </button>
 
       <h2>{cardTitle}</h2>
-      { mode === 'compact_card' ? null : 'fullcard'}
-      {cardContent == '' ? (
-        <img src={LogoReact} alt="Logo React" width={200} height={200} />
-      ) : (
-        <p>{cardContent}</p>
-      )}
-      <p>{cardText}</p>
+
+      { cardContent ?
+        <>
+          <CardContentRenderer url={cardContent} mode={mode} />
+          <p className='card-text'>{cardText}</p>
+        </>
+        :
+        <p className='card-text card-text-without-content'>{cardText}</p>
+      }
+      
+      
     </div>
   )
 }

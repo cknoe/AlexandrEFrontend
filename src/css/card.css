@@ -38,7 +38,7 @@
   width:100%;
 }
 
-.main .card p {
+.main .card .card-text {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -46,6 +46,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   min-height: 2.4em;
+}
+
+.main .card .card-text-without-content {
+  -webkit-line-clamp: 12;
+  line-clamp: 12;
 }
 
 .card img {
@@ -105,4 +110,36 @@
   width: 97%;
   resize: vertical;
   min-height: 3rem;
+}
+
+/* card content renderer */
+.compact-link-preview {
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.favicon {
+  width: 128px;
+  height: 128px;
+  border-radius: 1rem;
+  background-image: url("../../assets/link.png");
+}
+
+.hostname {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 14em;
+}
+
+.placeholder {
+  font-style: italic;
+  color: #999;
 }
