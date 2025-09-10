@@ -48,11 +48,12 @@ export default function CardForm({
       />
 
       <label>Text</label>
-      <input
-        type="text"
+      <textarea
+        rows={3}
         value={cardText}
         onChange={(e) => setCardText(e.target.value)}
         name="card-text"
+        className="card-form-text"
       />
 
       <label>Content</label>

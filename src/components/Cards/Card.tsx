@@ -5,6 +5,7 @@ import '../../css/card.css'
 import LogoReact from '../../assets/logoreact.svg'
 
 export default function Card({
+  mode = 'compact_card',
   id,
   index,
   cardTitle,
@@ -19,17 +20,20 @@ export default function Card({
     deleteCardFunction: () => void,
     openModal: (content: React.ReactNode) => void,
   ) {
-    openModal(
-      <Card
-        id={id}
-        index={index}
-        cardTitle={cardTitle}
-        cardText={cardText}
-        cardContent={cardContent}
-        deleteCardFunction={deleteCardFunction}
-        updateCardFunction={updateCardFunction}
-      />,
-    )
+    if (mode === 'compact_card') {
+      openModal(
+        <Card
+          mode="full_card"
+          id={id}
+          index={index}
+          cardTitle={cardTitle}
+          cardText={cardText}
+          cardContent={cardContent}
+          deleteCardFunction={deleteCardFunction}
+          updateCardFunction={updateCardFunction}
+        />,
+      )
+    }
   }
 
   return (
@@ -63,6 +67,7 @@ export default function Card({
       </button>
 
       <h2>{cardTitle}</h2>
+      { mode === 'compact_card' ? null : 'fullcard'}
       {cardContent == '' ? (
         <img src={LogoReact} alt="Logo React" width={200} height={200} />
       ) : (

@@ -100,3 +100,9 @@
   opacity: 1;
   top: -1rem
 }
+
+.card-form-text {
+  width: 97%;
+  resize: vertical;
+  min-height: 3rem;
+}

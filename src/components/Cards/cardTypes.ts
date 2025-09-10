@@ -6,6 +6,7 @@ export type CardData = {
 }
 
 export type CardProps = CardData & {
+  mode?: 'full_card' | 'compact_card'
   index: number
   deleteCardFunction: () => void
   updateCardFunction: (index: number, id: number, card: CardData) => void
