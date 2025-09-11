@@ -18,12 +18,23 @@ export default function CardForm({
   const [cardTitle, setCardTitle] = useState(initialData?.cardTitle || '')
   const [cardText, setCardText] = useState(initialData?.cardText || '')
   const [cardContent, setCardContent] = useState(initialData?.cardContent || '')
+  const [errorMessage, setErrorMessage] = useState('')
   const { closeModal } = useModal()
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (!cardTitle || !cardText) return
+    if (!cardTitle || !cardText) {
+      setErrorMessage('Title and description must be filled')
+      return
+    }
+
+    try {
+      if (cardContent) new URL(cardContent)
+    } catch (error) {
+      setErrorMessage('URL is not a URL')
+      return
+    }
 
     const newCard: CardData = {
       id,
@@ -47,7 +58,7 @@ export default function CardForm({
         name="card-title"
       />
 
-      <label>Text</label>
+      <label>Description</label>
       <textarea
         rows={3}
         value={cardText}
@@ -56,13 +67,15 @@ export default function CardForm({
         className="card-form-text"
       />
 
-      <label>Content</label>
+      <label>URL</label>
       <input
         type="text"
         value={cardContent}
         onChange={(e) => setCardContent(e.target.value)}
         name="card-content"
       />
+
+      <div className='error-message'>{errorMessage}</div>
 
       <button type="submit">{mode === 'add' ? 'Create' : 'Modify'}</button>
     </form>
