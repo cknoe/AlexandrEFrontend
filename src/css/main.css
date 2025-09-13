@@ -34,8 +34,29 @@ button {
   border-radius: 0.1rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-height: 2rem;
 }
 
 button:hover {
   background-color: #1d4ed8;
+}
+
+.text-with-icon {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.small-text {
+  font-size: .8rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.clickable-text {
+  color: var(--main-color);
+  text-decoration: underline;
+  cursor: pointer;
 }

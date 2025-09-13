@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { apiLogin } from '../../api/auth'
+import { apiLogin, apiRegister } from '../../api/auth'
 
 interface AuthContextType {
   token: string | null
+  contextUsername: string | null
   login: (username: string, password: string) => Promise<void>
-  setTokenAndStore: (newToken: string | null) => void
+  register: (username: string, password: string) => Promise<void>
   logout: () => void
 }
 
@@ -19,11 +20,16 @@ type AuthProviderProps = {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState<string | null>(null)
+  const [contextUsername, setContextUsername] = useState<string | null>(null)
 
   useEffect(() => {
     const savedToken: string | null = localStorage.getItem('token')
+    const savedUsername: string | null = localStorage.getItem('username')
     if (savedToken !== null) {
       setTokenAndStore(savedToken)
+    }
+    if (savedUsername !== null) {
+      setUsernameAndStore(savedUsername)
     }
   }, [])
 
@@ -31,13 +37,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const response: Response = await apiLogin(username, password)
 
     if (!response.ok) {
-      throw new Error('Identifiants invalides')
+      throw new Error('Invalid Identifiers')
     }
 
     const data: { token: string } = await response.json()
 
     setTokenAndStore(data.token)
-    localStorage.setItem('token', data.token)
+    setUsernameAndStore(username)
+  }
+
+  async function register(username: string, password: string): Promise<void> {
+    const response: Response = await apiRegister(username, password)
+
+    if (!response.ok) {
+      throw new Error('User ' + username + ' already exists')
+    }
+
+    const data: { token: string } = await response.json()
+
+    setTokenAndStore(data.token)
+    setUsernameAndStore(username)
   }
 
   function logout(): void {
@@ -51,11 +70,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     else localStorage.removeItem('token')
   }
 
+  function setUsernameAndStore(username: string | null) {
+    setContextUsername(username)
+    if (username) localStorage.setItem('username', username)
+    else localStorage.removeItem('username')
+  }
+
   globalSetToken = setTokenAndStore
   globalClearAuth = logout
 
   return (
-    <AuthContext.Provider value={{ token, login, setTokenAndStore, logout }}>
+    <AuthContext.Provider value={{ token, contextUsername, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   )

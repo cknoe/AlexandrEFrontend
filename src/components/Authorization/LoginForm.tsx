@@ -7,49 +7,103 @@ import { useModal } from '../Modal/ModalContext'
 import '../../css/form.css'
 
 export default function LoginForm() {
-  const { login } = useAuth()
+  const { login, register } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordVerif, setPasswordVerif] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [mode, setMode] = useState('login')
   const { closeModal } = useModal()
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    try {
-      await login(username, password)
-    } catch {
-      alert('Erreur de connexion')
+    if (mode === "login") {
+      try {
+        await login(username, password)
+        closeModal()
+      } catch {
+        setErrorMessage('Wrong user or password')
+      }
+    } else {
+      if (password===passwordVerif) {
+        try {
+          await register(username, password)
+          closeModal()
+        } catch {
+          setErrorMessage('User ' + username + ' already exists')
+        }
+      } else {
+        setErrorMessage('Both password must match')
+      }
     }
-    closeModal()
+  }
+
+  function changeMode() {
+    if (mode === 'login') {
+      setMode('register')
+    } else {
+      setMode('login')
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <label>Username</label>
-      <input
-        value={username}
-        name="user_id"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-
-      <label>Password</label>
-      <div
-        className="password-field"
-        style={{ display: 'flex', alignItems: 'center' }}
-      >
+    <>
+      <form onSubmit={handleSubmit} className="login-form">
+        <label>Username</label>
         <input
-          type={showPassword ? 'text' : 'password'}
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={username}
+          name="user_id"
+          onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="button" onClick={() => setShowPassword((prev) => !prev)}>
-          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-        </button>
-      </div>
 
-      <br />
-      <button type="submit">Se connecter</button>
-    </form>
+        <label>Password</label>
+        <div
+          className="password-field"
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button type="button" onClick={() => setShowPassword((prev) => !prev)}>
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
+        </div>
+        
+        { mode === 'register' &&
+          <>
+            <label>Repeat password</label>
+            <div
+              className="password-field"
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="passwordVerif"
+                value={passwordVerif}
+                onChange={(e) => setPasswordVerif(e.target.value)}
+              />
+
+              <button type="button" onClick={() => setShowPassword((prev) => !prev)}>
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </>
+        }
+
+        <div className='error-message'>{errorMessage}</div>
+
+        <br />
+        <button type="submit">{mode === 'login' ? "Connection" : "Register" }</button>
+      </form>
+      <div className='small-text center'>
+        { mode === 'login' ? "Need an account ? " : "Already have an account ? "}
+        <span className='clickable-text' onClick={() => changeMode()}>{ mode === 'register' ? "Log In " : "Create one " }</span>!
+      </div>
+    </>
   )
 }
