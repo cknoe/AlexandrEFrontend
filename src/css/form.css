@@ -50,3 +50,8 @@ form button {
 .password-field button {
   margin-left: 0.5rem;
 }
+
+.error-message {
+  color: red;
+  font-size: .9rem;
+}

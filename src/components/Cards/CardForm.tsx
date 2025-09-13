@@ -50,7 +50,7 @@ export default function CardForm({
   return (
     <form onSubmit={handleSubmit} className="card-form">
       <h2>{mode === 'add' ? 'Create Card' : 'Modify Card'}</h2>
-      <label>Title</label>
+      <label>Title*</label>
       <input
         type="text"
         value={cardTitle}
@@ -58,7 +58,7 @@ export default function CardForm({
         name="card-title"
       />
 
-      <label>Description</label>
+      <label>Description*</label>
       <textarea
         rows={3}
         value={cardText}
