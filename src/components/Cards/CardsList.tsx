@@ -35,7 +35,7 @@ export default function CardsList({
       <div className="card" onClick={openAddForm}>
         <h2>Create New Card</h2>
         <img src={LogoReact} alt="Logo React" width={200} height={200} />
-        <p>{cards.length} Cartes existantes</p>
+        <p>{cards.length} Existing Cards</p>
       </div>
     </>
   )
