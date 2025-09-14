@@ -4,6 +4,8 @@ import { apiLogin, apiRegister } from '../../api/auth'
 interface AuthContextType {
   token: string | null
   contextUsername: string | null
+  setTokenAndStore: (token: string | null) => void
+  setUsernameAndStore: (username: string | null) => void
   login: (username: string, password: string) => Promise<void>
   register: (username: string, password: string) => Promise<void>
   logout: () => void
@@ -80,7 +82,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   globalClearAuth = logout
 
   return (
-    <AuthContext.Provider value={{ token, contextUsername, login, register, logout }}>
+    <AuthContext.Provider value={{ token, contextUsername, setTokenAndStore, setUsernameAndStore, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   )

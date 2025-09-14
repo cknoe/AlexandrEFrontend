@@ -1,3 +1,3 @@
 export default function Error() {
-  return <div>Cette page n'existe pas</div>
+  return <div>This page doesn't exists</div>
 }

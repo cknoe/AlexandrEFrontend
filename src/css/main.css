@@ -28,7 +28,7 @@ html {
 }
 
 button {
-  background-color: #2563eb;
+  background-color: var(--main-color);
   color: white;
   border: none;
   border-radius: 0.1rem;
@@ -37,8 +37,16 @@ button {
   min-height: 2rem;
 }
 
+.red-button {
+  background-color: red;
+}
+
 button:hover {
   background-color: #1d4ed8;
+}
+
+.red-button:hover {
+  background-color: rgb(187, 3, 3);
 }
 
 .text-with-icon {

@@ -12,6 +12,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState('')
   const [passwordVerif, setPasswordVerif] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showPasswordVerif, setShowPasswordVerif] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [mode, setMode] = useState('login')
   const { closeModal } = useModal()
@@ -82,14 +83,14 @@ export default function LoginForm() {
               style={{ display: 'flex', alignItems: 'center' }}
             >
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPasswordVerif ? 'text' : 'password'}
                 name="passwordVerif"
                 value={passwordVerif}
                 onChange={(e) => setPasswordVerif(e.target.value)}
               />
 
-              <button type="button" onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              <button type="button" onClick={() => setShowPasswordVerif((prev) => !prev)}>
+                {showPasswordVerif ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </>

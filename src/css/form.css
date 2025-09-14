@@ -10,6 +10,11 @@ form {
   gap: 1rem;
 }
 
+.compact-form {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal-content form {
   box-shadow: none;
   background-color: white;
