@@ -12,10 +12,16 @@ export default function UsernameForm(props: UserFormProps) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/;
 
-    if (username === "") {
-      setErrorMessage("Username can't be empty")
+    if ((username === "") || (username.length > 30)) {
+      setErrorMessage("1-30 chars")
       return null
+    }
+
+    if (!usernameRegex.test(username)) {
+      setErrorMessage('letters numbers underscore')
+      return
     }
 
     try {

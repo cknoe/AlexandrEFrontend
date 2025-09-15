@@ -19,6 +19,8 @@ export default function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/;
+
     if (mode === "login") {
       try {
         await login(username, password)
@@ -29,6 +31,10 @@ export default function LoginForm() {
     } else {
       if (password===passwordVerif) {
         try {
+          if (!usernameRegex.test(username)) {
+            setErrorMessage('Username must be 1 to 30 characters : letters, numbers or underscore only')
+            return
+          }
           await register(username, password)
           closeModal()
         } catch {
