@@ -44,7 +44,7 @@ export default function Card({
       onClick={() => handleClick(deleteCardFunction, openModal)}
     >
       <button
-        className="card-button delete-button"
+        className="card-button delete-button red-button"
         onClick={(e) => {
           e.stopPropagation()
           deleteCardFunction()

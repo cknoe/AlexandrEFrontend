@@ -25,3 +25,9 @@ export async function apiModifyUser(username: string, password: string): Promise
         body: JSON.stringify({ username, password })}
     )
 }
+
+export async function apiDeleteUser(): Promise<void> {
+    return await apiFecth('/users', {
+        method: 'DELETE',}
+    )
+}

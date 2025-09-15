@@ -4,6 +4,7 @@ import { Pen, PenOff } from "lucide-react";
 import UsernameForm from "./UsernameForm";
 import '../../css/user.css'
 import PasswordForm from "./PasswordForm";
+import DeleteAccount from "./DeleteAccount";
 
 export default function User() {
     const [isChangeUsername, setIsChangeUsername] = useState<boolean>(false)
@@ -42,34 +43,10 @@ export default function User() {
             }
           </div>
         </div>
+        <hr/>
+        <div className="user-div center">
+          <DeleteAccount />
+        </div>
       </>
     )
 }
-
-/*
-
-
-              { isChangeUsername ?
-                <UsernameForm/> :
-                <div>{username}</div>
-              }
-
-
-
-              { isChangePassword ?
-                <PasswordForm/> :
-                <div>Password</div>
-              }
-
-
-              { isChangeUsername ?
-                <button className="red-button edit-field-button" onClick={() => setIsChangeUsername(false)}><PenOff /></button> :
-                <button className="edit-field-button" onClick={() => setIsChangeUsername(true)}><Pen /></button>
-              }
-
-
-              { isChangePassword ?
-                <button className="red-button edit-field-button"onClick={() => setIsChangePassword(false)}><PenOff /></button> :
-                <button className="edit-field-button" onClick={() => setIsChangePassword(true)}><Pen /></button>
-              }
-*/

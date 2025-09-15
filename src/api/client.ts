@@ -20,7 +20,7 @@ async function refreshAccessToken(): Promise<string> {
 export async function apiFecth(path: string, options: RequestInit = {}) {
   let token = localStorage.getItem('token')
 
-  async function doFetch(withToken: string | null) {
+  async function doFetch(withToken: string | null): Promise<Response> {
     const response = await fetch(API_BASE_URL + path, {
       ...options,
       credentials: 'include',
