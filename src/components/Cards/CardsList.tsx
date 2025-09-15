@@ -1,6 +1,6 @@
 import Card from './Card'
 import type { CardData } from './cardTypes'
-import LogoReact from '../../assets/logoreact.svg'
+import { LucideSquarePlus } from 'lucide-react'
 
 type CardsListProps = {
   cards: CardData[]
@@ -34,7 +34,7 @@ export default function CardsList({
 
       <div className="card" onClick={openAddForm}>
         <h2>Create New Card</h2>
-        <img src={LogoReact} alt="Logo React" width={200} height={200} />
+          <LucideSquarePlus className='add-card-logo' size={128} strokeWidth={.7}/>
         <p>{cards.length} Existing Cards</p>
       </div>
     </>

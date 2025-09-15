@@ -16,7 +16,7 @@ export default function DeleteAccount() {
 
   return (
     <>
-      <button className="red-button edit-field-button" onClick={handleClick}><h3  className="text-with-icon"><Trash2 />Delete Profile</h3></button>
+      <button className="red-button edit-field-button" onClick={handleClick}><h3  className="text-with-icon"><Trash2 />Delete Account</h3></button>
     </>
   )
 }

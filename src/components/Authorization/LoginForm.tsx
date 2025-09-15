@@ -99,7 +99,7 @@ export default function LoginForm() {
         <div className='error-message'>{errorMessage}</div>
 
         <br />
-        <button type="submit">{mode === 'login' ? "Connection" : "Register" }</button>
+        <button type="submit">{mode === 'login' ? "Log In" : "Create Account" }</button>
       </form>
       <div className='small-text center'>
         { mode === 'login' ? "Need an account ? " : "Already have an account ? "}

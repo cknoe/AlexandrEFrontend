@@ -138,3 +138,7 @@
   font-style: italic;
   color: #999;
 }
+
+.add-card-logo {
+  color: var(--main-color);
+}
