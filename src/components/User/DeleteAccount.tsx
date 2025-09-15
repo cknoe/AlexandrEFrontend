@@ -9,12 +9,9 @@ export default function DeleteAccount() {
   const { closeModal } = useModal();
 
   async function handleClick() {
-    const isConfirmed: boolean = confirm("You are about to delete your account, are you sure ? You won't be able to retrieve it after this.")
-    if (isConfirmed) {
-      await apiDeleteUser()
-      logout() 
-      closeModal()
-    }
+    await apiDeleteUser()
+    logout() 
+    closeModal()
   }
 
   return (
