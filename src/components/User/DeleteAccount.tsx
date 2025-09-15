@@ -18,8 +18,11 @@ export default function DeleteAccount() {
   }
 
   return (
-    <>
+    <div className="center">
+      <h2>Are you sure you want to delete your account ?</h2>
+      <div>This action is permanent</div>
+      <br/>
       <button className="red-button edit-field-button" onClick={handleClick}><h3  className="text-with-icon"><Trash2 />Delete Account</h3></button>
-    </>
+    </div>
   )
 }
