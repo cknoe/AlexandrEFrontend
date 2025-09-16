@@ -22,26 +22,28 @@ export default function Card({
     deleteCardFunction: () => void,
     openModal: (content: React.ReactNode) => void,
   ) {
-    if (mode === 'compact_card') {
-      openModal(
-        <Card
-          mode="full_card"
-          id={id}
-          index={index}
-          cardTitle={cardTitle}
-          cardText={cardText}
-          cardContent={cardContent}
-          deleteCardFunction={deleteCardFunction}
-          updateCardFunction={updateCardFunction}
-        />,
-      )
-    }
+    openModal(
+      <Card
+        mode="full_card"
+        id={id}
+        index={index}
+        cardTitle={cardTitle}
+        cardText={cardText}
+        cardContent={cardContent}
+        deleteCardFunction={deleteCardFunction}
+        updateCardFunction={updateCardFunction}
+      />,
+    )
   }
 
   return (
     <div
       className="card"
-      onClick={() => handleClick(deleteCardFunction, openModal)}
+      onClick={() => {
+          if (mode === "compact_card") {
+            handleClick(deleteCardFunction, openModal)
+          }
+        }}
     >
       <button
         className="card-button delete-button red-button"

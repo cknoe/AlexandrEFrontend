@@ -94,6 +94,7 @@
   padding: 0;
   width: 100%;
   height: 100%;
+  cursor: auto;
 }
 
 .modal-content .card button {
@@ -122,6 +123,11 @@
   background-image: url("../../assets/link.png");
 }
 
+.favicon-small {
+  width: 1rem;
+  height: 1rem;
+}
+
 .hostname {
   white-space: nowrap;
   overflow: hidden;
@@ -141,4 +147,11 @@
 
 .add-card-logo {
   color: var(--main-color);
+}
+
+.link-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;  
 }
