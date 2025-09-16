@@ -13,12 +13,8 @@ export async function fetchLogo(domain: string): Promise<string | null> {
 
   const logoUrl = `http://localhost:8080/api/logodev?domain=${domain}`;
   const response = await fetch(logoUrl)
-  if (response.status === 202) {
+  if (response.status === 404) {
     return null;
-  }
-
-  if (!response.ok) {
-    throw new Error(`Erreur lors de la récupération du logo: ${response.status}`);
   }
 
   setCachedLogo(domain, logoUrl);
