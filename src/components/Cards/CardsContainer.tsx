@@ -43,7 +43,7 @@ export default function CardsContainer() {
   }
 
   function handleDeleteCard(index: number, id: number) {
-    setCards((prev) => prev.filter((c, i) => c.id !== id && i !== index))
+    setCards((prev) => prev.filter((_, i) => i !== index))
     closeModal()
     if (token) {
       deleteCard(id)
