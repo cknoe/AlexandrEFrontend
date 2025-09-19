@@ -7,6 +7,7 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<><CollectionList /><CardsContainer /></>} />
+      <Route path="/:collectionIdParam" element={<><CollectionList /><CardsContainer /></>} />
       <Route path="*" element={<Error />} />
     </Routes>
   )
