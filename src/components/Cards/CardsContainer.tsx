@@ -5,8 +5,12 @@ import CardsList from './CardsList'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
 import { getCards, createCard, deleteCard, updateCard } from '../../api/cards'
+import { useParams } from 'react-router-dom'
+import { getCollectionById } from '../../api/collection'
 
 export default function CardsContainer() {
+  const { collectionIdParam } = useParams()
+  const collectionIdNumber = Number(collectionIdParam);
   const [cards, setCards] = useState<CardData[]>([])
   const { openModal, closeModal } = useModal()
   const { token } = useAuth()
@@ -21,12 +25,26 @@ export default function CardsContainer() {
       return
     }
 
-    async function fetchData() {
+    async function fetchAllCards() {
       const data = await getCards()
       setCards(data)
     }
-    fetchData()
-  }, [token])
+
+    async function fetchCollectionCards(id: number) {
+      const data = await getCollectionById(id)
+      setCards(data)
+    }
+
+    console.log(collectionIdParam)
+    console.log(collectionIdNumber)
+    if (isNaN(collectionIdNumber)) {
+      console.log("fetch card")
+      fetchAllCards()
+    } else {
+      console.log("fetch collection")
+      fetchCollectionCards(Number(collectionIdNumber))
+    }
+  }, [token, collectionIdNumber])
 
   async function handleAddCard(newCard: CardData) {
     setCards((prev) => [...prev, newCard])

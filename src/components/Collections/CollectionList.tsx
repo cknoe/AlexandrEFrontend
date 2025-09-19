@@ -4,32 +4,32 @@ import { Navigate, useParams } from "react-router-dom";
 import Collection from './Collection'
 import type { CollectionProps } from "./collectionTypes"
 import { useEffect, useState } from 'react';
+import { useAuth } from '../Authorization/AuthContext';
+import { getCollections } from '../../api/collection';
 
 
 export default function CollectionList() {
     const { collectionIdParam } = useParams();
     const [collections, setCollections] = useState<CollectionProps[]>([])
+    const { token } = useAuth()
+    
 
     if (Number.isNaN(collectionIdParam)) {
         return <Navigate to="/" replace />;
     }
 
-    useEffect(() => {
-        setCollections ([
-        {
-            collectionName: "Films préférés",
-            collectionId: "1",
-        },
-        {
-            collectionName: "Livres à lire",
-            collectionId: "2",
-        },
-        {
-            collectionName: "Jeux vidéo",
-            collectionId: "3",
-        },
-    ]);
-    }, [])
+  useEffect(() => {
+    if (!token) {
+      setCollections([])
+      return
+    }
+
+    async function fetchData() {
+      const data = await getCollections()
+      setCollections(data)
+    }
+    fetchData()
+  }, [token])
 
     return (
         <div className='collection-list-div'>
@@ -42,7 +42,7 @@ export default function CollectionList() {
                 key={collection.collectionId}
                 collectionId={collection.collectionId}
                 collectionName={collection.collectionName}
-                isSelected={collection.collectionId === collectionIdParam}
+                isSelected={String(collection.collectionId) === collectionIdParam}
                 />
             ))}
         </div>

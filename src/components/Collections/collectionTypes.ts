@@ -1,5 +1,5 @@
 export type CollectionProps = {
     collectionName: string
-    collectionId: string
+    collectionId: number
     isSelected?: boolean
 }

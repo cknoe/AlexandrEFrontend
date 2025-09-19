@@ -55,7 +55,7 @@ function cardToApi(card: Omit<Card, 'id'>): string {
   return JSON.stringify(payload)
 }
 
-function apiToCard(apiCard: ApiCard): Card {
+export function apiToCard(apiCard: ApiCard): Card {
   return {
     id: apiCard.id,
     cardTitle: apiCard.title,
