@@ -3,16 +3,19 @@ import '../../css/collection.css'
 import { Navigate, useParams } from "react-router-dom";
 import Collection from './Collection'
 import type { CollectionProps } from "./collectionTypes"
+import { useEffect, useState } from 'react';
 
 
 export default function CollectionList() {
     const { collectionIdParam } = useParams();
+    const [collections, setCollections] = useState<CollectionProps[]>([])
 
     if (Number.isNaN(collectionIdParam)) {
         return <Navigate to="/" replace />;
     }
 
-    const collections: CollectionProps[] = [
+    useEffect(() => {
+        setCollections ([
         {
             collectionName: "Films préférés",
             collectionId: "1",
@@ -25,7 +28,8 @@ export default function CollectionList() {
             collectionName: "Jeux vidéo",
             collectionId: "3",
         },
-    ];
+    ]);
+    }, [])
 
     return (
         <div className='collection-list-div'>
