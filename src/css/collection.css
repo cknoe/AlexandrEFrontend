@@ -1,0 +1,70 @@
+.collection-list-div {
+    position: fixed;
+    width: var(--collection-tray-width);
+    height: 100%;
+    background-color: rgb(65, 65, 65);
+    color: rgb(204, 204, 204);
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0;
+    box-sizing: border-box;
+}
+
+/* --- TITRE --- */
+.collection-list-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- CHAQUE COLLECTION --- */
+.collection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.collection:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- BOUTONS --- */
+.collection-buttons-div {
+    display: flex;
+    gap: 0.25em;
+    opacity: 0;
+    pointer-events: none; /* évite clics quand caché */
+    transition: opacity 0.2s ease;
+}
+
+.collection-list-title .collection-buttons-div {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.collection:hover .collection-buttons-div {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.collection-button {
+    min-height: 1.5em;
+    min-width: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.collection-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

@@ -155,3 +155,16 @@
   gap: 0.5rem;
   margin-top: .5em;
 }
+
+.card-list-div {
+  flex: 1;
+  padding-top: 1em;
+  padding-left: var(--collection-tray-width);
+  margin-left: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  font-family: 'Inter', sans-serif;
+}

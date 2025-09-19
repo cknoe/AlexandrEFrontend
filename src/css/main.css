@@ -2,6 +2,7 @@
 
 :root {
   --main-color: #2563eb;
+  --collection-tray-width : 15em;
 }
 
 html {
@@ -11,7 +12,7 @@ html {
 
 .main {
   flex: 1;
-  padding: 1em;
+  padding: 0em;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
