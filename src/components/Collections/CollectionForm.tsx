@@ -1,4 +1,4 @@
-import type { CollectionFormProps, CollectionProps } from './collectionTypes'
+import type { CollectionData, CollectionFormProps } from './collectionTypes'
 import { useState, forwardRef } from 'react'
 
 const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
@@ -8,7 +8,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
     function handleSubmit(e: React.FormEvent) {
       e.preventDefault()
       if (collectionName === '') return
-      const collection: CollectionProps = {
+      const collection: CollectionData = {
         collectionId: 0,
         collectionName: collectionName,
       }
@@ -17,24 +17,27 @@ const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
     }
 
     return (
-      <form
-        className={`collection-form ${
-          props.isShown ? 'collection-form-active' : 'collection-form-inactive'
-        }`}
-        id="collection-form-add"
-        onSubmit={handleSubmit}
-      >
-        <input
-          ref={ref}
-          type="text"
-          value={collectionName}
-          onChange={(e) => setCollectionName(e.target.value)}
-          name="collection-name"
-        />
-        <button type="submit" className="collection-button">
-          +
-        </button>
-      </form>
+      <div className='collection-form-div'>
+        <form
+          className={`collection-form ${
+            props.isShown ? 'collection-form-active' : 'collection-form-inactive'
+          }`}
+          id="collection-form-add"
+          onSubmit={handleSubmit}
+        >
+          <input
+            ref={ref}
+            type="text"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+            name="collection-name"
+          />
+          <button type="submit" className="collection-button">
+            +
+          </button>
+          <div> </div>
+        </form>
+      </div>
     )
   },
 )

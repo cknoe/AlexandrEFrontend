@@ -73,14 +73,14 @@ export default function CollectionList() {
       <div className="collection-list-title">
         Your Collections
         <div
-          className={
-            isAdding
-              ? 'collection-buttons-div red-button'
-              : 'collection-buttons-div'
-          }
+          className='collection-buttons-div'
         >
           <button
-            className="collection-button"
+            className={
+              isAdding
+                ? 'collection-button red-button'
+                : 'collection-button'
+            }
             onClick={handleAddCollectionButtonClick}
           >
             {isAdding ? 'x' : '+'}
