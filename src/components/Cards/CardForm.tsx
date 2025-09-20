@@ -18,6 +18,8 @@ export default function CardForm({
   const [cardTitle, setCardTitle] = useState(initialData?.cardTitle || '')
   const [cardText, setCardText] = useState(initialData?.cardText || '')
   const [cardContent, setCardContent] = useState(initialData?.cardContent || '')
+  const [cardCollectionId, _] = useState<number | null>(initialData?.collectionId || null)
+  const collectionId: number = cardCollectionId ?? 0
   const [errorMessage, setErrorMessage] = useState('')
   const { closeModal } = useModal()
 
@@ -41,6 +43,7 @@ export default function CardForm({
       cardTitle,
       cardText,
       cardContent,
+      collectionId,
     }
 
     updateCards(newCard)

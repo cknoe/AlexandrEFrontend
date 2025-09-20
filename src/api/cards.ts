@@ -6,6 +6,7 @@ export type ApiCard = {
   description: string
   content?: string
   ownerUsername: string
+  collectionId?: number
 }
 
 export type Card = {
@@ -13,6 +14,7 @@ export type Card = {
   cardTitle: string
   cardText: string
   cardContent: string
+  collectionId?: number
 }
 
 export async function getCards(): Promise<Card[]> {
@@ -66,5 +68,6 @@ export function apiToCard(apiCard: ApiCard): Card {
     cardTitle: apiCard.title,
     cardText: apiCard.description,
     cardContent: apiCard.content || '',
+    collectionId: apiCard.collectionId
   }
 }

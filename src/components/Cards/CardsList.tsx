@@ -3,6 +3,7 @@ import type { CardData } from './cardTypes'
 import { LucideSquarePlus } from 'lucide-react'
 
 type CardsListProps = {
+  mode?: "AllCards" | "CollectionCards"
   cards: CardData[]
   addCard: (card: CardData) => void
   deleteCard: (index: number, id: number) => void
@@ -12,6 +13,7 @@ type CardsListProps = {
 }
 
 export default function CardsList({
+  mode,
   cards = [],
   deleteCard,
   openAddForm,
@@ -31,16 +33,18 @@ export default function CardsList({
           updateCardFunction={() => openUpdateForm(index, card.id!, card)}
         />
       ))}
-
-      <div className="card" onClick={openAddForm}>
-        <h2>Create New Card</h2>
-        <LucideSquarePlus
-          className="add-card-logo"
-          size={128}
-          strokeWidth={0.7}
-        />
-        <p>{cards.length} Existing Cards</p>
-      </div>
+      { mode === "CollectionCards" ? 
+        <div className="card" onClick={openAddForm}>
+          <h2>Create New Card</h2>
+          <LucideSquarePlus
+            className="add-card-logo"
+            size={128}
+            strokeWidth={0.7}
+          />
+          <p>{cards.length} Existing Cards</p>
+        </div>
+        : ""
+      }
     </div>
   )
 }

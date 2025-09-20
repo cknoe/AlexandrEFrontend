@@ -73,7 +73,7 @@ export default function CardsContainer() {
     )
     if (token) {
       try {
-        updateCard(id, updatedCard, Number(collectionIdNumber))
+        updateCard(id, updatedCard, updatedCard.collectionId!)
       } catch (err) {
         console.error('Error updating card :', err)
       }
@@ -102,6 +102,7 @@ export default function CardsContainer() {
       updateCard={handleUpdateCard}
       openAddForm={handleOpenAddModal}
       openUpdateForm={handleOpenUpdateModal}
+      mode={isNaN(collectionIdNumber) ? 'AllCards' : 'CollectionCards'}
     />
   )
 }

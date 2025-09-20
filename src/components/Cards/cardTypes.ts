@@ -3,6 +3,7 @@ export type CardData = {
   cardTitle: string
   cardText: string
   cardContent: string
+  collectionId?: number
 }
 
 export type CardProps = CardData & {

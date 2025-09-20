@@ -29,7 +29,7 @@ export default function CollectionList() {
     fetchData()
   }, [token])
 
-  if (Number.isNaN(collectionIdParam)) {
+  if (collectionIdParam && (Number.isNaN(collectionIdParam))) {
     return <Navigate to="/" replace />
   }
 
@@ -70,38 +70,49 @@ export default function CollectionList() {
 
   return (
     <div className="collection-list-div">
-      <div className="collection-list-title">
-        Your Collections
-        <div
-          className='collection-buttons-div'
-        >
-          <button
-            className={
-              isAdding
-                ? 'collection-button red-button'
-                : 'collection-button'
-            }
-            onClick={handleAddCollectionButtonClick}
-          >
-            {isAdding ? 'x' : '+'}
-          </button>
-        </div>
-      </div>
-      {collections.map((collection) => (
-        <Collection
-          key={collection.collectionId}
-          collectionId={collection.collectionId}
-          collectionName={collection.collectionName}
-          isSelected={String(collection.collectionId) === collectionIdParam}
-          deleteFunction={handleDeleteCollection}
-        />
-      ))}
-      <CollectionForm
-        mode="add"
-        updateFunction={handleAddCollection}
-        isShown={isAdding}
-        ref={inputRef}
-      />
+      { token ? 
+        <>
+          <div
+            className={`collection ${ !collectionIdParam ? 'collection-selected' : ''}`}
+            onClick={() => navigate(`/`)}>
+              Your Cards
+          </div>
+          <div className="collection-list-title">
+            Your Collections
+            <div
+              className='collection-buttons-div'
+            >
+              <button
+                className={
+                  isAdding
+                    ? 'collection-button red-button'
+                    : 'collection-button'
+                }
+                onClick={handleAddCollectionButtonClick}
+              >
+                {isAdding ? 'x' : '+'}
+              </button>
+            </div>
+          </div>
+          {collections.map((collection) => (
+            <Collection
+              key={collection.collectionId}
+              collectionId={collection.collectionId}
+              collectionName={collection.collectionName}
+              isSelected={String(collection.collectionId) === collectionIdParam}
+              deleteFunction={handleDeleteCollection}
+            />
+          ))}
+          <CollectionForm
+            mode="add"
+            updateFunction={handleAddCollection}
+            isShown={isAdding}
+            ref={inputRef}
+          />
+        </>
+      :
+      ""
+      }
     </div>
   )
 }
