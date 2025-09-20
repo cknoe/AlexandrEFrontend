@@ -2,11 +2,19 @@ import '../../css/collection.css'
 
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Collection from './Collection'
-import type { CollectionData } from './collectionTypes'
-import { useEffect, useRef, useState } from 'react'
+import type { CollectionData, CollectionFormProps } from './collectionTypes'
+import { useEffect, useRef, useState, forwardRef } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
-import { createCollection, deleteCollection, getCollections } from '../../api/collection'
+import {
+  createCollection,
+  deleteCollection,
+  getCollections,
+} from '../../api/collection'
 import CollectionForm from './CollectionForm'
+
+const CollectionFormWithRef = forwardRef<HTMLInputElement, CollectionFormProps>(
+  (props, ref) => <CollectionForm {...props} ref={ref} />,
+)
 
 export default function CollectionList() {
   const { collectionIdParam } = useParams()
@@ -14,7 +22,13 @@ export default function CollectionList() {
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
   const [collections, setCollections] = useState<CollectionData[]>([])
-  const [isAdding, setIsAdding] = useState<boolean>(false)
+  const [isAdding, setIsAdding] = useState(false)
+
+  const collectionIdNumber = collectionIdParam
+    ? Number(collectionIdParam)
+    : null
+  const invalidCollectionId =
+    collectionIdNumber !== null && isNaN(collectionIdNumber)
 
   useEffect(() => {
     if (!token) {
@@ -22,66 +36,74 @@ export default function CollectionList() {
       return
     }
 
+    let isMounted = true
     async function fetchData() {
-      const data = await getCollections()
-      setCollections(data)
+      try {
+        const data = await getCollections()
+        if (isMounted) setCollections(data)
+      } catch (err) {
+        console.error('Error fetching collections', err)
+      }
     }
     fetchData()
+
+    return () => {
+      isMounted = false
+    }
   }, [token])
 
-  if (collectionIdParam && (Number.isNaN(collectionIdParam))) {
+  if (invalidCollectionId && token) {
     return <Navigate to="/" replace />
   }
 
   async function handleAddCollection(newCollection: CollectionData) {
     setCollections((prev) => [...prev, newCollection])
-    const collectionIndex: number = collections.length
+
     try {
       const createdCollection = await createCollection(
         newCollection.collectionName,
       )
+
       setCollections((prev) =>
-        prev.map((collection, index) =>
-          index === collectionIndex ? createdCollection : collection,
-        ),
+        prev.map((c) => (c === newCollection ? createdCollection : c)),
       )
       setIsAdding(false)
+
       navigate(`/${createdCollection.collectionId}`)
     } catch (err) {
-      console.error('Error creating collection :', err)
+      console.error('Error creating collection:', err)
+      setCollections((prev) => prev.filter((c) => c !== newCollection))
     }
   }
 
   function handleAddCollectionButtonClick() {
+    setIsAdding((prev) => !prev)
     if (!isAdding) {
-      setIsAdding(true)
       setTimeout(() => inputRef.current?.focus(), 0)
-    } else {
-      setIsAdding(false)
     }
   }
 
   function handleDeleteCollection(collectionId: number) {
     setCollections((prev) =>
-      prev.filter((collection) => collection.collectionId !== collectionId)
+      prev.filter((collection) => collection.collectionId !== collectionId),
     )
-    deleteCollection(collectionId)
+    deleteCollection(collectionId).catch((err) => console.error(err))
   }
 
   return (
     <div className="collection-list-div">
-      { token ? 
+      {token && (
         <>
           <div
-            className={`collection ${ !collectionIdParam ? 'collection-selected' : ''}`}
-            onClick={() => navigate(`/`)}>
-              Your Cards
+            className={`collection ${!collectionIdParam ? 'collection-selected' : ''}`}
+            onClick={() => navigate(`/`)}
+          >
+            Your Cards
           </div>
+
           <div className="collection-list-title">
             Your Collections
-            <div
-              className='collection-buttons-div'
-            >
+            <div className="collection-buttons-div">
               <button
                 className={
                   isAdding
@@ -94,25 +116,25 @@ export default function CollectionList() {
               </button>
             </div>
           </div>
+
           {collections.map((collection) => (
             <Collection
               key={collection.collectionId}
               collectionId={collection.collectionId}
               collectionName={collection.collectionName}
-              isSelected={String(collection.collectionId) === collectionIdParam}
+              isSelected={collection.collectionId === collectionIdNumber}
               deleteFunction={handleDeleteCollection}
             />
           ))}
-          <CollectionForm
+
+          <CollectionFormWithRef
             mode="add"
             updateFunction={handleAddCollection}
             isShown={isAdding}
             ref={inputRef}
           />
         </>
-      :
-      ""
-      }
+      )}
     </div>
   )
 }

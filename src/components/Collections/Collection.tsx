@@ -18,7 +18,12 @@ export default function Collection(props: CollectionProps) {
         <button className="collection-button">
           <Pencil size={16}></Pencil>
         </button>
-        <button className="red-button collection-button" onClick={() => props.deleteFunction(props.collectionId)} >-</button>
+        <button
+          className="red-button collection-button"
+          onClick={() => props.deleteFunction(props.collectionId)}
+        >
+          -
+        </button>
       </div>
     </div>
   )

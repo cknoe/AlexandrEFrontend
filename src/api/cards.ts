@@ -68,6 +68,6 @@ export function apiToCard(apiCard: ApiCard): Card {
     cardTitle: apiCard.title,
     cardText: apiCard.description,
     cardContent: apiCard.content || '',
-    collectionId: apiCard.collectionId
+    collectionId: apiCard.collectionId,
   }
 }

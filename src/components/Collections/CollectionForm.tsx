@@ -17,10 +17,12 @@ const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
     }
 
     return (
-      <div className='collection-form-div'>
+      <div className="collection-form-div">
         <form
           className={`collection-form ${
-            props.isShown ? 'collection-form-active' : 'collection-form-inactive'
+            props.isShown
+              ? 'collection-form-active'
+              : 'collection-form-inactive'
           }`}
           id="collection-form-add"
           onSubmit={handleSubmit}
