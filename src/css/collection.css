@@ -8,6 +8,8 @@
   flex-direction: column;
   padding: 1em 0;
   box-sizing: border-box;
+  overflow-y: auto;
+  padding-bottom: 2em;
 }
 
 .collection-list-title {
@@ -74,4 +76,44 @@
 .collection-selected,
 .collection-selected:hover {
   background-color: var(--main-color);
+}
+
+.collection-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 0;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
+}
+
+.collection-form-inactive {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.collection-form-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.collection-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  outline: none;
+  color: rgb(204, 204, 204);
+  transition: background-color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.collection-form input:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0 2px #0000001b;
 }
