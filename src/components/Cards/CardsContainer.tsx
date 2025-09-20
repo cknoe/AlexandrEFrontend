@@ -50,7 +50,7 @@ export default function CardsContainer() {
     setCards((prev) => [...prev, newCard])
     if (token) {
       try {
-        const createdCard = await createCard(newCard)
+        const createdCard = await createCard(newCard, Number(collectionIdNumber))
         setCards((prev) =>
           prev.map((card) => (card === newCard ? createdCard : card)),
         )
@@ -74,7 +74,7 @@ export default function CardsContainer() {
     )
     if (token) {
       try {
-        updateCard(id, updatedCard)
+        updateCard(id, updatedCard, Number(collectionIdNumber))
       } catch (err) {
         console.error('Error updating card :', err)
       }

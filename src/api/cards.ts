@@ -21,10 +21,10 @@ export async function getCards(): Promise<Card[]> {
   return apiCards.map(apiToCard)
 }
 
-export async function createCard(card: Omit<Card, 'id'>): Promise<Card> {
+export async function createCard(card: Omit<Card, 'id'>, collectionId: number): Promise<Card> {
   const response = apiFecth('/cards', {
     method: 'POST',
-    body: cardToApi(card),
+    body: cardToApi(card, collectionId),
   })
   return apiToCard(await response)
 }
@@ -38,19 +38,21 @@ export async function deleteCard(cardId: number): Promise<void> {
 export async function updateCard(
   cardId: number,
   card: Omit<Card, 'id'>,
+  collectionId: number
 ): Promise<Card> {
   const response = apiFecth('/cards/' + cardId, {
     method: 'PUT',
-    body: cardToApi(card),
+    body: cardToApi(card, collectionId),
   })
   return apiToCard(await response)
 }
 
-function cardToApi(card: Omit<Card, 'id'>): string {
+function cardToApi(card: Omit<Card, 'id'>, collectionId: number): string {
   const payload = {
     title: card.cardTitle,
     description: card.cardText,
     ...(card.cardContent ? { content: card.cardContent } : {}),
+    collectionId: collectionId,
   }
   return JSON.stringify(payload)
 }
