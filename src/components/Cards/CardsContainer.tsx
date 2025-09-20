@@ -35,13 +35,9 @@ export default function CardsContainer() {
       setCards(data)
     }
 
-    console.log(collectionIdParam)
-    console.log(collectionIdNumber)
     if (isNaN(collectionIdNumber)) {
-      console.log('fetch card')
       fetchAllCards()
     } else {
-      console.log('fetch collection')
       fetchCollectionCards(Number(collectionIdNumber))
     }
   }, [token, collectionIdNumber])
