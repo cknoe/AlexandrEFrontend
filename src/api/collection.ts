@@ -37,6 +37,12 @@ export async function createCollection(
   return apiToCollection(await response)
 }
 
+export async function deleteCollection(id: number): Promise<void> {
+  await apiFecth('/collections/' + id, {
+    method: 'DELETE',
+  })
+}
+
 function apiToCollection(apiCollection: ApiCollection): Collection {
   return {
     collectionId: apiCollection.id,

@@ -1,11 +1,15 @@
-export type CollectionProps = {
+export type CollectionData = {
   collectionName: string
   collectionId: number
   isSelected?: boolean
 }
 
+export type CollectionProps = CollectionData & {
+  deleteFunction: (collectionId: number) => void
+}
+
 export type CollectionFormProps = {
   mode: 'add' | 'update'
-  updateFunction: (newCollection: CollectionProps) => void
+  updateFunction: (newCollection: CollectionData) => void
   isShown: boolean
 }

@@ -2,10 +2,10 @@ import '../../css/collection.css'
 
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import Collection from './Collection'
-import type { CollectionProps } from './collectionTypes'
+import type { CollectionData } from './collectionTypes'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
-import { createCollection, getCollections } from '../../api/collection'
+import { createCollection, deleteCollection, getCollections } from '../../api/collection'
 import CollectionForm from './CollectionForm'
 
 export default function CollectionList() {
@@ -13,7 +13,7 @@ export default function CollectionList() {
   const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
-  const [collections, setCollections] = useState<CollectionProps[]>([])
+  const [collections, setCollections] = useState<CollectionData[]>([])
   const [isAdding, setIsAdding] = useState<boolean>(false)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function CollectionList() {
     return <Navigate to="/" replace />
   }
 
-  async function handleAddCollection(newCollection: CollectionProps) {
+  async function handleAddCollection(newCollection: CollectionData) {
     setCollections((prev) => [...prev, newCollection])
     const collectionIndex: number = collections.length
     try {
@@ -61,6 +61,13 @@ export default function CollectionList() {
     }
   }
 
+  function handleDeleteCollection(collectionId: number) {
+    setCollections((prev) =>
+      prev.filter((collection) => collection.collectionId !== collectionId)
+    )
+    deleteCollection(collectionId)
+  }
+
   return (
     <div className="collection-list-div">
       <div className="collection-list-title">
@@ -86,6 +93,7 @@ export default function CollectionList() {
           collectionId={collection.collectionId}
           collectionName={collection.collectionName}
           isSelected={String(collection.collectionId) === collectionIdParam}
+          deleteFunction={handleDeleteCollection}
         />
       ))}
       <CollectionForm
