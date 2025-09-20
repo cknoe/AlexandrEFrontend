@@ -27,6 +27,15 @@ export async function getCollectionById(id: number): Promise<Card[]> {
   return apiCards.map(apiToCard)
 }
 
+export async function createCollection(collectionName: String): Promise<Collection> {
+  const response = apiFecth('/collections', {
+    method: 'POST',
+    body: '{"name": "' + collectionName + '"}',
+  })
+  return apiToCollection(await response)
+}
+
+
 function apiToCollection(apiCollection: ApiCollection): Collection {
   return {
     collectionId: apiCollection.id,
