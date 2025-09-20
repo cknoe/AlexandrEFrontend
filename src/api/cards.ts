@@ -21,7 +21,10 @@ export async function getCards(): Promise<Card[]> {
   return apiCards.map(apiToCard)
 }
 
-export async function createCard(card: Omit<Card, 'id'>, collectionId: number): Promise<Card> {
+export async function createCard(
+  card: Omit<Card, 'id'>,
+  collectionId: number,
+): Promise<Card> {
   const response = apiFecth('/cards', {
     method: 'POST',
     body: cardToApi(card, collectionId),
@@ -38,7 +41,7 @@ export async function deleteCard(cardId: number): Promise<void> {
 export async function updateCard(
   cardId: number,
   card: Omit<Card, 'id'>,
-  collectionId: number
+  collectionId: number,
 ): Promise<Card> {
   const response = apiFecth('/cards/' + cardId, {
     method: 'PUT',

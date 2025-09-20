@@ -6,40 +6,41 @@ import type { UserFormProps } from './userTypes'
 import { Eye, EyeOff } from 'lucide-react'
 
 export default function PasswordForm(props: UserFormProps) {
-
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showPasswordVerif, setShowPasswordVerif] = useState<boolean>(false)
-  const [newPassword, setNewpassword] = useState<string>("")
-  const [newPasswordCheck, setNewpasswordCheck] = useState<string>("")
-  const [errorMessage, setErrorMessage] = useState<string>("")
+  const [newPassword, setNewpassword] = useState<string>('')
+  const [newPasswordCheck, setNewpasswordCheck] = useState<string>('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const { contextUsername, setTokenAndStore } = useAuth()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (newPassword === "") {
+    if (newPassword === '') {
       setErrorMessage("Password can't be empty")
       return null
     }
 
     if (newPassword !== newPasswordCheck) {
-      setErrorMessage("Both password must match")
+      setErrorMessage('Both password must match')
       return null
     }
 
     try {
-        const response: ApiUserResponse = await apiModifyUser(contextUsername!, newPassword)
-        setTokenAndStore(response.token)
-        props.hideField()
-      } catch {
-        setErrorMessage('Server Error')
-      }
+      const response: ApiUserResponse = await apiModifyUser(
+        contextUsername!,
+        newPassword,
+      )
+      setTokenAndStore(response.token)
+      props.hideField()
+    } catch {
+      setErrorMessage('Server Error')
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className="password-form">
-
       <label>New Password</label>
       <div
         className="password-field"
@@ -69,12 +70,15 @@ export default function PasswordForm(props: UserFormProps) {
           name="new-password-check"
         />
 
-        <button type="button" onClick={() => setShowPasswordVerif((prev) => !prev)}>
+        <button
+          type="button"
+          onClick={() => setShowPasswordVerif((prev) => !prev)}
+        >
           {showPasswordVerif ? <EyeOff size={18} /> : <Eye size={18} />}
         </button>
       </div>
 
-      <div className='error-message'>{errorMessage}</div>
+      <div className="error-message">{errorMessage}</div>
 
       <button type="submit">Edit</button>
     </form>

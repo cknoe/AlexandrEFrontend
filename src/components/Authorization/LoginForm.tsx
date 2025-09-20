@@ -19,9 +19,9 @@ export default function LoginForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/;
+    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/
 
-    if (mode === "login") {
+    if (mode === 'login') {
       try {
         await login(username, password)
         closeModal()
@@ -29,10 +29,12 @@ export default function LoginForm() {
         setErrorMessage('Wrong user or password')
       }
     } else {
-      if (password===passwordVerif) {
+      if (password === passwordVerif) {
         try {
           if (!usernameRegex.test(username)) {
-            setErrorMessage('Username must be 1 to 30 characters : letters, numbers or underscore only')
+            setErrorMessage(
+              'Username must be 1 to 30 characters : letters, numbers or underscore only',
+            )
             return
           }
           await register(username, password)
@@ -76,12 +78,15 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="button" onClick={() => setShowPassword((prev) => !prev)}>
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
         </div>
-        
-        { mode === 'register' &&
+
+        {mode === 'register' && (
           <>
             <label>Repeat password</label>
             <div
@@ -95,21 +100,29 @@ export default function LoginForm() {
                 onChange={(e) => setPasswordVerif(e.target.value)}
               />
 
-              <button type="button" onClick={() => setShowPasswordVerif((prev) => !prev)}>
+              <button
+                type="button"
+                onClick={() => setShowPasswordVerif((prev) => !prev)}
+              >
                 {showPasswordVerif ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </>
-        }
+        )}
 
-        <div className='error-message'>{errorMessage}</div>
+        <div className="error-message">{errorMessage}</div>
 
         <br />
-        <button type="submit">{mode === 'login' ? "Log In" : "Create Account" }</button>
+        <button type="submit">
+          {mode === 'login' ? 'Log In' : 'Create Account'}
+        </button>
       </form>
-      <div className='small-text center'>
-        { mode === 'login' ? "Need an account ? " : "Already have an account ? "}
-        <span className='clickable-text' onClick={() => changeMode()}>{ mode === 'register' ? "Log In " : "Create one " }</span>!
+      <div className="small-text center">
+        {mode === 'login' ? 'Need an account ? ' : 'Already have an account ? '}
+        <span className="clickable-text" onClick={() => changeMode()}>
+          {mode === 'register' ? 'Log In ' : 'Create one '}
+        </span>
+        !
       </div>
     </>
   )

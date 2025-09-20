@@ -18,7 +18,7 @@ export default function CardsList({
   openUpdateForm,
 }: CardsListProps) {
   return (
-    <div className='card-list-div'>
+    <div className="card-list-div">
       {cards.map((card, index) => (
         <Card
           key={card.cardTitle + index}
@@ -34,7 +34,11 @@ export default function CardsList({
 
       <div className="card" onClick={openAddForm}>
         <h2>Create New Card</h2>
-          <LucideSquarePlus className='add-card-logo' size={128} strokeWidth={.7}/>
+        <LucideSquarePlus
+          className="add-card-logo"
+          size={128}
+          strokeWidth={0.7}
+        />
         <p>{cards.length} Existing Cards</p>
       </div>
     </div>

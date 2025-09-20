@@ -13,8 +13,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-let globalSetToken: ((token: string) => void) | null = null;
-let globalClearAuth: (() => void) | null = null;
+let globalSetToken: ((token: string) => void) | null = null
+let globalClearAuth: (() => void) | null = null
 
 type AuthProviderProps = {
   children: React.ReactNode
@@ -82,7 +82,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   globalClearAuth = logout
 
   return (
-    <AuthContext.Provider value={{ token, contextUsername, setTokenAndStore, setUsernameAndStore, login, register, logout }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        contextUsername,
+        setTokenAndStore,
+        setUsernameAndStore,
+        login,
+        register,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
@@ -97,7 +107,7 @@ export function useAuth(): AuthContextType {
 }
 
 export function clearAuth() {
-  if (globalClearAuth) globalClearAuth();
+  if (globalClearAuth) globalClearAuth()
 }
 
 export function setTokenGlobal(token: string) {

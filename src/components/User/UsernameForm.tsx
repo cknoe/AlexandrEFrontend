@@ -5,17 +5,16 @@ import { apiModifyUser, type ApiUserResponse } from '../../api/users'
 import type { UserFormProps } from './userTypes'
 
 export default function UsernameForm(props: UserFormProps) {
-
   const { contextUsername, setTokenAndStore, setUsernameAndStore } = useAuth()
   const [username, setUsername] = useState<string>(contextUsername!)
-  const [errorMessage, setErrorMessage] = useState<string>("")
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/;
+    const usernameRegex: RegExp = /^[A-Za-z0-9_]{1,30}$/
 
-    if ((username === "") || (username.length > 30)) {
-      setErrorMessage("1-30 chars")
+    if (username === '' || username.length > 30) {
+      setErrorMessage('1-30 chars')
       return null
     }
 
@@ -25,13 +24,13 @@ export default function UsernameForm(props: UserFormProps) {
     }
 
     try {
-        const response: ApiUserResponse = await apiModifyUser(username, "")
-        setUsernameAndStore(response.userDTO.username)
-        setTokenAndStore(response.token)
-        props.hideField()
-      } catch {
-        setErrorMessage('Server Error')
-      }
+      const response: ApiUserResponse = await apiModifyUser(username, '')
+      setUsernameAndStore(response.userDTO.username)
+      setTokenAndStore(response.token)
+      props.hideField()
+    } catch {
+      setErrorMessage('Server Error')
+    }
   }
 
   return (
@@ -43,7 +42,7 @@ export default function UsernameForm(props: UserFormProps) {
         name="username"
       />
 
-      <div className='error-message'>{errorMessage}</div>
+      <div className="error-message">{errorMessage}</div>
 
       <button type="submit">Edit</button>
     </form>

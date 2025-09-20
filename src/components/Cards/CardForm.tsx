@@ -31,7 +31,7 @@ export default function CardForm({
 
     try {
       if (cardContent) new URL(cardContent)
-    } catch (error) {
+    } catch {
       setErrorMessage('URL is not a URL')
       return
     }
@@ -75,7 +75,7 @@ export default function CardForm({
         name="card-content"
       />
 
-      <div className='error-message'>{errorMessage}</div>
+      <div className="error-message">{errorMessage}</div>
 
       <button type="submit">{mode === 'add' ? 'Create' : 'Modify'}</button>
     </form>

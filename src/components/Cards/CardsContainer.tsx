@@ -10,7 +10,7 @@ import { getCollectionById } from '../../api/collection'
 
 export default function CardsContainer() {
   const { collectionIdParam } = useParams()
-  const collectionIdNumber = Number(collectionIdParam);
+  const collectionIdNumber = Number(collectionIdParam)
   const [cards, setCards] = useState<CardData[]>([])
   const { openModal, closeModal } = useModal()
   const { token } = useAuth()
@@ -38,10 +38,10 @@ export default function CardsContainer() {
     console.log(collectionIdParam)
     console.log(collectionIdNumber)
     if (isNaN(collectionIdNumber)) {
-      console.log("fetch card")
+      console.log('fetch card')
       fetchAllCards()
     } else {
-      console.log("fetch collection")
+      console.log('fetch collection')
       fetchCollectionCards(Number(collectionIdNumber))
     }
   }, [token, collectionIdNumber])
@@ -50,7 +50,10 @@ export default function CardsContainer() {
     setCards((prev) => [...prev, newCard])
     if (token) {
       try {
-        const createdCard = await createCard(newCard, Number(collectionIdNumber))
+        const createdCard = await createCard(
+          newCard,
+          Number(collectionIdNumber),
+        )
         setCards((prev) =>
           prev.map((card) => (card === newCard ? createdCard : card)),
         )

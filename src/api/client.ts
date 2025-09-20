@@ -1,10 +1,14 @@
-import { setTokenGlobal, clearAuth } from "../components/Authorization/AuthContext"
+import {
+  setTokenGlobal,
+  clearAuth,
+} from '../components/Authorization/AuthContext'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 async function refreshAccessToken(): Promise<string> {
-
-  const response = await apiFecthNonAuthenticated('/refresh-token', {method: 'POST'})
+  const response = await apiFecthNonAuthenticated('/refresh-token', {
+    method: 'POST',
+  })
 
   if (!response.ok) {
     localStorage.removeItem('token')
@@ -36,15 +40,10 @@ export async function apiFecth(path: string, options: RequestInit = {}) {
   let response = await doFetch(token)
 
   if (response.status === 403) {
-    try {
-      const newToken = await refreshAccessToken()
-      token = newToken
-      response = await doFetch(newToken)
-    } catch (err) {
-      throw err
-    }
+    const newToken = await refreshAccessToken()
+    token = newToken
+    response = await doFetch(newToken)
   }
-
 
   if (!response.ok) {
     throw new Error('API request failed with status ' + response.status)
@@ -56,11 +55,14 @@ export async function apiFecth(path: string, options: RequestInit = {}) {
   }
 }
 
-export async function apiFecthNonAuthenticated(path: string, options: RequestInit = {}) {
-    const response: Response = await fetch(API_BASE_URL + path, {
-     ...options,
-      credentials: 'include'
-    })
+export async function apiFecthNonAuthenticated(
+  path: string,
+  options: RequestInit = {},
+) {
+  const response: Response = await fetch(API_BASE_URL + path, {
+    ...options,
+    credentials: 'include',
+  })
 
-    return response
+  return response
 }

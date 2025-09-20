@@ -2,7 +2,7 @@
 
 :root {
   --main-color: #2563eb;
-  --collection-tray-width : 15em;
+  --collection-tray-width: 15em;
 }
 
 html {
@@ -57,7 +57,7 @@ button:hover {
 }
 
 .small-text {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .center {

@@ -1,77 +1,77 @@
 .collection-list-div {
-    position: fixed;
-    width: var(--collection-tray-width);
-    height: 100%;
-    background-color: rgb(65, 65, 65);
-    color: rgb(204, 204, 204);
-    display: flex;
-    flex-direction: column;
-    padding: 1em 0;
-    box-sizing: border-box;
+  position: fixed;
+  width: var(--collection-tray-width);
+  height: 100%;
+  background-color: rgb(65, 65, 65);
+  color: rgb(204, 204, 204);
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0;
+  box-sizing: border-box;
 }
 
 .collection-list-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5em 1em;
-    font-weight: bold;
-    font-size: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .collection {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .collection:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .collection-name {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .collection-buttons-div {
-    display: flex;
-    gap: 0.25em;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
+  display: flex;
+  gap: 0.25em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 
 .collection-list-title .collection-buttons-div {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .collection:hover .collection-buttons-div {
-    opacity: 1;
-    pointer-events: auto;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .collection-button {
-    min-height: 1.5em;
-    min-width: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: background-color 0.2s ease;
+  min-height: 1.5em;
+  min-width: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
 }
 
 .collection-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .collection-selected,
 .collection-selected:hover {
-    background-color: var(--main-color);
+  background-color: var(--main-color);
 }

@@ -8,7 +8,13 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(0.25turn, #4781ff, #3571f2, var(--main-color), var(--main-color));
+  background: linear-gradient(
+    0.25turn,
+    #4781ff,
+    #3571f2,
+    var(--main-color),
+    var(--main-color)
+  );
   color: white;
   padding-left: 0.2rem;
   padding-right: 1rem;
@@ -27,7 +33,7 @@
   height: var(--header-size);
 }
 
-.dropdown-trigger{
+.dropdown-trigger {
   outline: none;
 }
 .dropdown-content {

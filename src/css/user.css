@@ -1,35 +1,35 @@
 .user-div {
-    --user-form-size: 50px;
-    display: flex;
-    flex-direction: row;
-    min-height: var(--user-form-size);
-    align-items: center;
+  --user-form-size: 50px;
+  display: flex;
+  flex-direction: row;
+  min-height: var(--user-form-size);
+  align-items: center;
 }
 
 .user-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .user-info {
-    width: 90%;
+  width: 90%;
 }
 
 .user-edit {
-    width: 10%;
+  width: 10%;
 }
 
 .user-div form {
-    margin: 0;
+  margin: 0;
 }
 
-.user-div form button{
-    right: 0px;
+.user-div form button {
+  right: 0px;
 }
 
 .edit-field-button {
-    min-height: 2.9rem;
-    min-width: 2.9rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.288);
+  min-height: 2.9rem;
+  min-width: 2.9rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.288);
 }

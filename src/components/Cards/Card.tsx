@@ -40,10 +40,10 @@ export default function Card({
     <div
       className="card"
       onClick={() => {
-          if (mode === "compact_card") {
-            handleClick(deleteCardFunction, openModal)
-          }
-        }}
+        if (mode === 'compact_card') {
+          handleClick(deleteCardFunction, openModal)
+        }
+      }}
     >
       <button
         className="card-button delete-button red-button"
@@ -72,16 +72,14 @@ export default function Card({
 
       <h2>{cardTitle}</h2>
 
-      { cardContent ?
+      {cardContent ? (
         <>
           <CardContentRenderer url={cardContent} mode={mode} />
-          <p className='card-text'>{cardText}</p>
+          <p className="card-text">{cardText}</p>
         </>
-        :
-        <p className='card-text card-text-without-content'>{cardText}</p>
-      }
-      
-      
+      ) : (
+        <p className="card-text card-text-without-content">{cardText}</p>
+      )}
     </div>
   )
 }
