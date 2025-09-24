@@ -26,8 +26,8 @@ export default function CollectionList() {
   const [collections, setCollections] = useState<CollectionData[]>([])
   const [isAdding, setIsAdding] = useState(false)
 
-  const isDraft = location.pathname === "/draft"
-  const isRoot = location.pathname === "/"
+  const isDraft = location.pathname === '/draft'
+  const isRoot = location.pathname === '/'
 
   const collectionIdNumber = collectionIdParam
     ? Number(collectionIdParam)

@@ -16,9 +16,10 @@ export default function CardsContainer() {
   const [cards, setCards] = useState<CardData[]>([])
   const { openModal, closeModal } = useModal()
   const { token } = useAuth()
-  const { draftCards, addDraftCard, removeDraftCard, updateDraftCard } = useDraftCards()
+  const { draftCards, addDraftCard, removeDraftCard, updateDraftCard } =
+    useDraftCards()
 
-  const isDraft = location.pathname === "/draft"
+  const isDraft = location.pathname === '/draft'
   const localToken = isDraft ? null : token
 
   useEffect(() => {
@@ -30,12 +31,12 @@ export default function CardsContainer() {
   }, [collectionIdNumber, isDraft])
 
   useEffect(() => {
-    if(isDraft) {
+    if (isDraft) {
       setCards(draftCards)
       return
     }
 
-    if (!localToken ) {
+    if (!localToken) {
       setCards([])
       return
     }
@@ -120,7 +121,9 @@ export default function CardsContainer() {
       updateCard={handleUpdateCard}
       openAddForm={handleOpenAddModal}
       openUpdateForm={handleOpenUpdateModal}
-      mode={(!isNaN(collectionIdNumber) || isDraft) ? 'CollectionCards' : 'AllCards'}
+      mode={
+        !isNaN(collectionIdNumber) || isDraft ? 'CollectionCards' : 'AllCards'
+      }
     />
   )
 }

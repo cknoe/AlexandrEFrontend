@@ -9,7 +9,9 @@ export default function Collection(props: CollectionProps) {
   const [isEditingCollection, setIsEditingCollection] = useState<boolean>(false)
 
   useEffect(() => {
-    if (props.isSelected) {document.title = props.collectionName}
+    if (props.isSelected) {
+      document.title = props.collectionName
+    }
   }, [props.isSelected, props.collectionName])
 
   function handleModifyCollection(updatedCollection: CollectionData) {
