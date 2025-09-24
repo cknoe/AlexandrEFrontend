@@ -9,6 +9,7 @@ import {
   createCollection,
   deleteCollection,
   getCollections,
+  modifyCollection,
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
 
@@ -90,6 +91,20 @@ export default function CollectionList() {
     deleteCollection(collectionId).catch((err) => console.error(err))
   }
 
+  function handleModifyCollection(
+    collectionId: number,
+    collectionUpdated: CollectionData,
+  ) {
+    setCollections((prev) =>
+      prev.map((collection) =>
+        collection.collectionId === collectionId
+          ? { ...collection, collectionName: collectionUpdated.collectionName }
+          : collection,
+      ),
+    )
+    modifyCollection(collectionId, collectionUpdated.collectionName)
+  }
+
   return (
     <div className="collection-list-div">
       {token && (
@@ -124,6 +139,7 @@ export default function CollectionList() {
               collectionName={collection.collectionName}
               isSelected={collection.collectionId === collectionIdNumber}
               deleteFunction={handleDeleteCollection}
+              updateFunction={handleModifyCollection}
             />
           ))}
 

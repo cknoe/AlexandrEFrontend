@@ -43,6 +43,17 @@ export async function deleteCollection(id: number): Promise<void> {
   })
 }
 
+export async function modifyCollection(
+  id: number,
+  collectionName: string,
+): Promise<Collection> {
+  const response = apiFecth('/collections/' + id, {
+    method: 'PUT',
+    body: '{"name": "' + collectionName + '"}',
+  })
+  return apiToCollection(await response)
+}
+
 function apiToCollection(apiCollection: ApiCollection): Collection {
   return {
     collectionId: apiCollection.id,
