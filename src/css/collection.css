@@ -96,6 +96,7 @@
   border-radius: 0;
   transition: opacity 0.2s ease;
   min-width: 50px;
+  height: 36px; /* boo */
 }
 
 .collection-form-inactive {
@@ -132,7 +133,6 @@
   align-items: center;
   max-width: 100%∑;
   padding: 0 1em;
-  height: 36px;
 }
 
 .collection-buttons-div-show {
