@@ -1,6 +1,6 @@
 import '../../css/collection.css'
 
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Collection from './Collection'
 import type { CollectionData, CollectionFormProps } from './collectionTypes'
 import { useEffect, useRef, useState, forwardRef } from 'react'
@@ -20,10 +20,14 @@ const CollectionFormWithRef = forwardRef<HTMLInputElement, CollectionFormProps>(
 export default function CollectionList() {
   const { collectionIdParam } = useParams()
   const navigate = useNavigate()
+  const location = useLocation()
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
   const [collections, setCollections] = useState<CollectionData[]>([])
   const [isAdding, setIsAdding] = useState(false)
+
+  const isDraft = location.pathname === "/draft"
+  const isRoot = location.pathname === "/"
 
   const collectionIdNumber = collectionIdParam
     ? Number(collectionIdParam)
@@ -107,10 +111,16 @@ export default function CollectionList() {
 
   return (
     <div className="collection-list-div">
+      <div
+        className={`collection ${isDraft ? 'collection-selected' : ''}`}
+        onClick={() => navigate(`/draft`)}
+      >
+        Draft
+      </div>
       {token && (
         <>
           <div
-            className={`collection ${!collectionIdParam ? 'collection-selected' : ''}`}
+            className={`collection ${isRoot ? 'collection-selected' : ''}`}
             onClick={() => navigate(`/`)}
           >
             Your Cards

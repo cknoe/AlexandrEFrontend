@@ -16,6 +16,15 @@ export default function AppRoutes() {
         }
       />
       <Route
+        path="/draft"
+        element={
+          <>
+            <CollectionList />
+            <CardsContainer />
+          </>
+        }
+      />
+      <Route
         path="collections/:collectionIdParam"
         element={
           <>

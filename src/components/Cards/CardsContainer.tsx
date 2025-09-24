@@ -5,24 +5,37 @@ import CardsList from './CardsList'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
 import { getCards, createCard, deleteCard, updateCard } from '../../api/cards'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { getCollectionById } from '../../api/collection'
+import { useDraftCards } from '../../hooks/useDraftCards'
 
 export default function CardsContainer() {
   const { collectionIdParam } = useParams()
+  const location = useLocation()
   const collectionIdNumber = Number(collectionIdParam)
   const [cards, setCards] = useState<CardData[]>([])
   const { openModal, closeModal } = useModal()
   const { token } = useAuth()
+  const { draftCards, addDraftCard, removeDraftCard, updateDraftCard } = useDraftCards()
+
+  const isDraft = location.pathname === "/draft"
+  const localToken = isDraft ? null : token
 
   useEffect(() => {
-    if (!collectionIdNumber) {
+    if (isDraft) {
+      document.title = 'Draft'
+    } else if (!collectionIdNumber) {
       document.title = 'All Your cards'
     }
-  }, [collectionIdNumber])
+  }, [collectionIdNumber, isDraft])
 
   useEffect(() => {
-    if (!token) {
+    if(isDraft) {
+      setCards(draftCards)
+      return
+    }
+
+    if (!localToken ) {
       setCards([])
       return
     }
@@ -42,11 +55,12 @@ export default function CardsContainer() {
     } else {
       fetchCollectionCards(Number(collectionIdNumber))
     }
-  }, [token, collectionIdNumber])
+  }, [localToken, collectionIdNumber, isDraft, draftCards])
 
   async function handleAddCard(newCard: CardData) {
     setCards((prev) => [...prev, newCard])
-    if (token) {
+    if (isDraft) addDraftCard(newCard)
+    if (localToken) {
       try {
         const createdCard = await createCard(
           newCard,
@@ -63,8 +77,9 @@ export default function CardsContainer() {
 
   function handleDeleteCard(index: number, id: number) {
     setCards((prev) => prev.filter((_, i) => i !== index))
+    if (isDraft) removeDraftCard(index)
     closeModal()
-    if (token) {
+    if (localToken) {
       deleteCard(id)
     }
   }
@@ -73,7 +88,8 @@ export default function CardsContainer() {
     setCards((prev) =>
       prev.map((card, i) => (i === index ? updatedCard : card)),
     )
-    if (token) {
+    if (isDraft) updateDraftCard(index, updatedCard)
+    if (localToken) {
       try {
         updateCard(id, updatedCard, updatedCard.collectionId!)
       } catch (err) {
@@ -104,7 +120,7 @@ export default function CardsContainer() {
       updateCard={handleUpdateCard}
       openAddForm={handleOpenAddModal}
       openUpdateForm={handleOpenUpdateModal}
-      mode={isNaN(collectionIdNumber) ? 'AllCards' : 'CollectionCards'}
+      mode={(!isNaN(collectionIdNumber) || isDraft) ? 'CollectionCards' : 'AllCards'}
     />
   )
 }
