@@ -42,7 +42,7 @@ export default function Collection(props: CollectionProps) {
       ) : (
         <div
           className={`collection ${props.isSelected ? 'collection-selected' : ''}`}
-          onClick={() => navigate(`/${props.collectionId}`)}
+          onClick={() => navigate(`/collections/${props.collectionId}`)}
         >
           <div className="collection-name">{props.collectionName}</div>
           <div

@@ -70,7 +70,7 @@ export default function CollectionList() {
       )
       setIsAdding(false)
 
-      navigate(`/${createdCollection.collectionId}`)
+      navigate(`/collections/${createdCollection.collectionId}`)
     } catch (err) {
       console.error('Error creating collection:', err)
       setCollections((prev) => prev.filter((c) => c !== newCollection))

@@ -16,7 +16,7 @@ export default function AppRoutes() {
         }
       />
       <Route
-        path="/:collectionIdParam"
+        path="collections/:collectionIdParam"
         element={
           <>
             <CollectionList />
