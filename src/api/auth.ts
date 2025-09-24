@@ -15,3 +15,8 @@ export async function apiRegister(username: string, password: string) {
     body: JSON.stringify({ username, password }),
   })
 }
+
+export async function apiLogout() {
+  return await apiFecthNonAuthenticated('/logout', {
+    method: 'POST'})
+}

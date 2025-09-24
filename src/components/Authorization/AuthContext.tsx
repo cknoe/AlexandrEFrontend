@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { apiLogin, apiRegister } from '../../api/auth'
+import { apiLogin, apiLogout, apiRegister } from '../../api/auth'
 
 interface AuthContextType {
   token: string | null
@@ -63,6 +63,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   function logout(): void {
     setTokenAndStore(null)
+    apiLogout()
     localStorage.removeItem('token')
   }
 

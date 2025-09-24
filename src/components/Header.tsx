@@ -48,7 +48,7 @@ export default function Header() {
                 </a>
               </DropdownMenu.Item>
               <DropdownMenu.Item className="dropdown-item">
-                <Link to="/" onClick={() => logout()}>
+                <Link to="/draft" onClick={() => logout()}>
                   <div className="text-with-icon">
                     <LogOut /> Logout
                   </div>
