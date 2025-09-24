@@ -1,12 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import type { CollectionData, CollectionProps } from './collectionTypes'
 import { Pencil, PencilOff } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CollectionForm from './CollectionForm'
 
 export default function Collection(props: CollectionProps) {
   const navigate = useNavigate()
   const [isEditingCollection, setIsEditingCollection] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (props.isSelected) {document.title = 'Collection - ' + props.collectionName}
+  }, [props.isSelected, props.collectionName])
 
   function handleModifyCollection(updatedCollection: CollectionData) {
     props.updateFunction(props.collectionId, updatedCollection)

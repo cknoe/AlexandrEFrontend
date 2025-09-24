@@ -16,8 +16,10 @@ export default function CardsContainer() {
   const { token } = useAuth()
 
   useEffect(() => {
-    document.title = cards.length + ' Cartes'
-  }, [cards])
+    if (!collectionIdNumber) {
+      document.title = 'All Your cards'
+    }
+  }, [collectionIdNumber])
 
   useEffect(() => {
     if (!token) {
