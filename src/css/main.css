@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-:root {
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
   --main-color: #2563eb;
   --collection-tray-width: 15em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
@@ -20,6 +31,7 @@ html {
   align-items: flex-start;
   gap: 1rem;
   font-family: 'Inter', sans-serif;
+  overflow-y: auto;
 }
 
 @media (max-width: 600px) {

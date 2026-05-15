@@ -139,6 +139,7 @@ export default function CollectionList() {
                     ? 'collection-button red-button'
                     : 'collection-button'
                 }
+                onMouseDown={(e) => e.preventDefault()}
                 onClick={handleAddCollectionButtonClick}
               >
                 {isAdding ? 'x' : '+'}
