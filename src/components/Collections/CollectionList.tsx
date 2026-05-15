@@ -2,8 +2,8 @@ import '../../css/collection.css'
 
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Collection from './Collection'
-import type { CollectionData, CollectionFormProps } from './collectionTypes'
-import { useEffect, useRef, useState, forwardRef } from 'react'
+import type { CollectionData } from './collectionTypes'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
 import {
   createCollection,
@@ -12,10 +12,6 @@ import {
   modifyCollection,
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
-
-const CollectionFormWithRef = forwardRef<HTMLInputElement, CollectionFormProps>(
-  (props, ref) => <CollectionForm {...props} ref={ref} />,
-)
 
 export default function CollectionList() {
   const { collectionIdParam } = useParams()
@@ -57,6 +53,12 @@ export default function CollectionList() {
     }
   }, [token])
 
+  useEffect(() => {
+    if (!isAdding) return
+    const id = window.setTimeout(() => inputRef.current?.focus(), 0)
+    return () => clearTimeout(id)
+  }, [isAdding])
+
   if (invalidCollectionId && token) {
     return <Navigate to="/" replace />
   }
@@ -83,9 +85,6 @@ export default function CollectionList() {
 
   function handleAddCollectionButtonClick() {
     setIsAdding((prev) => !prev)
-    if (!isAdding) {
-      setTimeout(() => inputRef.current?.focus(), 0)
-    }
   }
 
   function handleDeleteCollection(collectionId: number) {
@@ -158,7 +157,7 @@ export default function CollectionList() {
             />
           ))}
 
-          <CollectionFormWithRef
+          <CollectionForm
             mode="add"
             updateFunction={handleAddCollection}
             isShown={isAdding}

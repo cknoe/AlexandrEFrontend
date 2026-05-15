@@ -132,7 +132,7 @@
   display: flex;
   align-items: center;
   max-width: 100%∑;
-  padding: 0 1em;
+  padding-right: 1em;
 }
 
 .collection-buttons-div-show {

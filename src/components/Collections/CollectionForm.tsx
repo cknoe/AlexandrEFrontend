@@ -1,4 +1,3 @@
-import { Pencil } from 'lucide-react'
 import type { CollectionData, CollectionFormProps } from './collectionTypes'
 import { useState, forwardRef } from 'react'
 
@@ -37,9 +36,14 @@ const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
             onChange={(e) => setCollectionName(e.target.value)}
             name="collection-name"
           />
-          <button type="submit" className="collection-button">
-            {props.mode === 'add' ? '+' : <Pencil size={16} />}
-          </button>
+          {props.mode === 'add' ? (
+            <button type="submit" className="collection-button">
+              {' '}
+              +{' '}
+            </button>
+          ) : (
+            ''
+          )}
           <div> </div>
         </form>
       </div>

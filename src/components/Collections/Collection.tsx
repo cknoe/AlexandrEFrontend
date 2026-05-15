@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import type { CollectionData, CollectionProps } from './collectionTypes'
 import { Pencil, PencilOff } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import CollectionForm from './CollectionForm'
 
 export default function Collection(props: CollectionProps) {
   const navigate = useNavigate()
+  const inputRef = useRef<HTMLInputElement>(null)
   const [isEditingCollection, setIsEditingCollection] = useState<boolean>(false)
 
   useEffect(() => {
@@ -19,6 +20,16 @@ export default function Collection(props: CollectionProps) {
     setIsEditingCollection(false)
   }
 
+  function handleEditCollectionButtonClick() {
+    setIsEditingCollection((prev) => !prev)
+  }
+
+  useEffect(() => {
+    if (!isEditingCollection) return
+    const id = window.setTimeout(() => inputRef.current?.focus(), 0)
+    return () => clearTimeout(id)
+  }, [isEditingCollection])
+
   return (
     <>
       {isEditingCollection ? (
@@ -29,6 +40,7 @@ export default function Collection(props: CollectionProps) {
             mode="update"
             updateFunction={handleModifyCollection}
             isShown
+            ref={inputRef}
             initialData={props}
           ></CollectionForm>
           <div className="collection-buttons-div collection-buttons-div-show">
@@ -49,11 +61,8 @@ export default function Collection(props: CollectionProps) {
           <div className="collection-name">{props.collectionName}</div>
           <div
             className="collection-buttons-div"
-            onClick={() => setIsEditingCollection(true)}
+            onClick={() => handleEditCollectionButtonClick()}
           >
-            <button className="collection-button">
-              <Pencil size={16}></Pencil>
-            </button>
             <button
               className="red-button collection-button"
               onClick={(e) => {
@@ -63,6 +72,9 @@ export default function Collection(props: CollectionProps) {
               }}
             >
               -
+            </button>
+            <button className="collection-button">
+              <Pencil size={16}></Pencil>
             </button>
           </div>
         </div>
