@@ -56,7 +56,11 @@ export default function Collection(props: CollectionProps) {
             </button>
             <button
               className="red-button collection-button"
-              onClick={() => props.deleteFunction(props.collectionId)}
+              onClick={(e) => {
+                e.stopPropagation()
+                e.preventDefault()
+                props.deleteFunction(props.collectionId)
+              }}
             >
               -
             </button>

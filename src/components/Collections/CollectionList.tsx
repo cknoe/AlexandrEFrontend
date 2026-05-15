@@ -92,6 +92,11 @@ export default function CollectionList() {
     setCollections((prev) =>
       prev.filter((collection) => collection.collectionId !== collectionId),
     )
+
+    if (collectionIdNumber !== null && collectionIdNumber === collectionId) {
+      navigate('/draft')
+    }
+
     deleteCollection(collectionId).catch((err) => console.error(err))
   }
 
