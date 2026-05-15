@@ -18,5 +18,6 @@ export async function apiRegister(username: string, password: string) {
 
 export async function apiLogout() {
   return await apiFecthNonAuthenticated('/logout', {
-    method: 'POST'})
+    method: 'POST',
+  })
 }
