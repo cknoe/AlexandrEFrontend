@@ -17,4 +17,5 @@ export type CollectionFormProps = {
   updateFunction: (newCollection: CollectionData) => void
   isShown: boolean
   initialData?: CollectionData
+  onBlur?: (e: React.FocusEvent<HTMLFormElement>) => void
 }

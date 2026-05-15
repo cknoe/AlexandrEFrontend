@@ -42,6 +42,7 @@ export default function Collection(props: CollectionProps) {
             isShown
             ref={inputRef}
             initialData={props}
+            onBlur={() => setIsEditingCollection(false)}
           ></CollectionForm>
           <div className="collection-buttons-div collection-buttons-div-show">
             <div> </div>

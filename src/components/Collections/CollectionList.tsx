@@ -162,6 +162,11 @@ export default function CollectionList() {
             updateFunction={handleAddCollection}
             isShown={isAdding}
             ref={inputRef}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                setIsAdding(false)
+              }
+            }}
           />
         </>
       )}

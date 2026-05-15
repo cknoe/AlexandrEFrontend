@@ -27,6 +27,7 @@ const CollectionForm = forwardRef<HTMLInputElement, CollectionFormProps>(
               : 'collection-form-inactive'
           }`}
           id="collection-form-add"
+          onBlur={props.onBlur}
           onSubmit={handleSubmit}
         >
           <input
