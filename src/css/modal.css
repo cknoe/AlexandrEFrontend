@@ -36,7 +36,8 @@
 }
 
 .modal-button:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: none;
+  text-shadow: rgba(0, 0, 0, 0.2) 1px 1px 4px;
 }
 
 .modal-close {

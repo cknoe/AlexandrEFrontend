@@ -16,4 +16,3 @@ export type CardProps = CardData & {
 }
 
 export type CardListMode = 'AllCards' | 'CollectionCards' | 'DraftCards'
-

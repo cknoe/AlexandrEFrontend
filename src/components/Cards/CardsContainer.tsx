@@ -120,7 +120,7 @@ export default function CardsContainer() {
   }
 
   function selectMode(): CardListMode {
-    if ((isDraft) && (token)) return 'DraftCards'
+    if (isDraft && token) return 'DraftCards'
     else if (!isNaN(collectionIdNumber) || isDraft) return 'CollectionCards'
     else return 'AllCards'
   }
