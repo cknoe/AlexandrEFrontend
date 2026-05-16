@@ -1,10 +1,12 @@
 import '../../css/collection.css'
 
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Save } from 'lucide-react'
 import Collection from './Collection'
 import type { CollectionData } from './collectionTypes'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
+import { useModal } from '../Modal/ModalContext'
 import {
   createCollection,
   deleteCollection,
@@ -12,6 +14,7 @@ import {
   modifyCollection,
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
+import CollectionSaveDraftForm from './CollectionSaveDraftForm'
 
 export default function CollectionList() {
   const { collectionIdParam } = useParams()
@@ -19,6 +22,7 @@ export default function CollectionList() {
   const location = useLocation()
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
+  const { openModal } = useModal()
   const [collections, setCollections] = useState<CollectionData[]>([])
   const [isAdding, setIsAdding] = useState(false)
 
@@ -83,6 +87,10 @@ export default function CollectionList() {
     }
   }
 
+  function handleSaveDraftButtonClick() {
+    openModal(<CollectionSaveDraftForm collections={collections} />)
+  }
+
   function handleAddCollectionButtonClick() {
     setIsAdding((prev) => !prev)
   }
@@ -119,7 +127,14 @@ export default function CollectionList() {
         className={`collection ${isDraft ? 'collection-selected' : ''}`}
         onClick={() => navigate(`/draft`)}
       >
-        Draft
+        <div>Draft</div>
+        <button
+          className="collection-button"
+          onClick={handleSaveDraftButtonClick}
+        >
+          {' '}
+          <Save size={16} />{' '}
+        </button>
       </div>
       {token && (
         <>

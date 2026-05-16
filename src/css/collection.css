@@ -140,3 +140,21 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+.collection-save-draft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collection-tab-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-input,
+.collection-select {
+  box-sizing: border-box;
+  width: 100%;
+}
