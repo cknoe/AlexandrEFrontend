@@ -7,6 +7,7 @@ import type { CollectionData } from './collectionTypes'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
 import { useModal } from '../Modal/ModalContext'
+import { useDraftCards } from '../../hooks/useDraftCards'
 import {
   createCollection,
   deleteCollection,
@@ -23,6 +24,7 @@ export default function CollectionList() {
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
   const { openModal } = useModal()
+  const { draftCards } = useDraftCards()
   const [collections, setCollections] = useState<CollectionData[]>([])
   const [isAdding, setIsAdding] = useState(false)
 
@@ -88,7 +90,12 @@ export default function CollectionList() {
   }
 
   function handleSaveDraftButtonClick() {
-    openModal(<CollectionSaveDraftForm collections={collections} />)
+    openModal(
+      <CollectionSaveDraftForm 
+        collections={collections}
+        cardList={draftCards}
+      />
+    )
   }
 
   function handleAddCollectionButtonClick() {
@@ -128,13 +135,15 @@ export default function CollectionList() {
         onClick={() => navigate(`/draft`)}
       >
         <div>Draft</div>
-        <button
-          className="collection-button"
-          onClick={handleSaveDraftButtonClick}
-        >
-          {' '}
-          <Save size={16} />{' '}
-        </button>
+        {token ? (
+          <button
+            className="collection-button"
+            onClick={handleSaveDraftButtonClick}
+          >
+            {' '}
+            <Save size={16} />{' '}
+          </button>
+        ) : ('')}    
       </div>
       {token && (
         <>

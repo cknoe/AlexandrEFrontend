@@ -3,17 +3,16 @@ import type { SaveDraftFormProps } from './DraftTypes'
 
 export default function SaveDraftForm({
   collections,
+  cardList,
   onCreate,
   onAdd,
 }: SaveDraftFormProps) {
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
 
-  // Create form state
   const [createName, setCreateName] = useState<string>('')
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
 
-  // Add form state
   const [selectedCollectionId, setSelectedCollectionId] = useState<
     number | null
   >(collections.length > 0 ? collections[0].collectionId : null)
@@ -29,7 +28,6 @@ export default function SaveDraftForm({
   }, [activeTab])
 
   useEffect(() => {
-    // keep selectedCollectionId in sync when collections prop changes
     if (collections.length > 0 && selectedCollectionId === null) {
       setSelectedCollectionId(collections[0].collectionId)
     }
@@ -38,14 +36,14 @@ export default function SaveDraftForm({
   function submitCreate(e?: React.FormEvent) {
     e?.preventDefault()
     if (!createName.trim()) return
-    if (onCreate) onCreate(createName.trim(), createKeepDraft)
+    if (onCreate) onCreate(createName.trim(), createKeepDraft, cardList)
     else console.log('create collection', createName.trim(), createKeepDraft)
     setCreateName('')
   }
 
   function submitAdd(e?: React.FormEvent) {
     e?.preventDefault()
-    if (onAdd) onAdd(selectedCollectionId, addKeepDraft)
+    if (onAdd) onAdd(selectedCollectionId, addKeepDraft, cardList)
     else console.log('add to collection', selectedCollectionId, addKeepDraft)
   }
 

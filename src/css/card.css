@@ -87,6 +87,11 @@
   right: 4rem;
 }
 
+.save-draft-button {
+  left: .5rem;
+  right: auto;
+}
+
 .modal-content .card {
   box-shadow: none;
   background-color: white;

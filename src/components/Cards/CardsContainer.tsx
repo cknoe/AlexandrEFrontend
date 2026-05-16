@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useModal } from '../Modal/ModalContext'
 import { useAuth } from '../Authorization/AuthContext'
+import SaveDraftForm from "../Draft/SaveDraftForm"
 import CardsList from './CardsList'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
@@ -113,6 +114,15 @@ export default function CardsContainer() {
     )
   }
 
+  function handleOpenSaveDraftModal(card: CardData) {
+    openModal(
+      <SaveDraftForm
+        collections={[]}
+        cardList={[card]}
+      />,
+    )
+  }
+
   return (
     <CardsList
       cards={cards}
@@ -121,8 +131,13 @@ export default function CardsContainer() {
       updateCard={handleUpdateCard}
       openAddForm={handleOpenAddModal}
       openUpdateForm={handleOpenUpdateModal}
+      openSaveDraftForm={handleOpenSaveDraftModal}
       mode={
-        !isNaN(collectionIdNumber) || isDraft ? 'CollectionCards' : 'AllCards'
+        isDraft
+          ? 'DraftCards'
+          : !isNaN(collectionIdNumber)
+            ? 'CollectionCards'
+            : 'AllCards'
       }
     />
   )

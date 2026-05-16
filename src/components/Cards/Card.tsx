@@ -1,4 +1,4 @@
-import { Trash2, Pencil } from 'lucide-react'
+import { Trash2, Pencil, Save } from 'lucide-react'
 
 import { useModal } from '../Modal/ModalContext'
 import type { CardProps } from './cardTypes'
@@ -15,6 +15,8 @@ export default function Card({
   cardContent,
   deleteCardFunction,
   updateCardFunction,
+  saveDraftCardFunction,
+  isDraft = false,
 }: CardProps) {
   const { openModal } = useModal()
 
@@ -32,6 +34,8 @@ export default function Card({
         cardContent={cardContent}
         deleteCardFunction={deleteCardFunction}
         updateCardFunction={updateCardFunction}
+        saveDraftCardFunction={saveDraftCardFunction}
+        isDraft={isDraft}
       />,
     )
   }
@@ -69,6 +73,26 @@ export default function Card({
       >
         <Pencil className="w-4 h-4" />
       </button>
+
+      {isDraft ? 
+        <button 
+          className="card-button save-draft-button"
+          onClick={(e) => {
+            e.stopPropagation()
+            if (saveDraftCardFunction) {
+              saveDraftCardFunction({
+                id,
+                cardTitle,
+                cardText,
+                cardContent,
+              })
+            }
+          }}
+        >
+          <Save className="w-4 h-4" />
+        </button>
+        : ''
+      }
 
       <h2>{cardTitle}</h2>
 

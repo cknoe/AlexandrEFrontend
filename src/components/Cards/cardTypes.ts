@@ -11,4 +11,6 @@ export type CardProps = CardData & {
   index: number
   deleteCardFunction: () => void
   updateCardFunction: (index: number, id: number, card: CardData) => void
+  saveDraftCardFunction?: (card: CardData) => void
+  isDraft?: boolean
 }

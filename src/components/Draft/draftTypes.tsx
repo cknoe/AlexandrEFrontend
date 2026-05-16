@@ -1,7 +1,9 @@
 import type {CollectionData} from "../Collections/collectionTypes"
+import type {CardData} from "../Cards/cardTypes"
 
 export type SaveDraftFormProps = {
   collections: CollectionData[]
-  onCreate?: (name: string, keepDraft: boolean) => void
-  onAdd?: (collectionId: number | null, keepDraft: boolean) => void
+  cardList: CardData[]
+  onCreate?: (name: string, keepDraft: boolean, cardList: CardData[]) => void
+  onAdd?: (collectionId: number | null, keepDraft: boolean, cardList: CardData[]) => void
 }
