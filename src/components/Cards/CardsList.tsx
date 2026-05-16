@@ -1,9 +1,9 @@
 import Card from './Card'
-import type { CardData } from './cardTypes'
+import type { CardData, CardListMode } from './cardTypes'
 import { LucideSquarePlus } from 'lucide-react'
 
 type CardsListProps = {
-  mode?: 'AllCards' | 'CollectionCards' | 'DraftCards'
+  mode?: CardListMode
   cards: CardData[]
   addCard: (card: CardData) => void
   deleteCard: (index: number, id: number) => void

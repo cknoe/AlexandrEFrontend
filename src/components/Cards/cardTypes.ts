@@ -14,3 +14,6 @@ export type CardProps = CardData & {
   saveDraftCardFunction?: (card: CardData) => void
   isDraft?: boolean
 }
+
+export type CardListMode = 'AllCards' | 'CollectionCards' | 'DraftCards'
+

@@ -3,6 +3,7 @@ import { useModal } from '../Modal/ModalContext'
 import { useAuth } from '../Authorization/AuthContext'
 import SaveDraftForm from '../Draft/SaveDraftForm'
 import CardsList from './CardsList'
+import type { CardListMode } from './cardTypes'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
 import { getCards, createCard, deleteCard, updateCard } from '../../api/cards'
@@ -118,6 +119,12 @@ export default function CardsContainer() {
     openModal(<SaveDraftForm collections={[]} cardList={[card]} />)
   }
 
+  function selectMode(): CardListMode {
+    if ((isDraft) && (token)) return 'DraftCards'
+    else if (!isNaN(collectionIdNumber) || isDraft) return 'CollectionCards'
+    else return 'AllCards'
+  }
+
   return (
     <CardsList
       cards={cards}
@@ -127,13 +134,7 @@ export default function CardsContainer() {
       openAddForm={handleOpenAddModal}
       openUpdateForm={handleOpenUpdateModal}
       openSaveDraftForm={handleOpenSaveDraftModal}
-      mode={
-        isDraft
-          ? 'DraftCards'
-          : !isNaN(collectionIdNumber)
-            ? 'CollectionCards'
-            : 'AllCards'
-      }
+      mode={selectMode()}
     />
   )
 }
