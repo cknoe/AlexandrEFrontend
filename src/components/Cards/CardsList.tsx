@@ -20,7 +20,7 @@ export default function CardsList({
   deleteCard,
   openAddForm,
   openUpdateForm,
-  openSaveDraftForm
+  openSaveDraftForm,
 }: CardsListProps) {
   return (
     <div className="card-list-div">
@@ -34,7 +34,9 @@ export default function CardsList({
           cardContent={card.cardContent}
           deleteCardFunction={() => deleteCard(index, card.id!)}
           updateCardFunction={() => openUpdateForm(index, card.id!, card)}
-          saveDraftCardFunction={() => {openSaveDraftForm(card)}}
+          saveDraftCardFunction={() => {
+            openSaveDraftForm(card)
+          }}
           isDraft={mode === 'DraftCards' ? true : false}
         />
       ))}

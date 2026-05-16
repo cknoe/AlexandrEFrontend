@@ -74,8 +74,8 @@ export default function Card({
         <Pencil className="w-4 h-4" />
       </button>
 
-      {isDraft ? 
-        <button 
+      {isDraft ? (
+        <button
           className="card-button save-draft-button"
           onClick={(e) => {
             e.stopPropagation()
@@ -91,8 +91,9 @@ export default function Card({
         >
           <Save className="w-4 h-4" />
         </button>
-        : ''
-      }
+      ) : (
+        ''
+      )}
 
       <h2>{cardTitle}</h2>
 

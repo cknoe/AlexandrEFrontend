@@ -91,10 +91,10 @@ export default function CollectionList() {
 
   function handleSaveDraftButtonClick() {
     openModal(
-      <CollectionSaveDraftForm 
+      <CollectionSaveDraftForm
         collections={collections}
         cardList={draftCards}
-      />
+      />,
     )
   }
 
@@ -143,7 +143,9 @@ export default function CollectionList() {
             {' '}
             <Save size={16} />{' '}
           </button>
-        ) : ('')}    
+        ) : (
+          ''
+        )}
       </div>
       {token && (
         <>

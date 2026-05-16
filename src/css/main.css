@@ -83,11 +83,18 @@ button:hover {
   color: var(--main-color);
   text-decoration: underline;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clickable-text:hover {
+  color: #031c60;
 }
 
 .tabs {
   display: flex;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .tab {

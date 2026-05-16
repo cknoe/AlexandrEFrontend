@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useModal } from '../Modal/ModalContext'
 import { useAuth } from '../Authorization/AuthContext'
-import SaveDraftForm from "../Draft/SaveDraftForm"
+import SaveDraftForm from '../Draft/SaveDraftForm'
 import CardsList from './CardsList'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
@@ -115,12 +115,7 @@ export default function CardsContainer() {
   }
 
   function handleOpenSaveDraftModal(card: CardData) {
-    openModal(
-      <SaveDraftForm
-        collections={[]}
-        cardList={[card]}
-      />,
-    )
+    openModal(<SaveDraftForm collections={[]} cardList={[card]} />)
   }
 
   return (
