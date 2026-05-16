@@ -14,7 +14,7 @@ import {
   modifyCollection,
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
-import CollectionSaveDraftForm from './CollectionSaveDraftForm'
+import CollectionSaveDraftForm from '../Draft/SaveDraftForm'
 
 export default function CollectionList() {
   const { collectionIdParam } = useParams()

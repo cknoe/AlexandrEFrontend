@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import type { CollectionSaveDraftFormProps } from './collectionTypes'
+import type { SaveDraftFormProps } from './DraftTypes'
 
-export default function CollectionSaveDraftForm({
+export default function SaveDraftForm({
   collections,
   onCreate,
   onAdd,
-}: CollectionSaveDraftFormProps) {
+}: SaveDraftFormProps) {
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
 
   // Create form state
@@ -50,7 +50,7 @@ export default function CollectionSaveDraftForm({
   }
 
   return (
-    <div className="collection-save-draft">
+    <div className="save-draft">
       <div className="tabs">
         <div
           className={`tab ${activeTab === 'create' ? 'active-tab' : ''}`}
@@ -68,7 +68,7 @@ export default function CollectionSaveDraftForm({
 
       <div className="tab-panel">
         {activeTab === 'create' && (
-          <form onSubmit={submitCreate} className="collection-tab-form">
+          <form onSubmit={submitCreate} className="save-draft-tab-form">
             <label>Create a new Collection</label>
             <input
               ref={createInputRef}
@@ -76,7 +76,7 @@ export default function CollectionSaveDraftForm({
               value={createName}
               onChange={(e) => setCreateName(e.target.value)}
               placeholder="New collection name"
-              className="collection-input"
+              className="save-draft-input"
             />
 
             <label className="keep-draft">
@@ -95,7 +95,7 @@ export default function CollectionSaveDraftForm({
         )}
 
         {activeTab === 'add' && (
-          <form onSubmit={submitAdd} className="collection-tab-form">
+          <form onSubmit={submitAdd} className="save-draft-tab-form">
             <label>Add to existing Collection</label>
             <select
               ref={addSelectRef}
@@ -104,7 +104,7 @@ export default function CollectionSaveDraftForm({
                 const v = e.target.value
                 setSelectedCollectionId(v === '' ? null : Number(v))
               }}
-              className="collection-select"
+              className="save-draft-select"
             >
               {collections.length === 0 && (
                 <option value="">No collections</option>

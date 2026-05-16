@@ -93,6 +93,24 @@ form button {
   line-height: 1em;
 }
 
+.save-draft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.save-draft-tab-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-draft-input,
+.save-draft-select {
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .save-draft-submit {
   width: 8em;
 }
