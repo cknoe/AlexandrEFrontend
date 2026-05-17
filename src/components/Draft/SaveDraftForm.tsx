@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDraftCards } from '../../hooks/useDraftCards'
 import { useCollections } from '../../hooks/useCollection'
 import type { SaveDraftFormProps } from './DraftTypes'
 import type { CardData } from '../Cards/cardTypes'
@@ -34,12 +35,14 @@ async function handleOnCreate(
 
 export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
   const navigate = useNavigate()
+  const { draftCards } = useDraftCards()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const [createName, setCreateName] = useState<string>('')
   const { collections, setCollections } = useCollections()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
   const { closeModal } = useModal()
+  const cards = cardList ? cardList : draftCards
 
   const [selectedCollectionId, setSelectedCollectionId] = useState<
     number | null
@@ -66,7 +69,7 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
     if (!createName.trim()) return
     try {
       const createdCollection = await handleOnCreate(
-        cardList,
+        cards,
         createName.trim(),
       )
       setCreateName('')
@@ -80,7 +83,7 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
 
   async function submitAdd(e?: React.FormEvent) {
     e?.preventDefault()
-    await handleOnAdd(cardList, selectedCollectionId)
+    await handleOnAdd(cards, selectedCollectionId)
     closeModal()
     navigate(`/collections/${selectedCollectionId}`)
   }

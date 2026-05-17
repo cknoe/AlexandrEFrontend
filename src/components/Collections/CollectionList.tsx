@@ -7,7 +7,6 @@ import type { CollectionData } from './collectionTypes'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
 import { useModal } from '../../hooks/useModal'
-import { useDraftCards } from '../../hooks/useDraftCards'
 import {
   createCollection,
   deleteCollection,
@@ -25,7 +24,6 @@ export default function CollectionList() {
   const inputRef = useRef<HTMLInputElement>(null)
   const { token } = useAuth()
   const { openModal } = useModal()
-  const { draftCards } = useDraftCards()
   const { collections, setCollections } = useCollections()
   const [isAdding, setIsAdding] = useState(false)
 
@@ -91,7 +89,7 @@ export default function CollectionList() {
   }
 
   function handleSaveDraftButtonClick() {
-    openModal(<SaveDraftForm cardList={draftCards} />)
+    openModal(<SaveDraftForm />)
   }
 
   function handleAddCollectionButtonClick() {
