@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { useCollections } from '../../hooks/useCollection'
 import type { SaveDraftFormProps } from './DraftTypes'
 import type { CardData } from '../Cards/cardTypes'
-import { createCard } from '../../api/cards'
+import { createCardBatch } from '../../api/cards'
 import { useModal } from '../../hooks/useModal'
 
-async function handleOnAdd(newCard: CardData, collectionId: number | null) {
+async function handleOnAdd(cards: CardData[], collectionId: number | null) {
   if (!collectionId) {return}
   try {
-    await createCard(
-      newCard,
+    await createCardBatch(
+      cards,
       collectionId,
     )
   } catch (err) {
@@ -58,9 +58,9 @@ export default function SaveDraftForm({
     setCreateName('')
   }
 
-  function submitAdd(e?: React.FormEvent) {
+  async function submitAdd(e?: React.FormEvent) {
     e?.preventDefault()
-    cardList.forEach((card) => handleOnAdd(card, selectedCollectionId))
+    await handleOnAdd(cardList, selectedCollectionId)
     closeModal()
     navigate(`/collections/${selectedCollectionId}`)
   }

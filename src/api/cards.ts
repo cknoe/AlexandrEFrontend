@@ -34,6 +34,22 @@ export async function createCard(
   return apiToCard(await response)
 }
 
+export async function createCardBatch(
+  cards: Omit<Card, 'id'>[],
+  collectionId: number,
+): Promise<Card[]> {
+  const response = await apiFecth('/cards/batch', {
+    method: 'POST',
+    body: JSON.stringify(
+      cards.map((card) =>
+        JSON.parse(cardToApi(card, collectionId)),
+      ),
+    ),
+  })
+  const data = await response
+  return data.map(apiToCard)
+}
+
 export async function deleteCard(cardId: number): Promise<void> {
   return apiFecth('/cards/' + cardId, {
     method: 'DELETE',
