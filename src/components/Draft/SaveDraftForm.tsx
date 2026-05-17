@@ -1,18 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useCollections } from '../../hooks/useCollection'
 import type { SaveDraftFormProps } from './DraftTypes'
+import type { CardData } from '../Cards/cardTypes'
+import { createCard } from '../../api/cards'
+import { useModal } from '../../hooks/useModal'
+
+async function handleOnAdd(newCard: CardData, collectionId: number | null) {
+  if (!collectionId) {return}
+  try {
+    await createCard(
+      newCard,
+      collectionId,
+    )
+  } catch (err) {
+    console.error('Error creating card :', err)
+  }
+}
 
 export default function SaveDraftForm({
   cardList,
   onCreate,
-  onAdd,
 }: SaveDraftFormProps) {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
-
   const [createName, setCreateName] = useState<string>('')
   const { collections } = useCollections()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
+  const { closeModal } = useModal()
 
   const [selectedCollectionId, setSelectedCollectionId] = useState<
     number | null
@@ -44,8 +60,9 @@ export default function SaveDraftForm({
 
   function submitAdd(e?: React.FormEvent) {
     e?.preventDefault()
-    if (onAdd) onAdd(selectedCollectionId, addKeepDraft, cardList)
-    else console.log('add to collection', selectedCollectionId, addKeepDraft)
+    cardList.forEach((card) => handleOnAdd(card, selectedCollectionId))
+    closeModal()
+    navigate(`/collections/${selectedCollectionId}`)
   }
 
   return (
@@ -124,7 +141,7 @@ export default function SaveDraftForm({
               Keep draft
             </label>
 
-            <button type="submit" className="save-draft-submit">
+            <button type="submit" className="save-draft-submit" onClick={(e) => submitAdd(e)}>
               Add
             </button>
           </form>
