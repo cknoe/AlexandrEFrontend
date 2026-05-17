@@ -41,9 +41,7 @@ export async function createCardBatch(
   const response = await apiFecth('/cards/batch', {
     method: 'POST',
     body: JSON.stringify(
-      cards.map((card) =>
-        JSON.parse(cardToApi(card, collectionId)),
-      ),
+      cards.map((card) => JSON.parse(cardToApi(card, collectionId))),
     ),
   })
   const data = await response

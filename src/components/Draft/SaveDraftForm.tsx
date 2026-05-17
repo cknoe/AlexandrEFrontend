@@ -4,28 +4,39 @@ import { useCollections } from '../../hooks/useCollection'
 import type { SaveDraftFormProps } from './DraftTypes'
 import type { CardData } from '../Cards/cardTypes'
 import { createCardBatch } from '../../api/cards'
+import { createCollection, type Collection } from '../../api/collection'
 import { useModal } from '../../hooks/useModal'
 
 async function handleOnAdd(cards: CardData[], collectionId: number | null) {
-  if (!collectionId) {return}
+  if (!collectionId) {
+    return
+  }
   try {
-    await createCardBatch(
-      cards,
-      collectionId,
-    )
-  } catch (err) {
-    console.error('Error creating card :', err)
+    await createCardBatch(cards, collectionId)
+  } catch (error) {
+    console.error('Error creating cards :', error)
   }
 }
 
-export default function SaveDraftForm({
-  cardList,
-  onCreate,
-}: SaveDraftFormProps) {
+async function handleOnCreate(
+  cards: CardData[],
+  collectionName: string,
+): Promise<Collection> {
+  try {
+    const createdCollection = await createCollection(collectionName)
+    await createCardBatch(cards, createdCollection.collectionId)
+    return createdCollection
+  } catch (error) {
+    console.error('Error creating collection :', error)
+    throw error
+  }
+}
+
+export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const [createName, setCreateName] = useState<string>('')
-  const { collections } = useCollections()
+  const { collections, setCollections } = useCollections()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
   const { closeModal } = useModal()
@@ -50,12 +61,21 @@ export default function SaveDraftForm({
     }
   }, [collections, selectedCollectionId])
 
-  function submitCreate(e?: React.FormEvent) {
+  async function submitCreate(e?: React.FormEvent) {
     e?.preventDefault()
     if (!createName.trim()) return
-    if (onCreate) onCreate(createName.trim(), createKeepDraft, cardList)
-    else console.log('create collection', createName.trim(), createKeepDraft)
-    setCreateName('')
+    try {
+      const createdCollection = await handleOnCreate(
+        cardList,
+        createName.trim(),
+      )
+      setCreateName('')
+      setCollections((prev) => [...prev, createdCollection])
+      closeModal()
+      navigate(`/collections/${createdCollection.collectionId}`)
+    } catch (error) {
+      console.log('Could not submit save-draft to new collection : ' + error)
+    }
   }
 
   async function submitAdd(e?: React.FormEvent) {
@@ -104,7 +124,11 @@ export default function SaveDraftForm({
               Keep draft
             </label>
 
-            <button type="submit" className="save-draft-submit">
+            <button
+              type="submit"
+              className="save-draft-submit"
+              onClick={(e) => submitCreate(e)}
+            >
               Create
             </button>
           </form>
@@ -141,7 +165,11 @@ export default function SaveDraftForm({
               Keep draft
             </label>
 
-            <button type="submit" className="save-draft-submit" onClick={(e) => submitAdd(e)}>
+            <button
+              type="submit"
+              className="save-draft-submit"
+              onClick={(e) => submitAdd(e)}
+            >
               Add
             </button>
           </form>
