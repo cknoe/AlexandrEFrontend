@@ -15,7 +15,7 @@ import {
   modifyCollection,
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
-import CollectionSaveDraftForm from '../Draft/SaveDraftForm'
+import SaveDraftForm from '../Draft/SaveDraftForm'
 import { useCollections } from '../../hooks/useCollection'
 
 export default function CollectionList() {
@@ -91,12 +91,7 @@ export default function CollectionList() {
   }
 
   function handleSaveDraftButtonClick() {
-    openModal(
-      <CollectionSaveDraftForm
-        collections={collections}
-        cardList={draftCards}
-      />,
-    )
+    openModal(<SaveDraftForm cardList={draftCards} />)
   }
 
   function handleAddCollectionButtonClick() {

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useCollections } from '../../hooks/useCollection'
 import type { SaveDraftFormProps } from './DraftTypes'
 
 export default function SaveDraftForm({
-  collections,
   cardList,
   onCreate,
   onAdd,
@@ -10,6 +10,7 @@ export default function SaveDraftForm({
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
 
   const [createName, setCreateName] = useState<string>('')
+  const { collections } = useCollections()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
 

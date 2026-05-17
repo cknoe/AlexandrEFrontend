@@ -21,7 +21,6 @@ export type CollectionFormProps = {
 }
 
 export type CollectionSaveDraftFormProps = {
-  collections: CollectionData[]
   onCreate?: (name: string, keepDraft: boolean) => void
   onAdd?: (collectionId: number | null, keepDraft: boolean) => void
 }
