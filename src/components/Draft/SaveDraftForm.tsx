@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDraftCards } from '../../hooks/useDraftCards'
 import { useCollections } from '../../hooks/useCollection'
-import type { SaveDraftFormProps } from './DraftTypes'
+import type { SaveDraftFormProps } from './draftTypes'
 import type { CardData } from '../Cards/cardTypes'
 import { createCardBatch } from '../../api/cards'
 import { createCollection, type Collection } from '../../api/collection'
@@ -35,7 +35,7 @@ async function handleOnCreate(
 
 export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
   const navigate = useNavigate()
-  const { draftCards } = useDraftCards()
+  const { draftCards, clearDraft } = useDraftCards()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const [createName, setCreateName] = useState<string>('')
   const { collections, setCollections } = useCollections()
@@ -43,7 +43,6 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
   const createInputRef = useRef<HTMLInputElement | null>(null)
   const { closeModal } = useModal()
   const cards = cardList ? cardList : draftCards
-
   const [selectedCollectionId, setSelectedCollectionId] = useState<
     number | null
   >(collections.length > 0 ? collections[0].collectionId : null)
@@ -76,6 +75,7 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
       setCollections((prev) => [...prev, createdCollection])
       closeModal()
       navigate(`/collections/${createdCollection.collectionId}`)
+      clearDraft()
     } catch (error) {
       console.log('Could not submit save-draft to new collection : ' + error)
     }

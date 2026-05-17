@@ -5,17 +5,20 @@ import Modal from './components/Modal/Modal.tsx'
 import AppRoutes from './Routes.tsx'
 import './css/main.css'
 import { CollectionProvider } from './components/Collections/CollectionProvider.tsx'
+import { DraftProvider } from './components/Draft/DraftProvider.tsx'
 
 export default function App() {
   return (
     <AuthProvider>
       <ModalProvider>
         <CollectionProvider>
-          <Header />
-          <Modal />
-          <main className="main">
-            <AppRoutes />
-          </main>
+          <DraftProvider>
+            <Header />
+            <Modal />
+            <main className="main">
+              <AppRoutes />
+            </main>
+          </DraftProvider>
         </CollectionProvider>
       </ModalProvider>
     </AuthProvider>
