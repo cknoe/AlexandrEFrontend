@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 import { useAuth } from '../Authorization/AuthContext'
 import SaveDraftForm from '../Draft/SaveDraftForm'
 import CardsList from './CardsList'

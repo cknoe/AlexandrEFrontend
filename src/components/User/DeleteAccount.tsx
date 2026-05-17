@@ -1,6 +1,6 @@
 import { apiDeleteUser } from '../../api/users'
 import { useAuth } from '../Authorization/AuthContext'
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 import { Trash2 } from 'lucide-react'
 
 export default function DeleteAccount() {

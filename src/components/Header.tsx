@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { useModal } from './Modal/ModalContext'
+import { useModal } from '../hooks/useModal'
 import LoginForm from './Authorization/LoginForm'
 import { useAuth } from './Authorization/AuthContext'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'

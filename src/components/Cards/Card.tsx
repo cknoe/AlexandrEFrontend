@@ -1,6 +1,6 @@
 import { Trash2, Pencil, Save } from 'lucide-react'
 
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 import type { CardProps } from './cardTypes'
 import CardContentRenderer from './CardContentRenderer'
 

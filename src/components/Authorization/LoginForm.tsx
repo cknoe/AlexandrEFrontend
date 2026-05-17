@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 
 import { useAuth } from './AuthContext'
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 
 import '../../css/form.css'
 

@@ -1,4 +1,4 @@
-import { useModal } from './ModalContext'
+import { useModal } from '../../hooks/useModal.ts'
 import '../../css/modal.css'
 
 export default function Modal() {

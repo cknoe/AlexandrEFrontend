@@ -5,7 +5,7 @@ import UsernameForm from './UsernameForm'
 import '../../css/user.css'
 import PasswordForm from './PasswordForm'
 import { Trash2 } from 'lucide-react'
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 import DeleteAccount from './DeleteAccount'
 
 export default function User() {

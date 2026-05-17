@@ -6,7 +6,7 @@ import Collection from './Collection'
 import type { CollectionData } from './collectionTypes'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../Authorization/AuthContext'
-import { useModal } from '../Modal/ModalContext'
+import { useModal } from '../../hooks/useModal'
 import { useDraftCards } from '../../hooks/useDraftCards'
 import {
   createCollection,
@@ -16,6 +16,7 @@ import {
 } from '../../api/collection'
 import CollectionForm from './CollectionForm'
 import CollectionSaveDraftForm from '../Draft/SaveDraftForm'
+import { useCollections } from '../../hooks/useCollection'
 
 export default function CollectionList() {
   const { collectionIdParam } = useParams()
@@ -25,7 +26,7 @@ export default function CollectionList() {
   const { token } = useAuth()
   const { openModal } = useModal()
   const { draftCards } = useDraftCards()
-  const [collections, setCollections] = useState<CollectionData[]>([])
+  const { collections, setCollections } = useCollections()
   const [isAdding, setIsAdding] = useState(false)
 
   const isDraft = location.pathname === '/draft'
@@ -57,7 +58,7 @@ export default function CollectionList() {
     return () => {
       isMounted = false
     }
-  }, [token])
+  }, [token, setCollections])
 
   useEffect(() => {
     if (!isAdding) return
