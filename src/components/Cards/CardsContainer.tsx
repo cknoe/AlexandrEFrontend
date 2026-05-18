@@ -115,8 +115,8 @@ export default function CardsContainer() {
     )
   }
 
-  function handleOpenSaveDraftModal(card: CardData) {
-    openModal(<SaveDraftForm cardList={[card]} />)
+  function handleOpenSaveDraftModal(card: CardData, index: number) {
+    openModal(<SaveDraftForm cardList={[card]} index={index} />)
   }
 
   function selectMode(): CardListMode {

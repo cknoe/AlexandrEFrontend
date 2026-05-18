@@ -33,9 +33,9 @@ async function handleOnCreate(
   }
 }
 
-export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
+export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
   const navigate = useNavigate()
-  const { draftCards, clearDraft } = useDraftCards()
+  const { draftCards, clearDraft, removeDraftCard } = useDraftCards()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const [createName, setCreateName] = useState<string>('')
   const { collections, setCollections } = useCollections()
@@ -63,6 +63,14 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
     }
   }, [collections, selectedCollectionId])
 
+  function handleKeepDraft() {
+    if (index) {
+      removeDraftCard(index)
+    } else {
+      clearDraft()
+    }
+  }
+
   async function submitCreate(e?: React.FormEvent) {
     e?.preventDefault()
     if (!createName.trim()) return
@@ -75,7 +83,7 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
       setCollections((prev) => [...prev, createdCollection])
       closeModal()
       navigate(`/collections/${createdCollection.collectionId}`)
-      clearDraft()
+      if (!createKeepDraft) handleKeepDraft()
     } catch (error) {
       console.log('Could not submit save-draft to new collection : ' + error)
     }
@@ -86,6 +94,7 @@ export default function SaveDraftForm({ cardList }: SaveDraftFormProps) {
     await handleOnAdd(cards, selectedCollectionId)
     closeModal()
     navigate(`/collections/${selectedCollectionId}`)
+    if (!createKeepDraft) handleKeepDraft()
   }
 
   return (

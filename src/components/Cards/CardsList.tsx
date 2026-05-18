@@ -11,7 +11,7 @@ type CardsListProps = {
   saveDraftCard?: (index: number, card: CardData) => void
   openAddForm: () => void
   openUpdateForm: (index: number, id: number, initialCard: CardData) => void
-  openSaveDraftForm: (card: CardData) => void
+  openSaveDraftForm: (card: CardData, inex: number) => void
 }
 
 export default function CardsList({
@@ -35,7 +35,7 @@ export default function CardsList({
           deleteCardFunction={() => deleteCard(index, card.id!)}
           updateCardFunction={() => openUpdateForm(index, card.id!, card)}
           saveDraftCardFunction={() => {
-            openSaveDraftForm(card)
+            openSaveDraftForm(card, index)
           }}
           isDraft={mode === 'DraftCards' ? true : false}
         />
