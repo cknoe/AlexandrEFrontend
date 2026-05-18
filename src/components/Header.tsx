@@ -47,7 +47,7 @@ export default function Header() {
               <button onClick={() => openModal(<LoginForm />)}>
                 <div className="text-with-icon">
                   <User size={16} />
-                  Login/Register
+                  <span className='hide-on-phone'>Login/Register</span>
                 </div>
               </button>
             </>

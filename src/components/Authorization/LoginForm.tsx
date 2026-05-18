@@ -63,6 +63,9 @@ export default function LoginForm() {
         <input
           value={username}
           name="user_id"
+          autoCapitalize='off'
+          autoComplete='off'
+          autoCorrect='off'
           onChange={(e) => setUsername(e.target.value)}
         />
 
