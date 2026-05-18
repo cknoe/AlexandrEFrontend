@@ -22,6 +22,7 @@ export default function CollectionList() {
   const navigate = useNavigate()
   const location = useLocation()
   const inputRef = useRef<HTMLInputElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const { token } = useAuth()
   const { openModal } = useModal()
   const { collections, setCollections } = useCollections()
@@ -36,6 +37,23 @@ export default function CollectionList() {
     : null
   const invalidCollectionId =
     collectionIdNumber !== null && isNaN(collectionIdNumber)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setIsTrayHidden(true)
+      }
+    }
+
+    document.addEventListener('pointerdown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside)
+    }
+  }, [])
 
   useEffect(() => {
     if (!token) {
@@ -124,7 +142,7 @@ export default function CollectionList() {
   }
 
   return (
-    <div className={isTrayHidden ? 'collection-wrapper hide-collection-tray' : 'collection-wrapper'}>
+    <div ref={wrapperRef} className={isTrayHidden ? 'collection-wrapper hide-collection-tray' : 'collection-wrapper'}>
       <div className='collection-list-div'>
         <div
           className={`collection ${isDraft ? 'collection-selected' : ''}`}
@@ -194,7 +212,7 @@ export default function CollectionList() {
           </>
         )}
       </div>
-      <div className="hide-collection-list-div" onClick={() => setIsTrayHidden(!isTrayHidden)}> {isTrayHidden ? '>' : '<'} </div>
+      <div className="hide-collection-list-div" onClick={() => setIsTrayHidden((prev) => !prev)}> {isTrayHidden ? '>' : '<'} </div>
     </div>
   )
 }
