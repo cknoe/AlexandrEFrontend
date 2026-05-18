@@ -60,8 +60,10 @@
   transition: background-color 0.2s ease;
 }
 
-.collection:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+@media (hover: hover) and (pointer: fine) {
+  .collection:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .collection-name {
@@ -80,14 +82,23 @@
   transition: opacity 0.2s ease;
 }
 
+@media (max-width: 601px) {
+  .collection-selected  .collection-buttons-div{
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .collection-list-title .collection-buttons-div {
   opacity: 1;
   pointer-events: auto;
 }
 
-.collection:hover .collection-buttons-div {
-  opacity: 1;
-  pointer-events: auto;
+@media (hover: hover) and (pointer: fine) {
+  .collection:hover .collection-buttons-div {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .collection-button {
@@ -102,13 +113,20 @@
   transition: background-color 0.2s ease;
 }
 
-.collection-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .collection-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }
 
-.collection-selected,
-.collection-selected:hover {
+.collection-selected {
   background-color: var(--main-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .collection-selected:hover {
+    background-color: var(--main-color);
+  }
 }
 
 .collection-form-div {
