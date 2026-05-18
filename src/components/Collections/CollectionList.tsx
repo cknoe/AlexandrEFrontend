@@ -102,7 +102,7 @@ export default function CollectionList() {
     )
 
     if (collectionIdNumber !== null && collectionIdNumber === collectionId) {
-      navigate('/draft')
+      navigate('/')
     }
 
     deleteCollection(collectionId).catch((err) => console.error(err))
