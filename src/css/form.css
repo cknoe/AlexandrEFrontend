@@ -35,7 +35,6 @@ form select {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  width: 100%;
   height: 2.8rem;
 
   padding: 0 2rem 0 0.8rem;
@@ -108,7 +107,7 @@ form button {
 .save-draft-input,
 .save-draft-select {
   box-sizing: border-box;
-  width: 100%;
+  width: 12em;
 }
 
 .save-draft-submit {

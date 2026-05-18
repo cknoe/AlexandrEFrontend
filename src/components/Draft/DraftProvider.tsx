@@ -10,7 +10,9 @@ function readDraftStorage(): CardData[] {
 }
 
 export function DraftProvider({ children }: { children: React.ReactNode }) {
-  const [draftCards, setDraftCards] = useState<CardData[]>(() => readDraftStorage())
+  const [draftCards, setDraftCards] = useState<CardData[]>(() =>
+    readDraftStorage(),
+  )
 
   useEffect(() => {
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draftCards))
@@ -34,7 +36,15 @@ export function DraftProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   return (
-    <DraftContext.Provider value={{ draftCards, addDraftCard, removeDraftCard, updateDraftCard, clearDraft }}>
+    <DraftContext.Provider
+      value={{
+        draftCards,
+        addDraftCard,
+        removeDraftCard,
+        updateDraftCard,
+        clearDraft,
+      }}
+    >
       {children}
     </DraftContext.Provider>
   )

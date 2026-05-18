@@ -9,4 +9,6 @@ type DraftContextValue = {
   clearDraft: () => void
 }
 
-export const DraftContext = createContext<DraftContextValue | undefined>(undefined)
+export const DraftContext = createContext<DraftContextValue | undefined>(
+  undefined,
+)

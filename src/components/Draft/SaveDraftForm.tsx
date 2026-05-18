@@ -38,6 +38,8 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
   const { draftCards, clearDraft, removeDraftCard } = useDraftCards()
   const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const [createName, setCreateName] = useState<string>('')
+  const [errorMessageCreate, setErrorMessageCreate] = useState<string>('')
+  const [errorMessageAdd, setErrorMessageAdd] = useState<string>('')
   const { collections, setCollections } = useCollections()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
   const createInputRef = useRef<HTMLInputElement | null>(null)
@@ -48,6 +50,16 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
   >(collections.length > 0 ? collections[0].collectionId : null)
   const [addKeepDraft, setAddKeepDraft] = useState<boolean>(true)
   const addSelectRef = useRef<HTMLSelectElement | null>(null)
+
+  useEffect(() => {
+    if (collections.length === 0) {
+      setErrorMessageAdd('No collections available')
+    }
+    if (draftCards.length === 0) {
+      setErrorMessageCreate('No draft cards to save')
+      setErrorMessageAdd('No draft cards to save')
+    }
+  }, [draftCards, collections])
 
   useEffect(() => {
     if (activeTab === 'create') {
@@ -75,10 +87,7 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
     e?.preventDefault()
     if (!createName.trim()) return
     try {
-      const createdCollection = await handleOnCreate(
-        cards,
-        createName.trim(),
-      )
+      const createdCollection = await handleOnCreate(cards, createName.trim())
       setCreateName('')
       setCollections((prev) => [...prev, createdCollection])
       closeModal()
@@ -139,10 +148,12 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
             <button
               type="submit"
               className="save-draft-submit"
+              disabled={draftCards.length === 0}
               onClick={(e) => submitCreate(e)}
             >
               Create
             </button>
+            <div className="error-message">{errorMessageCreate}</div>
           </form>
         )}
 
@@ -180,10 +191,12 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
             <button
               type="submit"
               className="save-draft-submit"
+              disabled={collections.length === 0 || draftCards.length === 0}
               onClick={(e) => submitAdd(e)}
             >
               Add
             </button>
+            <div className="error-message">{errorMessageAdd}</div>
           </form>
         )}
       </div>
