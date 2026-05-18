@@ -19,9 +19,11 @@ html {
   background: var(--main-color);
 }
 
+body {
+  background: #f3f4f6;
+}
 
 #root {
-  background: #f3f4f6;
   height: 100%;
   display: flex;
   flex-direction: column;
