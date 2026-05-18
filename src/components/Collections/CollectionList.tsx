@@ -27,7 +27,7 @@ export default function CollectionList() {
   const { openModal } = useModal()
   const { collections, setCollections } = useCollections()
   const [isAdding, setIsAdding] = useState(false)
-  const [isTrayHidden, setIsTrayHidden] = useState(false) 
+  const [isTrayHidden, setIsTrayHidden] = useState(false)
 
   const isDraft = location.pathname === '/draft'
   const isRoot = location.pathname === '/'
@@ -142,8 +142,15 @@ export default function CollectionList() {
   }
 
   return (
-    <div ref={wrapperRef} className={isTrayHidden ? 'collection-wrapper hide-collection-tray' : 'collection-wrapper'}>
-      <div className='collection-list-div'>
+    <div
+      ref={wrapperRef}
+      className={
+        isTrayHidden
+          ? 'collection-wrapper hide-collection-tray'
+          : 'collection-wrapper'
+      }
+    >
+      <div className="collection-list-div">
         <div
           className={`collection ${isDraft ? 'collection-selected' : ''}`}
           onClick={() => navigate(`/draft`)}
@@ -212,7 +219,13 @@ export default function CollectionList() {
           </>
         )}
       </div>
-      <div className="hide-collection-list-div" onClick={() => setIsTrayHidden((prev) => !prev)}> {isTrayHidden ? '>' : '<'} </div>
+      <div
+        className="hide-collection-list-div"
+        onClick={() => setIsTrayHidden((prev) => !prev)}
+      >
+        {' '}
+        {isTrayHidden ? '>' : '<'}{' '}
+      </div>
     </div>
   )
 }

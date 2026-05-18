@@ -38,7 +38,7 @@ export default function Header() {
             <button>
               <div className="text-with-icon">
                 <Home size={16} />
-                <span className='hide-on-phone'>Home</span>
+                <span className="hide-on-phone">Home</span>
               </div>
             </button>
           </Link>
@@ -47,7 +47,7 @@ export default function Header() {
               <button onClick={() => openModal(<LoginForm />)}>
                 <div className="text-with-icon">
                   <User size={16} />
-                  <span className='hide-on-phone'>Login/Register</span>
+                  <span className="hide-on-phone">Login/Register</span>
                 </div>
               </button>
             </>
@@ -56,7 +56,7 @@ export default function Header() {
               <DropdownMenu.Trigger className="dropdown-trigger">
                 <div className="text-with-icon">
                   <User size={16} />
-                  <span className='hide-on-phone'>{contextUsername}</span>
+                  <span className="hide-on-phone">{contextUsername}</span>
                 </div>
               </DropdownMenu.Trigger>
 

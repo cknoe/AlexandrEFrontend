@@ -1,4 +1,4 @@
-import { fetchLogo } from "../api/logoDev"
+import { fetchLogo } from '../api/logoDev'
 
 export function getCachedLogo(domain: string): string | null {
   const cached = localStorage.getItem(`logo_${domain}`)
