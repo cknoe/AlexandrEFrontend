@@ -37,7 +37,8 @@ export default function Header() {
           <Link to="/">
             <button>
               <div className="text-with-icon">
-                <Home size={16} /> Home
+                <Home size={16} />
+                <span className='hide-on-phone'>Home</span>
               </div>
             </button>
           </Link>
@@ -55,7 +56,7 @@ export default function Header() {
               <DropdownMenu.Trigger className="dropdown-trigger">
                 <div className="text-with-icon">
                   <User size={16} />
-                  {contextUsername}
+                  <span className='hide-on-phone'>{contextUsername}</span>
                 </div>
               </DropdownMenu.Trigger>
 

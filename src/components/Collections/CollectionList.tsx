@@ -124,7 +124,7 @@ export default function CollectionList() {
   }
 
   return (
-    <div className={isTrayHidden ? 'collection-wrapper hide' : 'collection-wrapper'}>
+    <div className={isTrayHidden ? 'collection-wrapper hide-collection-tray' : 'collection-wrapper'}>
       <div className='collection-list-div'>
         <div
           className={`collection ${isDraft ? 'collection-selected' : ''}`}

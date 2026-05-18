@@ -32,7 +32,7 @@
 }
 
 @media (max-width: 601px) {
-  .hide {
+  .hide-collection-tray {
     left: calc(-1 * var(--collection-tray-width));
   }
 
