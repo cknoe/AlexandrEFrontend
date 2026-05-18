@@ -30,6 +30,10 @@ form select {
   transition: border-color 0.2s;
 }
 
+form textarea {
+  font-size: 1rem;
+}
+
 form select {
   appearance: none;
   -webkit-appearance: none;

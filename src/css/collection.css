@@ -1,7 +1,15 @@
-.collection-list-div {
+.collection-wrapper {
+  display: flex;
+  flex-direction: row;
   position: fixed;
-  width: var(--collection-tray-width);
   height: 100%;
+  z-index: 1;
+  left: 0;
+  transition: left 0.2s ease;
+}
+
+.collection-list-div {
+  width: var(--collection-tray-width);
   background-color: rgb(65, 65, 65);
   color: rgb(204, 204, 204);
   display: flex;
@@ -9,7 +17,28 @@
   padding: 1em 0 3em;
   box-sizing: border-box;
   overflow-y: auto;
+  overflow-x: visible;
   -webkit-overflow-scrolling: touch;
+}
+
+.hide-collection-list-div {
+  color: rgb(65, 65, 65);
+  background-color: rgb(204, 204, 204);
+  width: 2em;
+  height: 1.5em;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 0px 0px 15px 0px;
+}
+
+@media (max-width: 601px) {
+  .hide-collection-tray {
+    left: calc(-1 * var(--collection-tray-width));
+  }
+
+  .hide-collection-list-div {
+    visibility: visible;
+  }
 }
 
 .collection-list-title {
@@ -31,8 +60,10 @@
   transition: background-color 0.2s ease;
 }
 
-.collection:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+@media (hover: hover) and (pointer: fine) {
+  .collection:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .collection-name {
@@ -51,14 +82,23 @@
   transition: opacity 0.2s ease;
 }
 
+@media (max-width: 601px) {
+  .collection-selected .collection-buttons-div {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .collection-list-title .collection-buttons-div {
   opacity: 1;
   pointer-events: auto;
 }
 
-.collection:hover .collection-buttons-div {
-  opacity: 1;
-  pointer-events: auto;
+@media (hover: hover) and (pointer: fine) {
+  .collection:hover .collection-buttons-div {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .collection-button {
@@ -73,13 +113,20 @@
   transition: background-color 0.2s ease;
 }
 
-.collection-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .collection-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 }
 
-.collection-selected,
-.collection-selected:hover {
+.collection-selected {
   background-color: var(--main-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .collection-selected:hover {
+    background-color: var(--main-color);
+  }
 }
 
 .collection-form-div {

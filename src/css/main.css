@@ -1,25 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+html {
+  --main-color: #2563eb;
+  --collection-tray-width: 15em;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
-  overflow: hidden;
-}
-
-#root {
-  --main-color: #2563eb;
-  --collection-tray-width: 15em;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 html {
-  height: 100%;
+  background: var(--main-color);
+}
+
+body {
   background: #f3f4f6;
-  font-family: 'Inter', sans-serif;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
@@ -32,13 +38,6 @@ html {
   gap: 1rem;
   font-family: 'Inter', sans-serif;
   overflow-y: auto;
-}
-
-@media (max-width: 600px) {
-  .main {
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
 button {
@@ -130,4 +129,10 @@ button:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 601px) {
+  .hide-on-phone {
+    display: none;
+  }
 }
