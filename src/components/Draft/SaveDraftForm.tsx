@@ -103,7 +103,7 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
     await handleOnAdd(cards, selectedCollectionId)
     closeModal()
     navigate(`/collections/${selectedCollectionId}`)
-    if (!createKeepDraft) handleKeepDraft()
+    if (!addKeepDraft) handleKeepDraft()
   }
 
   return (
