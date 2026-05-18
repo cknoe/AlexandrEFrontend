@@ -167,10 +167,19 @@
   padding-left: var(--collection-tray-width);
   padding-bottom: 1em;
   margin-left: 1em;
+  margin-right: 1em;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
   font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 601px) {
+  .card-list-div {
+    padding-left: 0em;
+    justify-content: center;
+    align-items: center;
+  }
 }
