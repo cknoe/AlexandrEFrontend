@@ -19,9 +19,10 @@ export default function CardContentRenderer({
 }: CardContentRendererProps) {
   const hostname = new URL(url).hostname
   const logo = useLogo(hostname)
-  const isIframe = (IFRAME_URL.some(
-    (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
-  ) || url.includes('embed'))
+  const isIframe =
+    IFRAME_URL.some(
+      (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+    ) || url.includes('embed')
 
   const smallLink: ReactNode = (
     <div className="link-div">

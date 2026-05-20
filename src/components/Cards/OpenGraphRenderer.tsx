@@ -24,14 +24,14 @@ export function OpenGraphRenderer({ url, logo }: Props) {
 
   return (
     <div className="opengraph-renderer">
-      {openGraph?.image ?
-        (
-          <img className="opengraph-renderer-img" src={openGraph.image || logo || link} />
-        ) :
-        (
-          <img className="opengraph-renderer-img" src={ logo || link} />
-        )
-      }
+      {openGraph?.image ? (
+        <img
+          className="opengraph-renderer-img"
+          src={openGraph.image || logo || link}
+        />
+      ) : (
+        <img className="opengraph-renderer-img" src={logo || link} />
+      )}
       {openGraph?.title && (
         <div className="opengraph-rendrer-title">{openGraph.title}</div>
       )}
