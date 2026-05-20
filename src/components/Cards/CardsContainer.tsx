@@ -7,13 +7,14 @@ import type { CardListMode } from './cardTypes'
 import CardForm from './CardForm'
 import type { CardData } from './cardTypes'
 import { getCards, createCard, deleteCard, updateCard } from '../../api/cards'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getCollectionById } from '../../api/collection'
 import { useDraftCards } from '../../hooks/useDraftCards'
 
 export default function CardsContainer() {
   const { collectionIdParam } = useParams()
   const location = useLocation()
+  const navigate = useNavigate()
   const collectionIdNumber = Number(collectionIdParam)
   const [cards, setCards] = useState<CardData[]>([])
   const { openModal, closeModal } = useModal()
@@ -27,7 +28,10 @@ export default function CardsContainer() {
   useEffect(() => {
     if (isDraft) {
       document.title = 'Draft'
-    } else if (!collectionIdNumber) {
+    } else if (!token) {
+      navigate("/draft")
+    }
+    else if (!collectionIdNumber) {
       document.title = 'All Your cards'
     }
   }, [collectionIdNumber, isDraft])
