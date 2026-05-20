@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { useLogo } from '../../hooks/useLogo'
 import link from '../../assets/link.png'
+import { OpenGraphRenderer } from './OpenGraphRenderer'
+import type { ReactNode } from 'react'
+
+import { IFRAME_URL } from '../../config'
 
 type CardContentRendererProps = {
   url: string
@@ -15,6 +19,17 @@ export default function CardContentRenderer({
 }: CardContentRendererProps) {
   const hostname = new URL(url).hostname
   const logo = useLogo(hostname)
+  const isIframe =
+    IFRAME_URL.some(
+      (domain) => hostname === domain || hostname.endsWith(`.${domain}`),
+    ) || url.includes('embed')
+
+  const smallLink: ReactNode = (
+    <div className="link-div">
+      <img src={logo || link} alt="favicon" className="favicon-small" />
+      <Link to={url}>{hostname}</Link>
+    </div>
+  )
 
   if (mode === 'compact_card') {
     return (
@@ -33,7 +48,7 @@ export default function CardContentRenderer({
           <ReactPlayer src={url} controls width="100%" height="100%" />
         </div>
       )
-    } else {
+    } else if (isIframe) {
       return (
         <>
           <iframe
@@ -44,10 +59,14 @@ export default function CardContentRenderer({
             style={{ border: 'none' }}
             allowFullScreen
           />
-          <div className="link-div">
-            <img src={logo || link} alt="favicon" className="favicon-small" />
-            <Link to={url}>{hostname}</Link>
-          </div>
+          {smallLink}
+        </>
+      )
+    } else {
+      return (
+        <>
+          <OpenGraphRenderer url={url} logo={logo} />
+          {smallLink}
         </>
       )
     }
