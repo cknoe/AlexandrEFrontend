@@ -8,7 +8,6 @@ type CardsListProps = {
   addCard: (card: CardData) => void
   deleteCard: (index: number, id: number) => void
   updateCard: (index: number, id: number, updatedCard: CardData) => void
-  saveDraftCard?: (index: number, card: CardData) => void
   openAddForm: () => void
   openUpdateForm: (index: number, id: number, initialCard: CardData) => void
   openSaveDraftForm: (card: CardData, inex: number) => void
