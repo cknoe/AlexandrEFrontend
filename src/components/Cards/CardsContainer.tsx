@@ -34,7 +34,7 @@ export default function CardsContainer() {
     else if (!collectionIdNumber) {
       document.title = 'All Your cards'
     }
-  }, [collectionIdNumber, isDraft])
+  }, [collectionIdNumber, isDraft, token, navigate])
 
   useEffect(() => {
     if (isDraft) {
