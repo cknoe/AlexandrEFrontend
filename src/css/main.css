@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 html {
-  --main-color: #2563eb;
+  --main-color: #31791d;
   --collection-tray-width: 15em;
   height: 100%;
   font-family: 'Inter', sans-serif;
@@ -55,7 +55,7 @@ button {
 }
 
 button:hover {
-  background-color: #1d4ed8;
+  background-color: #1e4a12;
 }
 
 button:disabled {
