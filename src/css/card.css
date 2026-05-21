@@ -164,7 +164,6 @@
 .card-list-div {
   flex: 1;
   padding-top: 1em;
-  padding-left: var(--collection-tray-width);
   padding-bottom: 1em;
   margin-left: 1em;
   margin-right: 1em;
@@ -178,7 +177,6 @@
 
 @media (max-width: 601px) {
   .card-list-div {
-    padding-left: 0em;
     justify-content: center;
     align-items: center;
   }

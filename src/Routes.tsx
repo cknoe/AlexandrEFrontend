@@ -2,12 +2,22 @@ import { Route, Routes } from 'react-router-dom'
 import Error from './components/Error'
 import CardsContainer from './components/Cards/CardsContainer'
 import CollectionList from './components/Collections/CollectionList'
+import HomePage from './components/HomePage'
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route
         path="/"
+        element={
+          <>
+            <CollectionList />
+            <HomePage />
+          </>
+        }
+      />
+      <Route
+        path="/all-cards"
         element={
           <>
             <CollectionList />

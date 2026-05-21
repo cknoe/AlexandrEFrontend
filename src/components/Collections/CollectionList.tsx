@@ -30,6 +30,7 @@ export default function CollectionList() {
   const [isTrayHidden, setIsTrayHidden] = useState(false)
 
   const isDraft = location.pathname === '/draft'
+  const isAllCards = location.pathname === '/all-cards'
   const isRoot = location.pathname === '/'
 
   const collectionIdNumber = collectionIdParam
@@ -121,7 +122,7 @@ export default function CollectionList() {
     )
 
     if (collectionIdNumber !== null && collectionIdNumber === collectionId) {
-      navigate('/')
+      navigate('/all-cards')
     }
 
     deleteCollection(collectionId).catch((err) => console.error(err))
@@ -142,90 +143,99 @@ export default function CollectionList() {
   }
 
   return (
-    <div
-      ref={wrapperRef}
-      className={
-        isTrayHidden
-          ? 'collection-wrapper hide-collection-tray'
-          : 'collection-wrapper'
-      }
-    >
-      <div className="collection-list-div">
-        <div
-          className={`collection ${isDraft ? 'collection-selected' : ''}`}
-          onClick={() => navigate(`/draft`)}
-        >
-          <div>Draft</div>
-          {token ? (
-            <button
-              className="collection-button"
-              onClick={handleSaveDraftButtonClick}
-            >
-              {' '}
-              <Save size={16} />{' '}
-            </button>
-          ) : (
-            ''
+    <>
+      <div className="collection-tray-space" />
+      <div
+        ref={wrapperRef}
+        className={
+          isTrayHidden
+            ? 'collection-wrapper hide-collection-tray'
+            : 'collection-wrapper'
+        }
+      >
+        <div className="collection-list-div">
+          <div
+            className={`collection ${isRoot ? 'collection-selected' : ''}`}
+            onClick={() => navigate(`/`)}
+          >
+            <div>HomePage</div>
+          </div>
+          <div
+            className={`collection ${isDraft ? 'collection-selected' : ''}`}
+            onClick={() => navigate(`/draft`)}
+          >
+            <div>Draft</div>
+            {token ? (
+              <button
+                className="collection-button"
+                onClick={handleSaveDraftButtonClick}
+              >
+                {' '}
+                <Save size={16} />{' '}
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
+          {token && (
+            <>
+              <div
+                className={`collection ${isAllCards ? 'collection-selected' : ''}`}
+                onClick={() => navigate(`/all-cards`)}
+              >
+                Your Cards
+              </div>
+
+              <div className="collection-list-title">
+                Your Collections
+                <div className="collection-buttons-div">
+                  <button
+                    className={
+                      isAdding
+                        ? 'collection-button red-button'
+                        : 'collection-button'
+                    }
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={handleAddCollectionButtonClick}
+                  >
+                    {isAdding ? 'x' : '+'}
+                  </button>
+                </div>
+              </div>
+
+              {collections.map((collection) => (
+                <Collection
+                  key={collection.collectionId}
+                  collectionId={collection.collectionId}
+                  collectionName={collection.collectionName}
+                  isSelected={collection.collectionId === collectionIdNumber}
+                  deleteFunction={handleDeleteCollection}
+                  updateFunction={handleModifyCollection}
+                />
+              ))}
+
+              <CollectionForm
+                mode="add"
+                updateFunction={handleAddCollection}
+                isShown={isAdding}
+                ref={inputRef}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) {
+                    setIsAdding(false)
+                  }
+                }}
+              />
+            </>
           )}
         </div>
-        {token && (
-          <>
-            <div
-              className={`collection ${isRoot ? 'collection-selected' : ''}`}
-              onClick={() => navigate(`/`)}
-            >
-              Your Cards
-            </div>
-
-            <div className="collection-list-title">
-              Your Collections
-              <div className="collection-buttons-div">
-                <button
-                  className={
-                    isAdding
-                      ? 'collection-button red-button'
-                      : 'collection-button'
-                  }
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={handleAddCollectionButtonClick}
-                >
-                  {isAdding ? 'x' : '+'}
-                </button>
-              </div>
-            </div>
-
-            {collections.map((collection) => (
-              <Collection
-                key={collection.collectionId}
-                collectionId={collection.collectionId}
-                collectionName={collection.collectionName}
-                isSelected={collection.collectionId === collectionIdNumber}
-                deleteFunction={handleDeleteCollection}
-                updateFunction={handleModifyCollection}
-              />
-            ))}
-
-            <CollectionForm
-              mode="add"
-              updateFunction={handleAddCollection}
-              isShown={isAdding}
-              ref={inputRef}
-              onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget)) {
-                  setIsAdding(false)
-                }
-              }}
-            />
-          </>
-        )}
+        <div
+          className="hide-collection-list-div"
+          onClick={() => setIsTrayHidden((prev) => !prev)}
+        >
+          {' '}
+          {isTrayHidden ? '>' : '<'}{' '}
+        </div>
       </div>
-      <div
-        className="hide-collection-list-div"
-        onClick={() => setIsTrayHidden((prev) => !prev)}
-      >
-        {' '}
-        {isTrayHidden ? '>' : '<'}{' '}
-      </div>
-    </div>
+    </>
   )
 }
