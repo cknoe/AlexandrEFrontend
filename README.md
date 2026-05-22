@@ -4,9 +4,18 @@ Application frontend réalisée avec **React**, **TypeScript** et **Vite**.
 
 ## Démarrage
 
+En local
+
 ```sh
 yarn install
 yarn dev
+```
+
+En LAN (nécessite .env.host)
+
+```sh
+yarn install
+yarn dev:host
 ```
 
 Accède à l’application sur [http://localhost:5173](http://localhost:5173).
