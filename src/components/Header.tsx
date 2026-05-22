@@ -5,6 +5,7 @@ import LoginForm from './Authorization/LoginForm'
 import { useAuth } from './Authorization/AuthContext'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import '../css/header.css'
+import phare from '../assets/phare.svg'
 import { Home, User, Settings, LogOut } from 'lucide-react'
 import UserPanel from './User/User'
 
@@ -28,7 +29,8 @@ export default function Header() {
     <>
       <header className="header">
         <div className="header-left">
-          <h2 className="header-logo">Alexandr-e</h2>
+          <img src={phare} className="header-logo" />
+          <div className='header-title hide-on-phone'>Alexandr-e</div>
         </div>
         <div className="header-center">
           <h2 className="header-title">{title}</h2>
