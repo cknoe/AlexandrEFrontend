@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { useDraftCards } from '../../hooks/useDraftCards'
 import type { SaveDraftFormProps } from './draftTypes'
 import CreateFromDraftForm from './CreateFromDraftForm'
@@ -8,38 +7,21 @@ import type { Tab } from '../Tabs/TabType'
 
 export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
   const { draftCards, clearDraft, removeDraftCard } = useDraftCards()
-  const [activeTab, setActiveTab] = useState<'create' | 'add'>('create')
   const cards = cardList ? cardList : draftCards
-  const createInputRef = useRef<HTMLInputElement | null>(null)
-  const addSelectRef = useRef<HTMLSelectElement | null>(null)
 
   const createTab: Tab = {
-    name:'Create',
-    content:
-      <CreateFromDraftForm
-        cards={cards}
-        handleKeepDraft={handleKeepDraft}
-        createInputRef={createInputRef}
-      />
+    name: 'Create',
+    content: (
+      <CreateFromDraftForm cards={cards} handleKeepDraft={handleKeepDraft} />
+    ),
   }
 
   const addTab: Tab = {
-    name:'Add',
-    content:
-      <AddFromDraftForm
-        cards={cards}
-        handleKeepDraft={handleKeepDraft}
-        addSelectRef={addSelectRef}
-      />
+    name: 'Add',
+    content: (
+      <AddFromDraftForm cards={cards} handleKeepDraft={handleKeepDraft} />
+    ),
   }
-
-  useEffect(() => {
-    if (activeTab === 'create') {
-      createInputRef.current?.focus()
-    } else {
-      addSelectRef.current?.focus()
-    }
-  }, [activeTab])
 
   function handleKeepDraft() {
     if (index) {
@@ -49,7 +31,5 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
     }
   }
 
-  return (
-    <Tabs tabs={[createTab, addTab]} />
-  )
+  return <Tabs tabs={[createTab, addTab]} />
 }

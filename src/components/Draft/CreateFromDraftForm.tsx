@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCollections } from '../../hooks/useCollection'
 import type { CardData } from '../Cards/cardTypes'
 import { createCollection, type Collection } from '../../api/collection'
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 import { useDraftCards } from '../../hooks/useDraftCards'
 
 export type CreateFromDraftProps = {
-  createInputRef: React.RefObject<HTMLInputElement | null>
   handleKeepDraft: () => void
   cards: CardData[]
 }
@@ -16,7 +15,6 @@ export type CreateFromDraftProps = {
 export default function CreateFromDraftForm({
   handleKeepDraft,
   cards,
-  createInputRef
 }: CreateFromDraftProps) {
   const navigate = useNavigate()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
@@ -65,7 +63,6 @@ export default function CreateFromDraftForm({
     <form onSubmit={submitCreate} className="save-draft-form">
       <label>Create a new Collection</label>
       <input
-        ref={createInputRef}
         type="text"
         value={createName}
         onChange={(e) => setCreateName(e.target.value)}

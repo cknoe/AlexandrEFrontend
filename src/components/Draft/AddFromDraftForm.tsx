@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react"
-import type { CardData } from "../Cards/cardTypes"
-import { createCardBatch } from "../../api/cards"
-import { useNavigate } from "react-router-dom"
-import { useModal } from "../../hooks/useModal"
-import { useCollections } from "../../hooks/useCollection"
-import { useDraftCards } from "../../hooks/useDraftCards"
+import { useEffect, useState } from 'react'
+import type { CardData } from '../Cards/cardTypes'
+import { createCardBatch } from '../../api/cards'
+import { useNavigate } from 'react-router-dom'
+import { useModal } from '../../hooks/useModal'
+import { useCollections } from '../../hooks/useCollection'
+import { useDraftCards } from '../../hooks/useDraftCards'
 
 export type AddFromDraftProps = {
-  addSelectRef: React.RefObject<HTMLSelectElement | null>
   handleKeepDraft: () => void
   cards: CardData[]
 }
 
-export default function AddFromDraftForm({cards, handleKeepDraft, addSelectRef}: AddFromDraftProps) {
+export default function AddFromDraftForm({
+  cards,
+  handleKeepDraft,
+}: AddFromDraftProps) {
   const navigate = useNavigate()
   const [addKeepDraft, setAddKeepDraft] = useState<boolean>(true)
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const { collections } = useCollections() 
+  const { collections } = useCollections()
   const [selectedCollectionId, setSelectedCollectionId] = useState<
     number | null
   >(collections.length > 0 ? collections[0].collectionId : null)
@@ -43,7 +45,7 @@ export default function AddFromDraftForm({cards, handleKeepDraft, addSelectRef}:
       return
     }
     try {
-      await createCardBatch (cards, collectionId)
+      await createCardBatch(cards, collectionId)
     } catch (error) {
       console.error('Error creating cards :', error)
     }
@@ -60,7 +62,6 @@ export default function AddFromDraftForm({cards, handleKeepDraft, addSelectRef}:
     <form onSubmit={submitAdd} className="save-draft-form">
       <label>Add to existing Collection</label>
       <select
-        ref={addSelectRef}
         value={selectedCollectionId ?? ''}
         onChange={(e) => {
           const v = e.target.value
