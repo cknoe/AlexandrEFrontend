@@ -1,0 +1,14 @@
+.homepage-content {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+.homepage-tab-panel {
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  align-items: left;
+  margin-left: 1em;
+  flex-direction: column;
+}

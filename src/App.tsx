@@ -5,6 +5,7 @@ import Modal from './components/Modal/Modal.tsx'
 import AppRoutes from './Routes.tsx'
 import './css/main.css'
 import './css/tabs.css'
+import './css/homepage.css'
 import { CollectionProvider } from './components/Collections/CollectionProvider.tsx'
 import { DraftProvider } from './components/Draft/DraftProvider.tsx'
 

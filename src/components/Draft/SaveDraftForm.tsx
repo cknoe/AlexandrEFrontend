@@ -12,22 +12,21 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
   const createInputRef = useRef<HTMLInputElement | null>(null)
 
   const createTab: Tab = {
-    name:'Create',
-    content:
+    name: 'Create',
+    content: (
       <CreateFromDraftForm
         cards={cards}
         handleKeepDraft={handleKeepDraft}
         createInputRef={createInputRef}
       />
+    ),
   }
 
   const addTab: Tab = {
-    name:'Add',
-    content:
-      <AddFromDraftForm
-        cards={cards}
-        handleKeepDraft={handleKeepDraft}
-      />
+    name: 'Add',
+    content: (
+      <AddFromDraftForm cards={cards} handleKeepDraft={handleKeepDraft} />
+    ),
   }
 
   useEffect(() => {
@@ -42,7 +41,5 @@ export default function SaveDraftForm({ cardList, index }: SaveDraftFormProps) {
     }
   }
 
-  return (
-    <Tabs tabs={[createTab, addTab]} />
-  )
+  return <Tabs tabs={[createTab, addTab]} />
 }

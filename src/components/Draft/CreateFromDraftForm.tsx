@@ -16,7 +16,7 @@ export type CreateFromDraftProps = {
 export default function CreateFromDraftForm({
   handleKeepDraft,
   cards,
-  createInputRef
+  createInputRef,
 }: CreateFromDraftProps) {
   const navigate = useNavigate()
   const [createKeepDraft, setCreateKeepDraft] = useState<boolean>(true)
