@@ -9,7 +9,7 @@ export default function HomePage() {
       id: 1,
       cardTitle: 'Click-Me !',
       cardText:
-        `(Also click the others)
+        `(Also click the others cards)
         Your entries will be stored in this card structure.
         Give it a title, link an url if you want, and write a lengthy description :
         \n
