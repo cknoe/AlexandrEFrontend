@@ -13,40 +13,37 @@ export default function HomePage() {
         Your entries will be stored in this card structure.
         Give it a title, link an url if you want, and write a lengthy description :
         \n
-        ` +
-        Array(100).fill('Lorem ipsum ').join(''),
+        ` + Array(100).fill('Lorem ipsum ').join(''),
       cardContent: '',
     },
     {
       id: 2,
       cardTitle: 'A GitHub Repo',
-      cardText:
-        `If a site comply with Open Graph Protocol, its informations will be displayed in a concise manner`,
+      cardText: `If a site comply with Open Graph Protocol, its informations will be displayed in a concise manner`,
       cardContent: 'https://github.com/cknoe/FrontendReact',
     },
     {
       id: 3,
       cardTitle: 'A YouTube Video',
-      cardText:
-        `An URL to a video can be watched directly from here`,
+      cardText: `An URL to a video can be watched directly from here`,
       cardContent: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
     },
     {
       id: 4,
       cardTitle: 'The React WebSite',
-      cardText:
-        `A selection of web-sites, and URL containing "embed", will be displayed directly in the card`,
+      cardText: `A selection of web-sites, and URL containing "embed", will be displayed directly in the card`,
       cardContent: 'https://react.dev/',
-    }
+    },
   ]
   const tab: Tab = {
     name: 'What is Alexandr-e ?',
     content: (
       <div className="homepage-tab-panel">
         <div className="homepage-text">
-          Welcome to Alexandr-e, your own private library for web-related
-          content ! Save ressources, document them, store them in collections
-          and then review them with a preview to where they lead <br />
+          Welcome to Alexandr-e — your personal library for web content. <br />
+          Save, organize and document your favorite online resources in
+          collections, then revisit them anytime with interactive previews.{' '}
+          <br />
           <br />
           Here is a sample :
         </div>
