@@ -29,9 +29,8 @@ export default function CardsContainer() {
     if (isDraft) {
       document.title = 'Draft'
     } else if (!token) {
-      navigate("/draft")
-    }
-    else if (!collectionIdNumber) {
+      navigate('/draft')
+    } else if (!collectionIdNumber) {
       document.title = 'All Your cards'
     }
   }, [collectionIdNumber, isDraft, token, navigate])

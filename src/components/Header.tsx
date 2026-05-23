@@ -30,7 +30,7 @@ export default function Header() {
       <header className="header">
         <div className="header-left">
           <img src={phare} className="header-logo" />
-          <div className='header-title hide-on-phone'>Alexandr-e</div>
+          <div className="header-title hide-on-phone">Alexandr-e</div>
         </div>
         <div className="header-center">
           <h2 className="header-title">{title}</h2>
