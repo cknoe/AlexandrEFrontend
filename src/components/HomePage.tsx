@@ -35,7 +35,7 @@ export default function HomePage() {
       id: 4,
       cardTitle: 'The React WebSite',
       cardText:
-        `A selection of web-sites, and URL containing embed, will be displayed directly in the card`,
+        `A selection of web-sites, and URL containing "embed", will be displayed directly in the card`,
       cardContent: 'https://react.dev/',
     }
   ]
