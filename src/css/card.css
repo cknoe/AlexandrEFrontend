@@ -48,6 +48,10 @@
   min-height: 1.2em;
 }
 
+.card-text {
+  white-space: pre-line;
+}
+
 .main .card .card-text-without-content {
   -webkit-line-clamp: 12;
   line-clamp: 12;
