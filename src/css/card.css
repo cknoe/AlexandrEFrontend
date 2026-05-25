@@ -38,7 +38,7 @@
   width: 100%;
 }
 
-.main .card .card-text {
+.card-text {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -46,6 +46,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   min-height: 1.2em;
+  text-align: justify;
 }
 
 .main .card .card-text-without-content {
