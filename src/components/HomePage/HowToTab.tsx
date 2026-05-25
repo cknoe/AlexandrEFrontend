@@ -48,7 +48,7 @@ export default function HowToTab() {
         <button>
           <User size={16} />
         </button>{' '}
-        button. Once logged in, additional features become available.
+        button. Once logged in, additional features become available. Create an account : no are e-mail needed and password have no requirements !
       </p>
 
       <h3>All Your Cards</h3>
