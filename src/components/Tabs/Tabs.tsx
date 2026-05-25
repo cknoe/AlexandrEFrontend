@@ -17,13 +17,9 @@ export default function Tabs({ tabs }: TabBarProps) {
           </div>
         ))}
       </div>
-      {tabs.map((tab) => (
-        <>
-          {tab.name === activeTab && (
-            <div className="tab-panel">{tab.content}</div>
-          )}
-        </>
-      ))}
+      <div className="tab-panel">
+        {tabs.find((tab) => tab.name === activeTab)?.content}
+      </div>
     </div>
   )
 }
