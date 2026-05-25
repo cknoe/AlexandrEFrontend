@@ -1,5 +1,5 @@
-import CardsList from "../Cards/CardsList"
-import type { CardData } from "../Cards/cardTypes"
+import CardsList from '../Cards/CardsList'
+import type { CardData } from '../Cards/cardTypes'
 
 export default function WhatIsTab() {
   const sampleCardList: CardData[] = [
@@ -38,8 +38,7 @@ export default function WhatIsTab() {
       <div className="homepage-text">
         Welcome to Alexandr-e — your personal library for web content. <br />
         Save, organize and document your favorite online resources in
-        collections, then revisit them anytime with interactive previews.{' '}
-        <br />
+        collections, then revisit them anytime with interactive previews. <br />
         <br />
         Here is a sample :
       </div>

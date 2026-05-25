@@ -4,7 +4,6 @@ import HowToTab from './HowToTab'
 import WhatIsTab from './WhatIsTab'
 
 export default function HomePage() {
-
   const tab: Tab = {
     name: 'What is Alexandr-e ?',
     content: <WhatIsTab />,
