@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Error from './components/Error'
 import CardsContainer from './components/Cards/CardsContainer'
 import CollectionList from './components/Collections/CollectionList'
-import HomePage from './components/HomePage'
+import HomePage from './components/HomePage/HomePage'
 
 export default function AppRoutes() {
   return (
