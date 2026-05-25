@@ -27,7 +27,7 @@ export default function CollectionList() {
   const { openModal } = useModal()
   const { collections, setCollections } = useCollections()
   const [isAdding, setIsAdding] = useState(false)
-  const [isTrayHidden, setIsTrayHidden] = useState(false)
+  const [isTrayHidden, setIsTrayHidden] = useState(true)
 
   const isDraft = location.pathname === '/draft'
   const isRoot = location.pathname === '/'
