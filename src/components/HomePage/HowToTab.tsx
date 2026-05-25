@@ -29,7 +29,11 @@ export default function HowToTab() {
         <button className="card-button update-button">
           <Pencil className="w-4 h-4" />
         </button>{' '}
-        button. To delete a card, use the{' '}
+        button.
+        <span className="hide-on-desktop">
+          <br />
+        </span>{' '}
+        To delete a card, use the{' '}
         <button className="card-button delete-button red-button">
           <Trash2 className="w-4 h-4" />
         </button>{' '}

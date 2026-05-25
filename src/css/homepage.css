@@ -12,6 +12,7 @@
   margin-left: 1em;
   margin-right: 1em;
   flex-direction: column;
+  text-align: justify;
 }
 
 .homepage-collection-button {
