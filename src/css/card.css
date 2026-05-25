@@ -49,6 +49,10 @@
   text-align: justify;
 }
 
+.card-text {
+  white-space: pre-line;
+}
+
 .main .card .card-text-without-content {
   -webkit-line-clamp: 12;
   line-clamp: 12;
@@ -63,16 +67,16 @@
   top: 0.5rem;
   position: absolute;
   right: 0.5rem;
+  display: flex;
+  opacity: 0;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 0.4rem 0.6rem;
   cursor: pointer;
-  display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
-  opacity: 0;
   transition: opacity 0.2s ease;
 }
 
@@ -165,7 +169,6 @@
 .card-list-div {
   flex: 1;
   padding-top: 1em;
-  padding-left: var(--collection-tray-width);
   padding-bottom: 1em;
   margin-left: 1em;
   margin-right: 1em;
@@ -179,7 +182,6 @@
 
 @media (max-width: 601px) {
   .card-list-div {
-    padding-left: 0em;
     justify-content: center;
     align-items: center;
   }
