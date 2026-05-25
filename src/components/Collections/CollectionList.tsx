@@ -158,8 +158,9 @@ export default function CollectionList() {
             className={`collection ${isRoot ? 'collection-selected' : ''}`}
             onClick={() => navigate(`/`)}
           >
-            <div>HomePage</div>
+            <div>Home</div>
           </div>
+          <div className="collection-list-title">Cards</div>
           <div
             className={`collection ${isDraft ? 'collection-selected' : ''}`}
             onClick={() => navigate(`/draft`)}
@@ -187,7 +188,7 @@ export default function CollectionList() {
               </div>
 
               <div className="collection-list-title">
-                Your Collections
+                Collections
                 <div className="collection-buttons-div">
                   <button
                     className={

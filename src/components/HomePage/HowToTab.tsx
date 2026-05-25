@@ -63,7 +63,7 @@ export default function HowToTab() {
       <h3>Your Collections</h3>
 
       <p>
-        Under the <strong>Your Collections</strong> section, you can manage your
+        Under the <strong>Collections</strong> section, you can manage your
         collections. A collection is a named group of cards.
         <br />
         To create a new collection, click the{' '}
