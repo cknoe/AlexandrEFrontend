@@ -24,3 +24,15 @@
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
+
+.homepage-card-button {
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  transition: opacity 0.2s ease;
+}

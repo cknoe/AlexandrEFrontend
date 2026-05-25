@@ -26,7 +26,7 @@ export default function HowToTab() {
           <li>an optional URL</li>
         </ul>
         To edit a card, click the{' '}
-        <button className="card-button update-button">
+        <button className="homepage-card-button update-button">
           <Pencil className="w-4 h-4" />
         </button>{' '}
         button.
@@ -34,7 +34,7 @@ export default function HowToTab() {
           <br />
         </span>{' '}
         To delete a card, use the{' '}
-        <button className="card-button delete-button red-button">
+        <button className="homepage-card-button delete-button red-button">
           <Trash2 className="w-4 h-4" />
         </button>{' '}
         button.
