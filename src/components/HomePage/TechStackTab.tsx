@@ -17,7 +17,7 @@ export default function TechStackTab() {
         </ul>
       <h2>Features</h2>
         <ul>
-          <li>Authentication system</li>
+          <li>JWT Authentication system</li>
           <li>Local draft storage</li>
           <li>REST API communication between frontend and backend</li>
           <li>Responsive interface</li>
