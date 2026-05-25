@@ -35,6 +35,7 @@ export default function WhatIsTab() {
   ]
   return (
     <div className="homepage-tab-panel">
+      <h2>What is Alexandr-e ?</h2>
       <div className="homepage-text">
         Welcome to Alexandr-e — your personal library for web content. <br />
         Save, organize and document your favorite online resources in
