@@ -1,6 +1,6 @@
 import { Pencil, Save, Trash2, User } from "lucide-react";
 
-export default function () {
+export default function HowToTab() {
   return (
     <section className="homepage-tab-panel">
       <h1>User Guide</h1>
@@ -13,7 +13,7 @@ export default function () {
         button in the top-left corner.
       </p>
 
-      <h2>Guest Mode</h2>
+      <h2>Guest Mode - Draft</h2>
 
       <p>
         Without authentication, you have access to the <strong>Draft</strong> tab.
@@ -27,6 +27,8 @@ export default function () {
         </ul>
         To edit a card, click the <button className="card-button update-button"><Pencil className="w-4 h-4" /></button> button.
         To delete a card, use the <button className="card-button delete-button red-button"><Trash2 className="w-4 h-4" /></button> button.
+        <br />
+        Click on a card to get an expanded view showing a dynamic preview of the URL and the full description of this card.
       </p>
 
       <h2>Authenticated Mode</h2>
