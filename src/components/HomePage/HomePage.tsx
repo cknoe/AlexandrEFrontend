@@ -6,9 +6,8 @@ import WhatIsTab from './WhatIsTab'
 import TechStackTab from './TechStackTab'
 
 export default function HomePage() {
-
   useEffect(() => {
-    document.title='Home'
+    document.title = 'Home'
   }, [])
 
   const tab: Tab = {
