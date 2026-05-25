@@ -3,8 +3,6 @@ import { Pencil, Save, Trash2, User } from 'lucide-react'
 export default function HowToTab() {
   return (
     <section className="homepage-tab-panel">
-      <h1>User Guide</h1>
-
       <p className="hide-on-desktop">
         The application is organized around a vertical menu located on the left
         side of the screen. On mobile devices, this menu is accessible by

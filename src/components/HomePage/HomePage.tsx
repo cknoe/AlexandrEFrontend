@@ -3,6 +3,7 @@ import Tabs from '../Tabs/Tabs'
 import type { Tab } from '../Tabs/TabType'
 import HowToTab from './HowToTab'
 import WhatIsTab from './WhatIsTab'
+import TechStackTab from './TechStackTab'
 
 export default function HomePage() {
 
@@ -11,7 +12,7 @@ export default function HomePage() {
   }, [])
 
   const tab: Tab = {
-    name: 'What is Alexandr-e ?',
+    name: 'What is this ?',
     content: <WhatIsTab />,
   }
 
@@ -19,9 +20,14 @@ export default function HomePage() {
     name: 'How to use ?',
     content: <HowToTab />,
   }
+
+  const tab3: Tab = {
+    name: 'Tech Stack',
+    content: <TechStackTab />,
+  }
   return (
     <div className="homepage-content">
-      <Tabs tabs={[tab, tab2]}></Tabs>
+      <Tabs tabs={[tab, tab2, tab3]}></Tabs>
     </div>
   )
 }
