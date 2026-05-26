@@ -121,6 +121,50 @@ export default function HowToTab() {
           <li>log out</li>
         </ul>
       </p>
+
+      <h3>Open Graph Whitelist</h3>
+      <p>
+        This list of sites will show Open Graph their Open Graph informations :
+        <ul>
+          <li>github.com</li>
+          <li>gitlab.com</li>
+          <li>npmjs.com</li>
+          <li>pypi.org</li>
+          <li>docker.com</li>
+          <li>docker.io</li>
+          <li>medium.com</li>
+          <li>dev.to</li>
+          <li>hashnode.com</li>
+          <li>stackoverflow.com</li>
+          <li>x.com</li>
+          <li>twitter.com</li>
+          <li>linkedin.com</li>
+          <li>reddit.com</li>
+          <li>youtube.com</li>
+          <li>youtu.be</li>
+          <li>twitch.tv</li>
+          <li>wikipedia.org</li>
+          <li>notion.so</li>
+          <li>readthedocs.io</li>
+          <li>docs.google.com</li>
+          <li>nytimes.com</li>
+          <li>bbc.com</li>
+          <li>lemonde.fr</li>
+          <li>theverge.com</li>
+          <li>techcrunch.com</li>
+          <li>figma.com</li>
+          <li>canva.com</li>
+        </ul>
+      </p>
+
+      <h3>IFrame Whitelist</h3>
+      <p>
+        This list of sites are IFramable :
+        <ul>
+          <li>react.dev</li>
+          <li>shopify.com</li>
+        </ul>
+      </p>
     </section>
   )
 }
