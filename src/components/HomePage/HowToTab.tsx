@@ -124,7 +124,7 @@ export default function HowToTab() {
 
       <h3>Open Graph Whitelist</h3>
       <p>
-        This list of sites will show Open Graph their Open Graph informations :
+        This list of sites will show their Open Graph informations :
         <ul>
           <li>github.com</li>
           <li>gitlab.com</li>
