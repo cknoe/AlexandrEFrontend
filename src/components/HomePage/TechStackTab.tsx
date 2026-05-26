@@ -13,9 +13,10 @@ export default function TechStackTab() {
         <a href="https://github.com/cknoe/FrontendReact">Github</a>
       </span>
       <ul>
-        <li>React</li>
         <li>Typescript</li>
-        <li>vite</li>
+        <li>Yarn</li>
+        <li>Vite</li>
+        <li>React</li>
       </ul>
       <h2>Backend</h2>
       <span>
