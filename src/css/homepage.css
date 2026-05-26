@@ -4,6 +4,12 @@
   flex: 1;
 }
 
+@media (max-width: 601px) {
+  .homepage-content {
+    padding-top: 1em;
+  }
+}
+
 .homepage-tab-panel {
   display: flex;
   width: 100%;
