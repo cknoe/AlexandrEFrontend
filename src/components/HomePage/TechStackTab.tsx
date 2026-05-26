@@ -1,4 +1,10 @@
+import { useEffect } from "react"
+
 export default function TechStackTab() {
+  useEffect(() => {
+      document.title = 'Tech Stack'
+    }, [])
+  
   return (
     <section className="homepage-tab-panel">
       <h2>Frontend</h2>

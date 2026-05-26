@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Tabs from '../Tabs/Tabs'
 import type { Tab } from '../Tabs/TabType'
 import HowToTab from './HowToTab'
@@ -6,9 +5,6 @@ import WhatIsTab from './WhatIsTab'
 import TechStackTab from './TechStackTab'
 
 export default function HomePage() {
-  useEffect(() => {
-    document.title = 'Home'
-  }, [])
 
   const tab: Tab = {
     name: 'What is this ?',

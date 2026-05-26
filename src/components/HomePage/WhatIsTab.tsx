@@ -1,7 +1,12 @@
+import { useEffect } from 'react'
 import CardsList from '../Cards/CardsList'
 import type { CardData } from '../Cards/cardTypes'
 
 export default function WhatIsTab() {
+  useEffect(() => {
+    document.title = 'What is Alexandr-e'
+  }, [])
+
   const sampleCardList: CardData[] = [
     {
       id: 1,
