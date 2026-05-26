@@ -23,6 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
+# yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
 # Environment files
 .env
 .env.dev.lan
