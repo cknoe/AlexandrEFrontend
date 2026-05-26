@@ -111,6 +111,7 @@ yarn dev:host
 ## Scripts
 
 - `yarn dev` : Lance le serveur de développement
+- `yarn dev:lan` : Lance le serveur de développement en --host et --mode .dev.lan
 - `yarn build` : Build de production
 - `yarn preview` : Prévisualisation du build
 - `yarn lint` : Vérifie la qualité du code avec ESLint
