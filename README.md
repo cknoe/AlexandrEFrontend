@@ -70,8 +70,7 @@ Le projet suit une organisation simple et pragmatique, structurée par responsab
 
 ### Volta
 
-Les versions de Node.js et Yarn sont automatiquement gérées via Volta.
-[Volta](https://volta.sh/) doit être installé
+Les versions de Node.js et Yarn sont automatiquement gérées via [Volta](https://volta.sh/).
 
 #### Système Unix - WSL
 
