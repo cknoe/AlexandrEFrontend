@@ -3,9 +3,9 @@ import { useEffect } from 'react'
 
 export default function HowToTab() {
   useEffect(() => {
-      document.title = 'How to use'
-    }, [])
-  
+    document.title = 'How to use'
+  }, [])
+
   return (
     <section className="homepage-tab-panel">
       <p className="hide-on-desktop">

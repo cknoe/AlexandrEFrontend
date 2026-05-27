@@ -1,10 +1,10 @@
-import { useEffect } from "react"
+import { useEffect } from 'react'
 
 export default function TechStackTab() {
   useEffect(() => {
-      document.title = 'Tech Stack'
-    }, [])
-  
+    document.title = 'Tech Stack'
+  }, [])
+
   return (
     <section className="homepage-tab-panel">
       <h2>Frontend</h2>
@@ -21,7 +21,7 @@ export default function TechStackTab() {
       <h2>Backend</h2>
       <span>
         Source code available on{' '}
-        <a href="https://github.com/cknoe/FrontendReact">Github</a>
+        <a href="https://github.com/cknoe/Alexandr-eBackend">Github</a>
       </span>
       <ul>
         <li>Java</li>

@@ -5,7 +5,6 @@ import WhatIsTab from './WhatIsTab'
 import TechStackTab from './TechStackTab'
 
 export default function HomePage() {
-
   const tab: Tab = {
     name: 'What is this ?',
     content: <WhatIsTab />,
