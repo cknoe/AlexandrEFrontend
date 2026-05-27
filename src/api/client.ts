@@ -61,6 +61,7 @@ export async function apiFecthNonAuthenticated(
   path: string,
   options: RequestInit = {},
 ) {
+  console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
   const response: Response = await fetch(API_BASE_URL + path, {
     ...options,
     credentials: 'include',
