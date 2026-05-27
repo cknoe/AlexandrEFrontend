@@ -22,8 +22,6 @@ async function refreshAccessToken(): Promise<string> {
 }
 
 export async function apiFecth(path: string, options: RequestInit = {}) {
-  console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
-
   let token = localStorage.getItem('token')
 
   async function doFetch(withToken: string | null): Promise<Response> {
@@ -61,7 +59,6 @@ export async function apiFecthNonAuthenticated(
   path: string,
   options: RequestInit = {},
 ) {
-  console.log("API URL:", import.meta.env.VITE_API_BASE_URL);
   const response: Response = await fetch(API_BASE_URL + path, {
     ...options,
     credentials: 'include',
