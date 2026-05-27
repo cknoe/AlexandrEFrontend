@@ -68,45 +68,56 @@ Le projet suit une organisation simple et pragmatique, structurée par responsab
 
 ## Installation
 
-### Pré-requis
-
-- [Volta](https://volta.sh/) installé
+### Volta
 
 Les versions de Node.js et Yarn sont automatiquement gérées via Volta.
+[Volta](https://volta.sh/) doit être installé
 
-### Variable d'environement
+#### Système Unix - WSL
 
-(optionnel) Créer un fichier `.env.dev.lan` pour le mode dev:lan
+```sh
+curl https://get.volta.sh | bash
+```
 
-```env
-VITE_API_BASE_URL=<IP Réseau du back>
+#### Windows Powershell
+
+```sh
+winget install Volta.Volta
+```
+
+Rouvrez le terminal puis :
+
+```sh
+volta --version
+```
+
+Si volta n'est pas reconnu, ajoutez le au PATH `%LOCALAPPDATA%\Volta\bin` et rouvrez votre terminal.
+
+### Installation des dépendances
+
+```sh
+yarn install
 ```
 
 ### Backend associé
 
 Repo GitHub : [https://github.com/cknoe/AlexandrEBackend](https://github.com/cknoe/AlexandrEBackend)
 
-### Installation
+### (Optionnel) Variable d'environement
 
-```sh
-yarn install
+Créer un fichier `.env.dev.lan` pour le mode dev:lan
+
+```env
+VITE_API_BASE_URL=<IP Réseau du back>
 ```
 
 ## Démarrage
-
-### En local
 
 ```sh
 yarn dev
 ```
 
-Accède à l’application sur [http://localhost:5173](http://localhost:5173).
-
-### En LAN (nécessite .env.dev.lan)
-
-```sh
-yarn dev:host
-```
+Accèder à l’application sur [http://localhost:5173](http://localhost:5173).
 
 ## Scripts
 
