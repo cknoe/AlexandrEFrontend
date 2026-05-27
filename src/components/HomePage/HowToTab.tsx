@@ -126,6 +126,7 @@ export default function HowToTab() {
       <p>
         This list of sites will show their Open Graph informations :
         <ul>
+          <li>alexandr-e.vercel.app</li>
           <li>github.com</li>
           <li>gitlab.com</li>
           <li>npmjs.com</li>
