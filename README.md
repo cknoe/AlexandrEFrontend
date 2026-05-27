@@ -84,7 +84,7 @@ VITE_API_BASE_URL=<IP Réseau du back>
 
 ### Backend associé
 
-Repo GitHub : [https://github.com/cknoe/Alexandr-eBackend](https://github.com/cknoe/Alexandr-eBackend)
+Repo GitHub : [https://github.com/cknoe/Alexandr-eBackend](https://github.com/cknoe/AlexandrEBackend)
 
 ### Installation
 

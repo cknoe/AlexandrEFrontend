@@ -23,7 +23,7 @@ export default function WhatIsTab() {
       id: 2,
       cardTitle: 'A GitHub Repo',
       cardText: `If a site comply with Open Graph Protocol, its informations will be displayed in a concise manner`,
-      cardContent: 'https://github.com/cknoe/FrontendReact',
+      cardContent: 'https://github.com/cknoe/AlexandrEFrontend',
     },
     {
       id: 3,

@@ -10,7 +10,7 @@ export default function TechStackTab() {
       <h2>Frontend</h2>
       <span>
         Source code available on{' '}
-        <a href="https://github.com/cknoe/FrontendReact">Github</a>
+        <a href="https://github.com/cknoe/AlexandrEFrontend">Github</a>
       </span>
       <ul>
         <li>Typescript</li>
@@ -21,7 +21,7 @@ export default function TechStackTab() {
       <h2>Backend</h2>
       <span>
         Source code available on{' '}
-        <a href="https://github.com/cknoe/Alexandr-eBackend">Github</a>
+        <a href="https://github.com/cknoe/AlexandrEBackend">Github</a>
       </span>
       <ul>
         <li>Java</li>
